@@ -1,0 +1,19 @@
+package kosa.metacar.dto;
+
+import java.util.Date;
+
+import lombok.Data;
+
+@Data
+public class rental_carDTO {
+	private int reserveNum;
+	private String id;
+	//대여신청시간
+	private Date reserveTime;
+	//이용할시간
+	private int useTime;
+	//반납주소
+	private String returnAdd;
+	private int sczoneNum;
+	private String carNum;
+}

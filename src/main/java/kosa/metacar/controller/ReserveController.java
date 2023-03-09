@@ -5,8 +5,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class ReserveController {
-	@GetMapping("/reserve")
-	public void reservePage() {
+	@GetMapping("/rental")
+	public void rentalPage() {
 	
 	}
 }
