@@ -3,7 +3,7 @@ package kosa.metacar.dto;
 import lombok.Data;
 
 @Data
-public class have_carDTO {
+public class Have_CarDTO {
 	//차번호
 	private String carNum;
 	//쏘카존번호

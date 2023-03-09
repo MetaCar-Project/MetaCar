@@ -3,7 +3,7 @@ package kosa.metacar.dto;
 import lombok.Data;
 
 @Data
-public class socar_memberDTO {
+public class Socar_MemberDTO {
 	private String id;
 	private String password;
 	private int phone;

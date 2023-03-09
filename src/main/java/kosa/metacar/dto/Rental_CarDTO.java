@@ -5,7 +5,7 @@ import java.util.Date;
 import lombok.Data;
 
 @Data
-public class rental_carDTO {
+public class Rental_CarDTO {
 	private int reserveNum;
 	private String id;
 	//대여신청시간

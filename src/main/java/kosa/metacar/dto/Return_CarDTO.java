@@ -5,7 +5,7 @@ import java.util.Date;
 import lombok.Data;
 
 @Data
-public class return_carDTO {
+public class Return_CarDTO {
 	private int reserveNum;
 	private String id;
 	private Date returnTime;

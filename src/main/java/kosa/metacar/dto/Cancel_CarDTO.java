@@ -5,7 +5,7 @@ import java.util.Date;
 import lombok.Data;
 
 @Data
-public class cancel_carDTO {
+public class Cancel_CarDTO {
 	//예약번호
 	private int reserveNum;
 	private String id;
