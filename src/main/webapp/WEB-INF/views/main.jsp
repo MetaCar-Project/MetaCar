@@ -54,7 +54,7 @@
   <hr />
 </div>
 
-<div class="album py-5 bg-light" style="padding-left: 100px; float: left">
+<div class="album py-5 bg-light" style="float: left;padding-left:20px;">
   <!-- ALBUM -->
   <div class="container">
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
