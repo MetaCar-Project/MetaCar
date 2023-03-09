@@ -1,0 +1,13 @@
+@charset "UTF-8";
+
+
+.container {
+  width: 70%;
+  height: 200px;
+  overflow: hidden;
+}
+.container img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
