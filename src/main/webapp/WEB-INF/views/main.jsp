@@ -61,6 +61,42 @@
 	<!-- ALBUM -->
 	<div class="container">
 		<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+		
+			<div class="col">
+				<div class="card shadow-sm">
+					<title>Placeholder</title> <img src="/resources/img/ct5.jpg" alt="ct5" />
+					<div class="card-body">
+						캐딜락 블랙윙
+						<p class="card-text"></p>
+						<div class="d-flex justify-content-between align-items-center">
+							<div class="btn-group">
+								<button type="button" class="btn btn-sm btn-outline-secondary">상세보기</button>
+								<button type="button" class="btn btn-sm btn-outline-secondary">대여하기</button>
+							</div>
+							<small class="text-muted">대여가능여부</small>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+			<div class="col">
+				<div class="card shadow-sm">
+					<title>Placeholder</title> <img src="/resources/img/ta.jpg" alt="ta" />
+					<div class="card-body">
+						포르쉐 타이칸
+						<p class="card-text"></p>
+						<div class="d-flex justify-content-between align-items-center">
+							<div class="btn-group">
+								<button type="button" class="btn btn-sm btn-outline-secondary">상세보기</button>
+								<button type="button" class="btn btn-sm btn-outline-secondary">대여하기</button>
+							</div>
+							<small class="text-muted">대여가능여부</small>
+						</div>
+					</div>
+				</div>
+			</div>
+
 			<div class="col">
 				<div class="card shadow-sm">
 					<title>Placeholder</title> <img src="/resources/img/ct5.jpg"
@@ -79,6 +115,23 @@
 				</div>
 			</div>
 
+			<div class="col">
+				<div class="card shadow-sm">
+					<title>Placeholder</title> <img src="/resources/img/ct5.jpg"
+						alt="ct5" />
+					<div class="card-body">
+						캐딜락 블랙윙
+						<p class="card-text"></p>
+						<div class="d-flex justify-content-between align-items-center">
+							<div class="btn-group">
+								<button type="button" class="btn btn-sm btn-outline-secondary">상세보기</button>
+								<button type="button" class="btn btn-sm btn-outline-secondary">대여하기</button>
+							</div>
+							<small class="text-muted">대여가능여부</small>
+						</div>
+					</div>
+				</div>
+			</div>
 
 			<div class="col">
 				<div class="card shadow-sm">
@@ -100,17 +153,10 @@
 
 			<div class="col">
 				<div class="card shadow-sm">
-					<svg class="bd-placeholder-img card-img-top" width="100%"
-						height="225" xmlns="http://www.w3.org/2000/svg" role="img"
-						aria-label="Placeholder: Thumbnail"
-						preserveAspectRatio="xMidYMid slice" focusable="false">
-            <title>Placeholder</title>
-            <rect width="100%" height="100%" fill="#55595c">             
-              차 내용
-            </rect>
-            <text x="50%" y="50%" fill="#eceeef" dy=".3em">차사진</text>
-          </svg>
+					<title>Placeholder</title> <img src="/resources/img/ct5.jpg"
+						alt="ct5" />
 					<div class="card-body">
+						캐딜락 블랙윙
 						<p class="card-text"></p>
 						<div class="d-flex justify-content-between align-items-center">
 							<div class="btn-group">
@@ -125,16 +171,11 @@
 
 			<div class="col">
 				<div class="card shadow-sm">
-					<svg class="bd-placeholder-img card-img-top" width="100%"
-						height="225" xmlns="http://www.w3.org/2000/svg" role="img"
-						aria-label="Placeholder: Thumbnail"
-						preserveAspectRatio="xMidYMid slice" focusable="false">
-              <title>Placeholder</title>
-            <rect width="100%" height="100%" fill="#55595c"></rect>
-            <text x="50%" y="50%" fill="#eceeef" dy=".3em">차사진</text>
-          </svg>
+					<title>Placeholder</title> <img src="/resources/img/ct5.jpg"
+						alt="ct5" />
 					<div class="card-body">
-						<p class="card-text">차 내용 4</p>
+						캐딜락 블랙윙
+						<p class="card-text"></p>
 						<div class="d-flex justify-content-between align-items-center">
 							<div class="btn-group">
 								<button type="button" class="btn btn-sm btn-outline-secondary">상세보기</button>
@@ -148,16 +189,11 @@
 
 			<div class="col">
 				<div class="card shadow-sm">
-					<svg class="bd-placeholder-img card-img-top" width="100%"
-						height="225" xmlns="http://www.w3.org/2000/svg" role="img"
-						aria-label="Placeholder: Thumbnail"
-						preserveAspectRatio="xMidYMid slice" focusable="false">
-              <title>Placeholder</title>
-            <rect width="100%" height="100%" fill="#55595c"></rect>
-            <text x="50%" y="50%" fill="#eceeef" dy=".3em">차사진</text>
-          </svg>
+					<title>Placeholder</title> <img src="/resources/img/ct5.jpg"
+						alt="ct5" />
 					<div class="card-body">
-						<p class="card-text">차 내용 5</p>
+						캐딜락 블랙윙
+						<p class="card-text"></p>
 						<div class="d-flex justify-content-between align-items-center">
 							<div class="btn-group">
 								<button type="button" class="btn btn-sm btn-outline-secondary">상세보기</button>
@@ -171,16 +207,11 @@
 
 			<div class="col">
 				<div class="card shadow-sm">
-					<svg class="bd-placeholder-img card-img-top" width="100%"
-						height="225" xmlns="http://www.w3.org/2000/svg" role="img"
-						aria-label="Placeholder: Thumbnail"
-						preserveAspectRatio="xMidYMid slice" focusable="false">
-              <title>Placeholder</title>
-            <rect width="100%" height="100%" fill="#55595c"></rect>
-            <text x="50%" y="50%" fill="#eceeef" dy=".3em">차사진</text>
-          </svg>
+					<title>Placeholder</title> <img src="/resources/img/ct5.jpg"
+						alt="ct5" />
 					<div class="card-body">
-						<p class="card-text">차 내용 6</p>
+						캐딜락 블랙윙
+						<p class="card-text"></p>
 						<div class="d-flex justify-content-between align-items-center">
 							<div class="btn-group">
 								<button type="button" class="btn btn-sm btn-outline-secondary">상세보기</button>
@@ -191,75 +222,8 @@
 					</div>
 				</div>
 			</div>
-
-			<div class="col">
-				<div class="card shadow-sm">
-					<svg class="bd-placeholder-img card-img-top" width="100%"
-						height="225" xmlns="http://www.w3.org/2000/svg" role="img"
-						aria-label="Placeholder: Thumbnail"
-						preserveAspectRatio="xMidYMid slice" focusable="false">
-             <title>Placeholder</title>
-            <rect width="100%" height="100%" fill="#55595c"></rect>
-            <text x="50%" y="50%" fill="#eceeef" dy=".3em">차사진</text>
-          </svg>
-					<div class="card-body">
-						<p class="card-text">차 내용 7</p>
-						<div class="d-flex justify-content-between align-items-center">
-							<div class="btn-group">
-								<button type="button" class="btn btn-sm btn-outline-secondary">상세보기</button>
-								<button type="button" class="btn btn-sm btn-outline-secondary">대여하기</button>
-							</div>
-							<small class="text-muted">대여가능여부</small>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="col">
-				<div class="card shadow-sm">
-					<svg class="bd-placeholder-img card-img-top" width="100%"
-						height="225" xmlns="http://www.w3.org/2000/svg" role="img"
-						aria-label="Placeholder: Thumbnail"
-						preserveAspectRatio="xMidYMid slice" focusable="false">
-              <title>Placeholder</title>
-            <rect width="100%" height="100%" fill="#55595c"></rect>
-            <text x="50%" y="50%" fill="#eceeef" dy=".3em">차사진</text>
-          </svg>
-					<div class="card-body">
-						<p class="card-text">차 내용 8</p>
-						<div class="d-flex justify-content-between align-items-center">
-							<div class="btn-group">
-								<button type="button" class="btn btn-sm btn-outline-secondary">상세보기</button>
-								<button type="button" class="btn btn-sm btn-outline-secondary">대여하기</button>
-							</div>
-							<small class="text-muted">대여가능여부</small>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="col">
-				<div class="card shadow-sm">
-					<svg class="bd-placeholder-img card-img-top" width="100%"
-						height="225" xmlns="http://www.w3.org/2000/svg" role="img"
-						aria-label="Placeholder: Thumbnail"
-						preserveAspectRatio="xMidYMid slice" focusable="false">
-              <title>Placeholder</title>
-            <rect width="100%" height="100%" fill="#55595c"></rect>
-            <text x="50%" y="50%" fill="#eceeef" dy=".3em">차사진</text>
-          </svg>
-					<div class="card-body">
-						<p class="card-text">차 내용 9</p>
-						<div class="d-flex justify-content-between align-items-center">
-							<div class="btn-group">
-								<button type="button" class="btn btn-sm btn-outline-secondary">상세보기</button>
-								<button type="button" class="btn btn-sm btn-outline-secondary">대여하기</button>
-							</div>
-							<small class="text-muted">대여가능여부</small>
-						</div>
-					</div>
-				</div>
-			</div>
+			
+			
 		</div>
 	</div>
 </div>
