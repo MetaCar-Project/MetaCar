@@ -20,7 +20,7 @@
 	<div class="container" id="wrap">
 		<div class="row">
 			<div class="col-md-7 col-md-offset-3">
-				<form action="r" method="post" accept-charset="utf-8" class="form"
+				<form action="signup" method="post" accept-charset="utf-8" class="form"
 					role="form">
 					<legend>회원 가입</legend>
 
