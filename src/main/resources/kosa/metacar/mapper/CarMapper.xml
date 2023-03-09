@@ -2,10 +2,13 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="kosa.metacar.mapper.RentalMapper">
+<mapper namespace="kosa.metacar.mapper.CarMapper">
 
-	<select id="cargetList">
-		
+	<select id="cargetList" resultType="kosa.metacar.dto.Have_CarDTO">
+		<![CDATA[
+			select * from have_car
+		]]>
 	</select>
-
+	
+	
 </mapper>

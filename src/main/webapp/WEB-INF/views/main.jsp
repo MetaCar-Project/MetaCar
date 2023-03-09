@@ -56,175 +56,33 @@
 	<hr />
 </div>
 
+
 <div class="album py-5 bg-light"
 	style="float: left; padding-left: 20px;">
 	<!-- ALBUM -->
 	<div class="container">
 		<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-		
-			<div class="col">
-				<div class="card shadow-sm">
-					<title>Placeholder</title> <img src="/resources/img/ct5.jpg" style="width:100%; height:225px;" alt="ct5" />
-					<div class="card-body">
-						캐딜락 블랙윙
-						<p class="card-text"></p>
-						<div class="d-flex justify-content-between align-items-center">
-							<div class="btn-group">
-								<button type="button" class="btn btn-sm btn-outline-secondary">상세보기</button>
-								<button type="button" class="btn btn-sm btn-outline-secondary" 
-											onclick="location.href='rental'">대여하기</button>
+
+			<c:forEach items="${list}" var="car">
+				<div class="col">
+					<div class="card shadow-sm">
+						<title>Placeholder</title> <img
+							src="/resources/img/${car.carModel}.jpg"
+							style="width: 100%; height: 100%;" alt="${car.carModel}" />
+						<div class="card-body">
+							<c:out value="${car.carModel}" />
+							<p class="card-text"></p>
+							<div class="d-flex justify-content-between align-items-center">
+								<div class="btn-group">
+									<button type="button" class="btn btn-sm btn-outline-secondary">상세보기</button>
+									<button type="button" class="btn btn-sm btn-outline-secondary">대여하기</button>
+								</div>
+								<small class="text-muted">대여가능여부</small>
 							</div>
-							<small class="text-muted">대여가능여부</small>
 						</div>
 					</div>
 				</div>
-			</div>
-
-
-			<div class="col">
-				<div class="card shadow-sm">
-					<title>Placeholder</title> <img src="/resources/img/ta.jpg" style="width:100%; height:225px;" alt="ta" />
-					<div class="card-body">
-						포르쉐 타이칸
-						<p class="card-text"></p>
-						<div class="d-flex justify-content-between align-items-center">
-							<div class="btn-group">
-								<button type="button" class="btn btn-sm btn-outline-secondary">상세보기</button>
-								<button type="button" class="btn btn-sm btn-outline-secondary">대여하기</button>
-							</div>
-							<small class="text-muted">대여가능여부</small>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="col">
-				<div class="card shadow-sm">
-					<title>Placeholder</title> <img src="/resources/img/i8.jpg"
-						style="width:100%; height:225px;" alt="i8" />
-					<div class="card-body">
-						BMW i8
-						<p class="card-text"></p>
-						<div class="d-flex justify-content-between align-items-center">
-							<div class="btn-group">
-								<button type="button" class="btn btn-sm btn-outline-secondary">상세보기</button>
-								<button type="button" class="btn btn-sm btn-outline-secondary">대여하기</button>
-							</div>
-							<small class="text-muted">대여가능여부</small>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="col">
-				<div class="card shadow-sm">
-					<title>Placeholder</title> <img src="/resources/img/caien.jpg"
-						style="width:100%; height:225px;" alt="caien" />
-					<div class="card-body">
-						포르쉐 카이엔
-						<p class="card-text"></p>
-						<div class="d-flex justify-content-between align-items-center">
-							<div class="btn-group">
-								<button type="button" class="btn btn-sm btn-outline-secondary">상세보기</button>
-								<button type="button" class="btn btn-sm btn-outline-secondary">대여하기</button>
-							</div>
-							<small class="text-muted">대여가능여부</small>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="col">
-				<div class="card shadow-sm">
-					<title>Placeholder</title> <img src="/resources/img/sian.jpg"
-						style="width:100%; height:225px;" alt="sian" />
-					<div class="card-body">
-						람보르기니 시안
-						<p class="card-text"></p>
-						<div class="d-flex justify-content-between align-items-center">
-							<div class="btn-group">
-								<button type="button" class="btn btn-sm btn-outline-secondary">상세보기</button>
-								<button type="button" class="btn btn-sm btn-outline-secondary">대여하기</button>
-							</div>
-							<small class="text-muted">대여가능여부</small>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="col">
-				<div class="card shadow-sm">
-					<title>Placeholder</title> <img src="/resources/img/roma.jpg"
-						style="width:100%; height:225px;" alt="roma" />
-					<div class="card-body">
-						페라리 로마
-						<p class="card-text"></p>
-						<div class="d-flex justify-content-between align-items-center">
-							<div class="btn-group">
-								<button type="button" class="btn btn-sm btn-outline-secondary">상세보기</button>
-								<button type="button" class="btn btn-sm btn-outline-secondary">대여하기</button>
-							</div>
-							<small class="text-muted">대여가능여부</small>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="col">
-				<div class="card shadow-sm">
-					<title>Placeholder</title> <img src="/resources/img/es.jpg"
-						style="width:100%; height:225px;" alt="es" />
-					<div class="card-body">
-						애스턴마틴 007
-						<p class="card-text"></p>
-						<div class="d-flex justify-content-between align-items-center">
-							<div class="btn-group">
-								<button type="button" class="btn btn-sm btn-outline-secondary">상세보기</button>
-								<button type="button" class="btn btn-sm btn-outline-secondary">대여하기</button>
-							</div>
-							<small class="text-muted">대여가능여부</small>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="col">
-				<div class="card shadow-sm">
-					<title>Placeholder</title> <img src="/resources/img/mc20.jpg"
-						style="width:100%; height:225px;" alt="mc20" />
-					<div class="card-body">
-						마세라티 MC20
-						<p class="card-text"></p>
-						<div class="d-flex justify-content-between align-items-center">
-							<div class="btn-group">
-								<button type="button" class="btn btn-sm btn-outline-secondary">상세보기</button>
-								<button type="button" class="btn btn-sm btn-outline-secondary">대여하기</button>
-							</div>
-							<small class="text-muted">대여가능여부</small>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="col">
-				<div class="card shadow-sm">
-					<title>Placeholder</title> <img src="/resources/img/STZs.jpg"
-						style="width:100%; height:225px;" alt="STZs" />
-					<div class="card-body">
-						맥라렌 720s
-						<p class="card-text"></p>
-						<div class="d-flex justify-content-between align-items-center">
-							<div class="btn-group">
-								<button type="button" class="btn btn-sm btn-outline-secondary">상세보기</button>
-								<button type="button" class="btn btn-sm btn-outline-secondary">대여하기</button>
-							</div>
-							<small class="text-muted">대여가능여부</small>
-						</div>
-					</div>
-				</div>
-			</div>
-			
-			
+			</c:forEach>
 		</div>
 	</div>
 </div>
