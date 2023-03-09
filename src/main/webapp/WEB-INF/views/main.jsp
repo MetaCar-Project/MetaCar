@@ -100,10 +100,10 @@
 
 			<div class="col">
 				<div class="card shadow-sm">
-					<title>Placeholder</title> <img src="/resources/img/ct5.jpg"
-						alt="ct5" />
+					<title>Placeholder</title> <img src="/resources/img/i8.jpg"
+						alt="i8" />
 					<div class="card-body">
-						캐딜락 블랙윙
+						BMW i8
 						<p class="card-text"></p>
 						<div class="d-flex justify-content-between align-items-center">
 							<div class="btn-group">
@@ -118,10 +118,10 @@
 
 			<div class="col">
 				<div class="card shadow-sm">
-					<title>Placeholder</title> <img src="/resources/img/ct5.jpg"
-						alt="ct5" />
+					<title>Placeholder</title> <img src="/resources/img/caien.jpg"
+						alt="caien" />
 					<div class="card-body">
-						캐딜락 블랙윙
+						포르쉐 카이엔
 						<p class="card-text"></p>
 						<div class="d-flex justify-content-between align-items-center">
 							<div class="btn-group">
@@ -136,10 +136,10 @@
 
 			<div class="col">
 				<div class="card shadow-sm">
-					<title>Placeholder</title> <img src="/resources/img/ct5.jpg"
-						alt="ct5" />
+					<title>Placeholder</title> <img src="/resources/img/sian.jpg"
+						alt="sian" />
 					<div class="card-body">
-						캐딜락 블랙윙
+						람보르기니 시안
 						<p class="card-text"></p>
 						<div class="d-flex justify-content-between align-items-center">
 							<div class="btn-group">
@@ -154,10 +154,10 @@
 
 			<div class="col">
 				<div class="card shadow-sm">
-					<title>Placeholder</title> <img src="/resources/img/ct5.jpg"
-						alt="ct5" />
+					<title>Placeholder</title> <img src="/resources/img/roma.jpg"
+						alt="roma" />
 					<div class="card-body">
-						캐딜락 블랙윙
+						페라리 로마
 						<p class="card-text"></p>
 						<div class="d-flex justify-content-between align-items-center">
 							<div class="btn-group">
@@ -172,10 +172,10 @@
 
 			<div class="col">
 				<div class="card shadow-sm">
-					<title>Placeholder</title> <img src="/resources/img/ct5.jpg"
-						alt="ct5" />
+					<title>Placeholder</title> <img src="/resources/img/es.jpg"
+						alt="es" />
 					<div class="card-body">
-						캐딜락 블랙윙
+						애스턴마틴 007
 						<p class="card-text"></p>
 						<div class="d-flex justify-content-between align-items-center">
 							<div class="btn-group">
@@ -190,10 +190,10 @@
 
 			<div class="col">
 				<div class="card shadow-sm">
-					<title>Placeholder</title> <img src="/resources/img/ct5.jpg"
-						alt="ct5" />
+					<title>Placeholder</title> <img src="/resources/img/mc20.jpg"
+						alt="mc20" />
 					<div class="card-body">
-						캐딜락 블랙윙
+						마세라티 MC20
 						<p class="card-text"></p>
 						<div class="d-flex justify-content-between align-items-center">
 							<div class="btn-group">
@@ -208,10 +208,10 @@
 
 			<div class="col">
 				<div class="card shadow-sm">
-					<title>Placeholder</title> <img src="/resources/img/ct5.jpg"
-						alt="ct5" />
+					<title>Placeholder</title> <img src="/resources/img/STZs.jpg"
+						alt="STZs" />
 					<div class="card-body">
-						캐딜락 블랙윙
+						맥라렌 720s
 						<p class="card-text"></p>
 						<div class="d-flex justify-content-between align-items-center">
 							<div class="btn-group">
