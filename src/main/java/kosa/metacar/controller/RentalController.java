@@ -23,7 +23,7 @@ public class RentalController {
 	
 	@GetMapping("/rental")
 	public String rentalPage() {
-		
+		//
 		return "rental";
 	}
 	
