@@ -2,103 +2,56 @@
 <%@include file="./includes/header.jsp"%>
 
 <!-- SIDE BAR -->
-<div class="d-flex flex-column flex-shrink-0 bg-light" style="width: 4.5rem; float: left">
-  <a href="/" class="d-block p-3 link-dark text-decoration-none" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Icon-only">
-    <svg class="bi pe-none" width="40" height="32">
+<div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark" style="width: 280px; float: left">
+  <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+    <svg class="bi pe-none me-2" width="40" height="32">
       <use xlink:href="#bootstrap"></use>
     </svg>
-    <span class="visually-hidden">Icon-only</span>
+    <span class="fs-4">Sidebar3</span>
   </a>
-  <ul class="nav nav-pills nav-flush flex-column mb-auto text-center">
-    <li class="nav-item">
-      <a
-        href="#"
-        class="nav-link active py-3 border-bottom rounded-0"
-        aria-current="page"
-        data-bs-toggle="tooltip"
-        data-bs-placement="right"
-        aria-label="Home"
-        data-bs-original-title="Home"
-      >
-        <svg class="bi pe-none" width="24" height="24" role="img" aria-label="Home">
-          <use xlink:href="#home"></use>
-        </svg>
-      </a>
+  <hr />
+  <ul class="nav nav-pills flex-column mb-auto">
+    <li>
+      <div class="text-white fs-4">차종 선택</div>
+      <input type="checkbox" style="float: left" />
+      <div style="height: 100%; width: 100%">
+        <p href="#" class="nav-link text-white">경차</p>
+      </div>
+      <input type="checkbox" style="float: left" />
+      <div style="height: 100%; width: 100%">
+        <p href="#" class="nav-link text-white">경차</p>
+      </div>
+      <input type="checkbox" style="float: left" />
+      <div style="height: 100%; width: 100%">
+        <p href="#" class="nav-link text-white">경차</p>
+      </div>
+      <input type="checkbox" style="float: left" />
+      <div style="height: 100%; width: 100%">
+        <p href="#" class="nav-link text-white">경차</p>
+      </div>
     </li>
     <li>
-      <a
-        href="#"
-        class="nav-link py-3 border-bottom rounded-0"
-        data-bs-toggle="tooltip"
-        data-bs-placement="right"
-        aria-label="Dashboard"
-        data-bs-original-title="Dashboard"
-      >
-        <svg class="bi pe-none" width="24" height="24" role="img" aria-label="Dashboard">
-          <use xlink:href="#speedometer2"></use>
-        </svg>
-      </a>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <label class="input-group-text" for="inputGroupSelect01">쏘카존</label>
+        </div>
+        <select class="custom-select" id="inputGroupSelect01">
+          <option selected>쏘카존을 선택하세요</option>
+          <option value="1">수서역</option>
+          <option value="2">학동역</option>
+          <option value="3">경찰병원역</option>
+          <option value="3">가락시장역</option>
+        </select>
+      </div>
     </li>
     <li>
-      <a
-        href="#"
-        class="nav-link py-3 border-bottom rounded-0"
-        data-bs-toggle="tooltip"
-        data-bs-placement="right"
-        aria-label="Orders"
-        data-bs-original-title="Orders"
-      >
-        <svg class="bi pe-none" width="24" height="24" role="img" aria-label="Orders">
-          <use xlink:href="#table"></use>
-        </svg>
-      </a>
-    </li>
-    <li>
-      <a
-        href="#"
-        class="nav-link py-3 border-bottom rounded-0"
-        data-bs-toggle="tooltip"
-        data-bs-placement="right"
-        aria-label="Products"
-        data-bs-original-title="Products"
-      >
-        <svg class="bi pe-none" width="24" height="24" role="img" aria-label="Products">
-          <use xlink:href="#grid"></use>
-        </svg>
-      </a>
-    </li>
-    <li>
-      <a
-        href="#"
-        class="nav-link py-3 border-bottom rounded-0"
-        data-bs-toggle="tooltip"
-        data-bs-placement="right"
-        aria-label="Customers"
-        data-bs-original-title="Customers"
-      >
-        <svg class="bi pe-none" width="24" height="24" role="img" aria-label="Customers">
-          <use xlink:href="#people-circle"></use>
-        </svg>
-      </a>
+      <form class="form-inline">
+        <input class="form-control mr-sm-2" type="search" placeholder="차량이름 검색" aria-label="search" />
+        <button class="btn btn-outline-success my-2 my-sm-0 text-bg-white" type="submit" style="background-color: white">검색</button>
+      </form>
     </li>
   </ul>
-  <div class="dropdown border-top">
-    <a
-      href="#"
-      class="d-flex align-items-center justify-content-center p-3 link-dark text-decoration-none dropdown-toggle"
-      data-bs-toggle="dropdown"
-      aria-expanded="false"
-    >
-      <img src="https://github.com/mdo.png" alt="mdo" width="24" height="24" class="rounded-circle" />
-    </a>
-    <ul class="dropdown-menu text-small shadow">
-      <li><a class="dropdown-item" href="#">New project...</a></li>
-      <li><a class="dropdown-item" href="#">Settings</a></li>
-      <li><a class="dropdown-item" href="#">Profile</a></li>
-      <li><hr class="dropdown-divider" /></li>
-      <li><a class="dropdown-item" href="#">Sign out</a></li>
-    </ul>
-  </div>
+  <hr />
 </div>
 
 <div class="album py-5 bg-light" style="padding-left: 100px; float: left">
