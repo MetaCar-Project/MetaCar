@@ -71,7 +71,8 @@
 						<div class="d-flex justify-content-between align-items-center">
 							<div class="btn-group">
 								<button type="button" class="btn btn-sm btn-outline-secondary">상세보기</button>
-								<button type="button" class="btn btn-sm btn-outline-secondary">대여하기</button>
+								<button type="button" class="btn btn-sm btn-outline-secondary" 
+											onclick="location.href='rental'">대여하기</button>
 							</div>
 							<small class="text-muted">대여가능여부</small>
 						</div>
