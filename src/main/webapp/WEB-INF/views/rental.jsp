@@ -299,7 +299,9 @@
               </div>
             </div>
 		
-			
+			<div>
+				<c:out value="${test }"/>
+			</div>
 			
           <button class="w-100 btn btn-primary btn-lg" type="submit">Continue to checkout</button>
         </form>
