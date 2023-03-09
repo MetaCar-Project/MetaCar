@@ -64,7 +64,7 @@
 		
 			<div class="col">
 				<div class="card shadow-sm">
-					<title>Placeholder</title> <img src="/resources/img/ct5.jpg" alt="ct5" />
+					<title>Placeholder</title> <img src="/resources/img/ct5.jpg" style="width:100%; height:225px;" alt="ct5" />
 					<div class="card-body">
 						캐딜락 블랙윙
 						<p class="card-text"></p>
@@ -83,7 +83,7 @@
 
 			<div class="col">
 				<div class="card shadow-sm">
-					<title>Placeholder</title> <img src="/resources/img/ta.jpg" alt="ta" />
+					<title>Placeholder</title> <img src="/resources/img/ta.jpg" style="width:100%; height:225px;" alt="ta" />
 					<div class="card-body">
 						포르쉐 타이칸
 						<p class="card-text"></p>
@@ -101,7 +101,7 @@
 			<div class="col">
 				<div class="card shadow-sm">
 					<title>Placeholder</title> <img src="/resources/img/i8.jpg"
-						alt="i8" />
+						style="width:100%; height:225px;" alt="i8" />
 					<div class="card-body">
 						BMW i8
 						<p class="card-text"></p>
@@ -119,7 +119,7 @@
 			<div class="col">
 				<div class="card shadow-sm">
 					<title>Placeholder</title> <img src="/resources/img/caien.jpg"
-						alt="caien" />
+						style="width:100%; height:225px;" alt="caien" />
 					<div class="card-body">
 						포르쉐 카이엔
 						<p class="card-text"></p>
@@ -137,7 +137,7 @@
 			<div class="col">
 				<div class="card shadow-sm">
 					<title>Placeholder</title> <img src="/resources/img/sian.jpg"
-						alt="sian" />
+						style="width:100%; height:225px;" alt="sian" />
 					<div class="card-body">
 						람보르기니 시안
 						<p class="card-text"></p>
@@ -155,7 +155,7 @@
 			<div class="col">
 				<div class="card shadow-sm">
 					<title>Placeholder</title> <img src="/resources/img/roma.jpg"
-						alt="roma" />
+						style="width:100%; height:225px;" alt="roma" />
 					<div class="card-body">
 						페라리 로마
 						<p class="card-text"></p>
@@ -173,7 +173,7 @@
 			<div class="col">
 				<div class="card shadow-sm">
 					<title>Placeholder</title> <img src="/resources/img/es.jpg"
-						alt="es" />
+						style="width:100%; height:225px;" alt="es" />
 					<div class="card-body">
 						애스턴마틴 007
 						<p class="card-text"></p>
@@ -191,7 +191,7 @@
 			<div class="col">
 				<div class="card shadow-sm">
 					<title>Placeholder</title> <img src="/resources/img/mc20.jpg"
-						alt="mc20" />
+						style="width:100%; height:225px;" alt="mc20" />
 					<div class="card-body">
 						마세라티 MC20
 						<p class="card-text"></p>
@@ -209,7 +209,7 @@
 			<div class="col">
 				<div class="card shadow-sm">
 					<title>Placeholder</title> <img src="/resources/img/STZs.jpg"
-						alt="STZs" />
+						style="width:100%; height:225px;" alt="STZs" />
 					<div class="card-body">
 						맥라렌 720s
 						<p class="card-text"></p>
