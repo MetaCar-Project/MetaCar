@@ -71,7 +71,7 @@
 					<input type="text" name="phone" value=""
 						class="form-control input-lg" placeholder="전화번호" />
 					<br>
-					<input type="password" name="regNum" value=""
+					<input type="text" name="regNum" value=""
 						class="form-control input-lg" placeholder="주민등록번호" />
 					<br>
 				   
