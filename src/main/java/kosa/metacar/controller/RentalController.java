@@ -35,7 +35,7 @@ public class RentalController {
 	
 	@PostMapping("/rental")
 	public String rentalCar(Rental_CarDTO rc) {
-		
+		service.rentalCar(rc);
 		log.warn("======================================================"+rc);
 		
 		return "main";

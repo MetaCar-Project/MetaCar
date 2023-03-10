@@ -24,4 +24,5 @@ public class Have_CarDTO {
 	
 	
 	private DistanceDTO distanceDto;
+	private Zone_CarDTO zoneCar;
 }
