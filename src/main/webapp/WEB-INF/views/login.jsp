@@ -90,7 +90,7 @@
   <body class="text-center">
     
 <main class="form-signin w-100 m-auto">
-  <form>
+  <form action="/login" method="post" >
     <!-- <img class="mb-4" src="/docs/5.2/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57"> -->
     <h1 class="h3 mb-3 fw-normal">로그인 해주세요.</h1>
 
@@ -113,6 +113,8 @@
     <br>
     <button class="w-100 btn btn-lg btn-primary" type="submit">회원가입</button>
     <p class="mt-5 mb-3 text-muted">&copy; 20230309 ~ 20230314</p>
+     <input type="hidden" name="${_csrf.parameterName}"
+    value="${_csrf.token}" />
   </form>
 </main>
 
