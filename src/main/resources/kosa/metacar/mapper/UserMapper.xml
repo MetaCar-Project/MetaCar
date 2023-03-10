@@ -5,8 +5,16 @@
 <mapper namespace="kosa.metacar.mapper.UserMapper">
 
 	<insert id="userCreate">
-		insert into socar_member (id,password,phone,name,regNum)
-		values (#{id}, #{password}, #{phone}, #{name},#{regNum})
+		insert into socar_member
+		(id,password,phone,name,regNum)
+		values (#{id}, #{password}, #{phone},
+		#{name},#{regNum})
 	</insert>
-	
+
+	<select id="userSignin"
+		parameterType="kosa.metacar.dto.Socar_MemberDTO"
+		resultType="kosa.metacar.dto.Socar_MemberDTO">
+		SELECT * FROM socar_member WHERE ID = #{id} AND PASSWORD=#{password}
+	</select>
+
 </mapper>
