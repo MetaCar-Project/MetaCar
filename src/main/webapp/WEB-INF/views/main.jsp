@@ -68,7 +68,7 @@
 					<div class="card shadow-sm">
 						<title>Placeholder</title> <img
 							src="/resources/img/${car.carModel}.jpg"
-							style="width: 100%; height: 100%;" alt="${car.carModel}" />
+							style="width: 100%; height: 225px;" alt="${car.carModel}" />
 						<div class="card-body">
 							<c:out value="${car.carModel}" />
 							<p class="card-text"></p>
