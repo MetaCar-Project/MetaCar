@@ -8,6 +8,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 import kosa.metacar.dto.DistanceDTO;
+import kosa.metacar.dto.Have_CarDTO;
 import kosa.metacar.dto.Socar_MemberDTO;
 import kosa.metacar.service.RentalService;
 import kosa.metacar.service.UserService;
@@ -22,9 +23,14 @@ public class RentalTest {
 	@Autowired
 	private RentalService service;
 	
+	@Autowired
+	private RentalMapper mapper;
 	@Test
 	public void getMoneyTest() {
-		DistanceDTO distance =service.getMoney("suv");
-		log.warn(distance);
+		Have_CarDTO hc1 = new Have_CarDTO();
+		hc1.setCarNum("321루7449");
+		Have_CarDTO hc = mapper.carGet(hc1);
+		log.warn(hc);
+		log.info("123123123123123123123123123123123123");
 	}
 }

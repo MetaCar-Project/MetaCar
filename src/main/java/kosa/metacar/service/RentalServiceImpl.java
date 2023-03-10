@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kosa.metacar.dto.DistanceDTO;
+import kosa.metacar.dto.Have_CarDTO;
 import kosa.metacar.dto.Rental_CarDTO;
 import kosa.metacar.mapper.RentalMapper;
 
@@ -19,10 +20,11 @@ public class RentalServiceImpl implements RentalService{
 	}
 
 	@Override
-	public DistanceDTO getMoney(String carKind) {
-		
-		return mapper.getMoney(carKind);
+	public Have_CarDTO getCar(Have_CarDTO hc) {
+		return mapper.carGet(hc);
 	}
+
+	
 	
 	
 

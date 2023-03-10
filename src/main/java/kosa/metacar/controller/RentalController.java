@@ -26,15 +26,10 @@ public class RentalController {
 	
 	
 	@GetMapping("/rental")
-	public String rentalPage(@ModelAttribute("car") Have_CarDTO hc, Model model) {
-		hc.setCarKind("suv");
-		hc.setCarEff("11");
-		hc.setCarMaking("현대");
-		hc.setCarModel("쏘렌토");
-		DistanceDTO distance = service.getMoney(hc.getCarKind());
-		model.addAttribute("distance", distance);
-		log.warn("getMapping ================="+hc);
-		log.warn("distance : ======================================== " + distance);
+	public String rentalPage(Have_CarDTO havecar, Model model) {
+		havecar.setCarNum("321루7449");
+		model.addAttribute("car",service.getCar(havecar));
+		log.warn(service.getCar(havecar));
 		return "rental";
 	}
 	
