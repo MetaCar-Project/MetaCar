@@ -90,16 +90,16 @@
   <body class="text-center">
     
 <main class="form-signin w-100 m-auto">
-  <form action="/login" method="post" >
+  <form action="/metaCar/signin" method="post" name="signinForm" >
     <!-- <img class="mb-4" src="/docs/5.2/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57"> -->
     <h1 class="h3 mb-3 fw-normal">로그인 해주세요.</h1>
 
     <div class="form-floating">
-      <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+      <input type="text" class="form-control" name="id" placeholder="id">
       <label for="floatingInput">아이디</label>
     </div>
     <div class="form-floating">
-      <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+      <input type="password" class="form-control" name="password" placeholder="Password">
       <label for="floatingPassword">비밀번호</label>
     </div>
 
@@ -108,18 +108,23 @@
         <input type="checkbox" value="remember-me"> 아이디 저장
       </label>
     </div>
-    <button class="w-100 btn btn-lg btn-primary" type="submit">로그인</button>
+    <button class="w-100 btn btn-lg btn-primary" type="submit" value="Sign in">로그인</button>
     <br>
     <br>
-    <button class="w-100 btn btn-lg btn-primary" type="submit">회원가입</button>
+    <button class="w-100 btn btn-lg btn-primary" type="submit" onclick="Sign up">회원가입</button>
     <p class="mt-5 mb-3 text-muted">&copy; 20230309 ~ 20230314</p>
      <input type="hidden" name="${_csrf.parameterName}"
     value="${_csrf.token}" />
   </form>
+  
+      <c:if test="${not empty error}">
+        <p style="color: red">${error}</p>
+    </c:if>
 </main>
 
 
     
   </body>
+
  
 </html>
