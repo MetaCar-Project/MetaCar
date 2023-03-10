@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import kosa.metacar.dto.Criteria;
 import kosa.metacar.dto.Have_CarDTO;
 import kosa.metacar.mapper.CarMapper;
 
@@ -17,6 +18,11 @@ public class CarServiceImpl implements CarService {
 	@Override
 	public List<Have_CarDTO> getCarList() {
 		return mapper.cargetList();		
+	}
+
+	@Override
+	public List<Have_CarDTO> carWithPaginggetList(Criteria cri) {
+		return mapper.carWithPaginggetList(cri);
 	}
 
 

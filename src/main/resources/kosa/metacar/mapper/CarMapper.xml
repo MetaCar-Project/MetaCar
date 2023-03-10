@@ -10,5 +10,42 @@
 		]]>
 	</select>
 	
+	<select id="carWithPaginggetList" resultType="kosa.metacar.dto.Have_CarDTO">
+   		<![CDATA[
+    
+    	select carNum, carModel, carMaking from
+            (select	rownum rn,carNum,carModel,carMaking
+                    from have_car 
+                    where rownum <= #{pageNum} * #{amount})
+        	where rn > (#{pageNum} - 1) * #{amount}
+    	]]>  
+    <!-- SELECT * FROM (select ROWNUM rn, carModel FROM 
+    (SELECT * FROM have_car)
+			) WHERE rn <= #{pageNum} * #{amount}
+			 AND rn > (#{pageNum}-1) * #{amount}
+   	 -->	
+	</select>
+	
+	
+	
+	
+	<!--
+	<select id="carsearchgetList" resultType="kosa.metacar.dto.Have_CarDTO">
+			select * from have_car
+			<trim prefix ="where" prefixOverrides="AND|OR">
+				carmodel like '%'||#{carmodel}||'%'
+			</trim>		
+			<if test='carselect != null'>
+				<trim prefix = "AND">
+				carselect = #{carselect}
+				</trim>
+			</if>
+			<if test='inputGroupSelect01 != null'>
+				<trim prefix = "AND">
+				 inputGroupSelect01 = #{inputGroupSelect01}
+				 </trim>
+			</if>
+	</select>
+	-->
 	
 </mapper>
