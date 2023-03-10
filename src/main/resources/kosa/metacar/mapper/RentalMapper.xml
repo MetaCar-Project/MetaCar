@@ -35,6 +35,12 @@
 		values(reserve_seq.nextval, #{id}, sysdate, #{useTime}, #{returnAdd}, #{sczoneNum}, #{carNum} )
 	</insert>
 	
+	<update id="carUpdate">
+		update have_car 
+		set reservenow = 'o'
+		where carnum = #{carNum}
+	</update>
+	
 	
 	
 	

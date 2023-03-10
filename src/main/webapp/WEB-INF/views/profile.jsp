@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!doctype html>
 <html lang="ko">
   <head>
@@ -10,14 +10,14 @@
     <meta name="author" content="Mark Otto, Jacob Thornton, 그리고 Bootstrap 기여자들">
     <meta name="generator" content="Hugo 0.104.2">
     <title>Pricing example · Bootstrap v5.2</title>
-
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"> 
     <link rel="canonical" href="https://getbootstrap.kr/docs/5.2/examples/pricing/">
-
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     
 <link href="${pageContext.request.contextPath}/resources/css/profile.css" rel="stylesheet" type="text/css">
     
 
-<link href="/docs/5.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+<!-- <link href="/docs/5.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous"> -->
 
     <!-- Favicons -->
 <link rel="apple-touch-icon" href="/docs/5.2/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
@@ -26,6 +26,11 @@
 <link rel="manifest" href="/docs/5.2/assets/img/favicons/manifest.json">
 <link rel="mask-icon" href="/docs/5.2/assets/img/favicons/safari-pinned-tab.svg" color="#712cf9">
 <link rel="icon" href="/docs/5.2/assets/img/favicons/favicon.ico">
+
+<!-- model  -->
+
+
+
 <meta name="theme-color" content="#712cf9">
 
 
@@ -119,14 +124,19 @@
             <h4 class="my-0 fw-normal">내 정보</h4>
           </div>
           <div class="card-body">
-            <h1 class="card-title pricing-card-title">이름</h1>
+            <h1 class="card-title pricing-card-title"><c:out value="${user.name }"/></h1>
             <ul class="list-unstyled mt-3 mb-4">
-              <li>ID : </li>
+              <li>ID : <c:out value="${user.id }"/></li>
 
-              <li>전화번호 : </li>
+              <li id="phoneNum">전화번호 : <c:out value="${user.phone }"/></li>
             </ul>
-            <button type="button" class="w-100 btn btn-lg btn-primary">수정하기</button>
-          </div>
+            <!--  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalSignin" id="modify">수정하기</button>
+          	-->
+				<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+				  수정하기
+				</button>
+
+		 </div>
         </div>
       </div>
       
@@ -147,14 +157,98 @@
         <tbody>
           <tr>
             <th scope="row" class="text-start">Public</th>
-            <td><svg class="bi" width="24" height="24"><use xlink:href="#check"/></svg></td>
-            <td><svg class="bi" width="24" height="24"><use xlink:href="#check"/></svg></td>
-            <td><svg class="bi" width="24" height="24"><use xlink:href="#check"/></svg></td>
+            <!--<td><svg class="bi" width="24" height="24"><use xlink:href="#check"/></svg></td> -->
+            <td><c:out value="${user.rentalCar.haveCar.zoneCar.address }"/></td>
+            <td><c:out value="${user.rentalCar.haveCar.carModel }"/></td>
+            <td><c:out value="${user.rentalCar.useTime }"/></td>
           </tr>
-        </tbody>
-
- 
+        </tbody> 
       </table>
     </div>
-  </main>
+    
+	<!-- Button trigger modal -->
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <label>전화번호  <input id="modiphone" type="text"/></label>
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+        <button type="button" class="btn btn-primary" id="modify">수정하기</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<form action="/metaCar/modifyprofile" method="post" id="modifyForm" >
+	<input type="hidden" name="id">
+	<input type="hidden" name="phone">
+</form>
+
+</main>
+  
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/User.js"></script> 
+	<!-- <script src="/resources/js/User.js"></script>  -->
+<script>
+
+$(function(){
+	console.log("script");
+
+	
+			
+		
+	
+	
+	$('#modify').on('click', function(){
+		console.log("modify");
+		
+		if($('#modiphone').val()==""){
+			alert("전화번호를 입력해주세요");
+			return;
+		}
+		
+		var phone = $('#modiphone').val();
+		console.log(phone);
+		
+		//$('input[name="phone"]').val(phone);
+		
+		//var id = "<c:out value='${user.id }'/>";
+		
+		//$('input[name="id"]').val(id);
+		
+		//$('#modifyForm').submit();
+		
+		var data = {
+				id : "<c:out value='${user.id }'/>",
+				phone : phone
+		}
+		
+		console.log(data);
+		
+		userModifyService.modify(data,function(result){
+			$('#phoneNum').text("전화번호 : " + result);
+			
+			$('#exampleModal').modal('hide'); 
+		    $('#exampleModal').hide();
+		});
+		
+		
+		
+		
+		
+	})
+	
+	
+})
+
+</script>
   <%@include file="./includes/footer.jsp"%>

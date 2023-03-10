@@ -13,4 +13,8 @@ public class Socar_MemberDTO {
 	//총주행거리 (등급위해서)
 	private String auth;
 	private int totalDistance;
+	
+	
+	
+	private Rental_CarDTO rentalCar;
 }
