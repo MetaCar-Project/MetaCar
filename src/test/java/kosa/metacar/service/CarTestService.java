@@ -10,7 +10,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 import kosa.metacar.dto.Have_CarDTO;
-import kosa.metacar.mapper.Testmapper;
 import lombok.extern.log4j.Log4j;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -21,7 +20,7 @@ import lombok.extern.log4j.Log4j;
 })
 
 @Log4j
-public class TestService {
+public class CarTestService {
 	
 	@Autowired
 	private CarService cs;

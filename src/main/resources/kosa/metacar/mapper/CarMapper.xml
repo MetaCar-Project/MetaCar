@@ -11,4 +11,15 @@
 	</select>
 	
 	
+	
+	<select id="cargetListWithPaging" resultType="kosa.metacar.dto.Have_CarDTO">
+   	<![CDATA[
+			select carNum, carModel, carMaking from
+            (select /*+INDEX_DESC(tbl_board pk_board) */
+                    rownum rn, carNum, carModel, carMaking
+                    from have_car 
+                    where rownum <= 20)
+        	where rn > 10
+	]]>
+	</select>
 </mapper>

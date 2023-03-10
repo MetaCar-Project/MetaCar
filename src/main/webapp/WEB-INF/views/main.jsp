@@ -16,18 +16,18 @@
 	<ul class="nav nav-pills flex-column mb-auto">
 		<li>
 			<div class="text-white fs-4">차종 선택</div> <input type="checkbox"
-			style="float: left" />
+			id="typeSmall" style="float: left" />
 			<div style="height: 100%; width: 100%">
-				<p href="#" class="nav-link text-white">경차</p>
-			</div> <input type="checkbox" style="float: left" />
+				<p class="nav-link text-white">경차</p>
+			</div> <input type="checkbox" id="typeMiddle" style="float: left" />
 			<div style="height: 100%; width: 100%">
-				<p href="#" class="nav-link text-white">경차</p>
-			</div> <input type="checkbox" style="float: left" />
+				<p class="nav-link text-white">중형</p>
+			</div> <input type="checkbox" id="typeBig" style="float: left" />
 			<div style="height: 100%; width: 100%">
-				<p href="#" class="nav-link text-white">경차</p>
-			</div> <input type="checkbox" style="float: left" />
+				<p class="nav-link text-white">대형</p>
+			</div> <input type="checkbox" id="typeSUV" style="float: left" />
 			<div style="height: 100%; width: 100%">
-				<p href="#" class="nav-link text-white">경차</p>
+				<p class="nav-link text-white">SUV</p>
 			</div>
 		</li>
 		<li>
@@ -35,27 +35,116 @@
 				<div class="input-group-prepend">
 					<label class="input-group-text" for="inputGroupSelect01">쏘카존</label>
 				</div>
-				<select class="custom-select" id="inputGroupSelect01">
+				<select class="custom-select" id="zoneSelect" name="zoneSelect">
 					<option selected>쏘카존을 선택하세요</option>
 					<option value="1">수서역</option>
 					<option value="2">학동역</option>
 					<option value="3">경찰병원역</option>
-					<option value="3">가락시장역</option>
+					<option value="4">가락시장역</option>
 				</select>
 			</div>
 		</li>
 		<li>
-			<form class="form-inline">
-				<input class="form-control mr-sm-2" type="search"
+			<form class="form-inline" action="/metaCar/main" method='get'>
+				<select name='type'>
+					<option value=""
+						<c:out value="${pageMaker.cri.type == null?'selected':''}"/>>쏘카존을
+						선택하세요</option>
+					<option value="1"
+						<c:out value="${pageMaker.cri.type eq 1?'selected':''}"/>>수서역
+					</option>
+					<option value="2"
+						<c:out value="${pageMaker.cri.type eq 2?'selected':''}"/>>학동역
+					</option>
+					<option value="3"
+						<c:out value="${pageMaker.cri.type eq 3?'selected':''}"/>>경찰병원역
+					</option>
+					<option value="4"
+						<c:out value="${pageMaker.cri.type eq 4?'selected':''}"/>>가락시장역
+					</option>
+				</select> <input class="form-control mr-sm-2" type="search"
 					placeholder="차량이름 검색" aria-label="search" />
-				<button class="btn btn-outline-success my-2 my-sm-0 text-bg-white"
-					type="submit" style="background-color: white">검색</button>
+
 			</form>
 		</li>
 	</ul>
 	<hr />
 </div>
+<%-- 
+<form id='searchForm' action="/board/list" method='get'>
+	<select name='type'>
+		<option value=""
+			<c:out value="${pageMaker.cri.type == null?'selected':''}"/>>--</option>
+		<option value="T"
+			<c:out value="${pageMaker.cri.type eq 'T'?'selected':''}"/>>제목</option>
+		<option value="C"
+			<c:out value="${pageMaker.cri.type eq 'C'?'selected':''}"/>>내용</option>
+		<option value="W"
+			<c:out value="${pageMaker.cri.type eq 'W'?'selected':''}"/>>작성자</option>
+		<option value="TC"
+			<c:out value="${pageMaker.cri.type eq 'TC'?'selected':''}"/>>제목
+			or 내용</option>
+		<option value="TW"
+			<c:out value="${pageMaker.cri.type eq 'TW'?'selected':''}"/>>제목
+			or 작성자</option>
+		<option value="TWC"
+			<c:out value="${pageMaker.cri.type eq 'TWC'?'selected':''}"/>>제목
+			or 내용 or 작성자</option>
+	</select> <input type='text' name='keyword'
+		value='<c:out value="${pageMaker.cri.keyword}"/>' /> <input
+		type='hidden' name='pageNum'
+		value='<c:out value="${pageMaker.cri.pageNum}"/>' /> <input
+		type='hidden' name='amount'
+		value='<c:out value="${pageMaker.cri.amount}"/>' />
+	<button class='btn btn-default'>Search</button>
+</form>
 
+ --%>
+
+
+<button id="searchBtn">search3</button>
+<button id='abcBtn' name='save'>저장</button>
+<br />
+
+<!-- 
+	typeSmall
+	typeMiddle
+	typeBig 
+	typeSUV
+ -->
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("button[id='abcBtn']").click(function() {
+			$("body").append("click!@!!<br/>");
+		});
+	});
+	$(document).ready(function() {
+		let zoneNum;
+		$("#zoneSelect").change(function() {
+			console.log("change");
+			zoneNum = $(this).val();
+		});
+
+		$('#searchBtn').click(function() {
+			let carType = [];
+			if ($('#typeSmall').is(':checked')) {
+				carType.push('경차');
+			}
+			if ($('#typeMiddle').is(':checked')) {
+				carType.push('중형');
+			}
+			if ($('#typeBig').is(':checked')) {
+				carType.push('대형');
+			}
+			if ($('#typeSUV').is(':checked')) {
+				carType.push('SUV');
+			}
+			alert(carType);
+			alert(zoneNum);
+		})
+	});
+</script>
 
 <div class="album py-5 bg-light"
 	style="float: left; padding-left: 20px;">
@@ -105,9 +194,9 @@
           <use xlink:href="#people-circle"></use>
         </svg> UserId
 		</a></li>
-		<a href="carPay"
-			style="text-decoration-line: none; text-align: center;" />결제하기
 	</ul>
+	<a href="carPay"
+		style="text-decoration-line: none; text-align: center;"> 결제하기 </a>
 </div>
 
 <%@include file="./includes/footer.jsp"%>

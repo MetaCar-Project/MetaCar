@@ -9,6 +9,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
+import kosa.metacar.dto.Criteria;
 import kosa.metacar.dto.Have_CarDTO;
 import lombok.extern.log4j.Log4j;
 
@@ -20,10 +21,10 @@ import lombok.extern.log4j.Log4j;
 })
 
 @Log4j
-public class Testmapper {
+public class CarTestMapper {
 	
 	@Autowired
-	private CarMapper cs;
+	private CarMapper mapper;
 	
 	/*
 	@Test
@@ -32,4 +33,12 @@ public class Testmapper {
 		listCar.forEach(car -> log.info(car));
 	}
 	*/
+	
+	@Test
+	public void cargetListWithPagingTest() {
+		Criteria cri = new Criteria();
+		List<Have_CarDTO>listCar = mapper.cargetListWithPaging(cri);
+		listCar.forEach(car -> log.info(car));
+	}
+	
 }
