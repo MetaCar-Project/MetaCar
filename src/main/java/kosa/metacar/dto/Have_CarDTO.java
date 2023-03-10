@@ -20,4 +20,8 @@ public class Have_CarDTO {
 	private String carEff;
 	//대여여부 (o,x)
 	private String reserveNow;
+	
+	
+	
+	private DistanceDTO distanceDto;
 }

@@ -4,14 +4,31 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kosa.metacar.mapper.RentalMapper">
 
+
+
+	<resultMap type="kosa.metacar.Have_CarDTO" id="HaveCar">
+		<id column="carnum" property="carNum"/>
+		<result column="carkind" property="carKind"/>
+		<result column="carmaking" property="carMaking"/>
+		<result column="carmodel" property="carModel"/>
+		<result column="cargas" property="carGas"/>
+		<result column="careff" property="carEff"/>
+		<association property="disatnceDto" resultMap="Distance"></association>
+	</resultMap>
+	
+	<resultMap type="kosa.metacar.DistanceDTO" id="Distance">
+		<id column="carkind" property="carKind"/>
+		<result column="howmuch" property="howmuch"/>
+	</resultMap>
+
+	
+
 	<insert id="carRental">
 		insert into rental_car
 		values(reserve_seq.nextval, #{id}, sysdate, #{useTime}, #{returnAdd}, #{sczoneNum}, #{carNum} )
 	</insert>
 	
-	<update id="carModify">
-		
-	</update>
+	
 	
 	
 </mapper>

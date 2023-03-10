@@ -17,7 +17,7 @@
 		<!-- 
 		<security:form-login/>
 		 -->
-		<security:form-login />
+		<security:form-login login-page="/login"/>
 		
 		
 		

@@ -113,6 +113,8 @@
     <br>
     <button class="w-100 btn btn-lg btn-primary" type="submit" onclick="Sign up">회원가입</button>
     <p class="mt-5 mb-3 text-muted">&copy; 20230309 ~ 20230314</p>
+     <input type="hidden" name="${_csrf.parameterName}"
+    value="${_csrf.token}" />
   </form>
   
       <c:if test="${not empty error}">
