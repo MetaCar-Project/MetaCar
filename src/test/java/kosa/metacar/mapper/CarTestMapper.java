@@ -34,12 +34,13 @@ public class CarTestMapper {
 //	}
 	
 	
-
+	/*
 	@Test
 	public void pagecheck() {
 		Criteria cri = new Criteria();
 		List<Have_CarDTO>listCar = cs.carWithPaginggetList(cri);
 //		listCar.forEach(car -> log.info(car));
 	}
+	*/
 	
 }

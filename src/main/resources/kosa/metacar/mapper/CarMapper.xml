@@ -19,15 +19,8 @@
                     where rownum <= #{pageNum} * #{amount})
         	where rn > (#{pageNum} - 1) * #{amount}
     	]]>  
-    <!-- SELECT * FROM (select ROWNUM rn, carModel FROM 
-    (SELECT * FROM have_car)
-			) WHERE rn <= #{pageNum} * #{amount}
-			 AND rn > (#{pageNum}-1) * #{amount}
-   	 -->	
+   
 	</select>
-	
-	
-	
 	
 	<!--
 	<select id="carsearchgetList" resultType="kosa.metacar.dto.Have_CarDTO">

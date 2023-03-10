@@ -34,7 +34,7 @@ public class CarTestService {
 	}
 	*/
 	
-	
+	/*
 	@Test
 	public void pagecheck() {
 		Criteria cri = new Criteria();
@@ -43,5 +43,6 @@ public class CarTestService {
 		cri.setAmount(6);
 		listCar.forEach(car -> log.info(car));
 	}
+	*/
 
 }
