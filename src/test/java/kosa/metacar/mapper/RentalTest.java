@@ -25,6 +25,7 @@ public class RentalTest {
 	
 	@Autowired
 	private RentalMapper mapper;
+	/*
 	@Test
 	public void getMoneyTest() {
 		Have_CarDTO hc1 = new Have_CarDTO();
@@ -32,5 +33,10 @@ public class RentalTest {
 		Have_CarDTO hc = mapper.carGet(hc1);
 		log.warn(hc);
 		log.info("123123123123123123123123123123123123");
+	}*/
+	
+	@Test
+	public void update() {
+		log.warn("update ========================================== : " + mapper.carUpdate("321루7449"));
 	}
 }

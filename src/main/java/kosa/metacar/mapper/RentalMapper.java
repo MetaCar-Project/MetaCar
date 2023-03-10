@@ -9,4 +9,6 @@ public interface RentalMapper {
 	public void carRental(Rental_CarDTO rc);
 	
 	public Have_CarDTO carGet(Have_CarDTO hc);
+	
+	public int carUpdate(String carNum);
 }
