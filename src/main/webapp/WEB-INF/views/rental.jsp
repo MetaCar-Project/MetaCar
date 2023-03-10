@@ -24,7 +24,7 @@
         border-width: 1px 0;
         box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
       }
-
+	
       .b-example-vr {
         flex-shrink: 0;
         width: 1.5rem;
@@ -62,7 +62,7 @@
     <div class="py-5 text-center">
       <img class="d-block mx-auto mb-4" src="../assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
       <h2>대여 신청</h2>
-      <p class="lead">이부분이필요할까</p>
+      <p class="lead"><c:out value="${car.carNum }"/></p>
     </div>
 
     <div class="row g-5">
@@ -77,32 +77,32 @@
               <h6 class="my-0">모델명</h6>
               <small class="text-muted"></small>
             </div>
-            <span class="text-muted">투싼</span>
+            <span class="text-muted"><c:out value="${car.carModel }"/></span>
           </li>
           <li class="list-group-item d-flex justify-content-between lh-sm">
             <div>
               <h6 class="my-0">제조사</h6>
               <small class="text-muted"></small>
             </div>
-            <span class="text-muted">현대</span>
+            <span class="text-muted"><c:out value="${car.carMaking }"/></span>
           </li>
           <li class="list-group-item d-flex justify-content-between lh-sm">
             <div>
               <h6 class="my-0">연료</h6>
               <small class="text-muted"></small>
             </div>
-            <span class="text-muted">휘발유</span>
+            <span class="text-muted"><c:out value="${car.carGas }"/></span>
           </li>
           <li class="list-group-item d-flex justify-content-between bg-light">
             <div class="text-success">
               <h6 class="my-0">연비</h6>
               <small></small>
             </div>
-            <span class="text-success">11.2</span>
+            <span class="text-success"><c:out value="${car.carEff }"/></span>
           </li>
           <li class="list-group-item d-flex justify-content-between">
             <span>시간당 가격</span>
-            <strong>2만원</strong>
+            <strong id="money"><c:out value="${car.distanceDto.howmuch }"/>만원</strong>
           </li>
         </ul>
 		<!-- 
@@ -116,7 +116,7 @@
       </div>
       <div class="col-md-7 col-lg-8">
         <h4 class="mb-3">신청 정보</h4>
-        <form class="needs-validation" novalidate>
+        <form class="needs-validation" novalidate >
           <div class="row g-3">
           
             <div class="col-sm-6">
@@ -167,7 +167,7 @@
 
             <div class="col-12">
               <label for="email" class="form-label">반납주소</label>
-              <input type="text" class="form-control" id="email" placeholder="서울시 강남구 논현동">
+              <input type="text" class="form-control" id="address" placeholder="서울시 강남구 논현동" required="required">
               <div class="invalid-feedback">
                 Please enter a valid email address for shipping updates.
               </div>
@@ -179,10 +179,10 @@
               <label for="country" class="form-label">이용시간</label>
               <select class="form-select" id="country" required>
                 <option value="">Choose...</option>
-                <option>1시간</option>
-                <option>2시간</option>
-                <option>3시간</option>
-                <option>4시간</option>
+                <option value="1">1시간</option>
+                <option value="2">2시간</option>
+                <option value="3">3시간</option>
+                <option value="4">4시간</option>
               </select>
               <div class="invalid-feedback">
                 Please select a valid country.
@@ -289,7 +289,7 @@
               	<ul class="list-group mb-3">
           			<li class="list-group-item d-flex justify-content-between lh-sm">
             			<div>
-              				<h6 class="my-0">115000만원</h6>
+              				<h6 class="my-0" id="totalPrice"></h6>
               				<small class="text-muted"></small>
             			</div>
             		</li>
@@ -303,10 +303,74 @@
 				<c:out value="${test }"/>
 			</div>
 			
-          <button class="w-100 btn btn-primary btn-lg" type="submit">Continue to checkout</button>
+          <button id="submitButton" class="w-100 btn btn-primary btn-lg" type="submit">Continue to checkout</button>
         </form>
       </div>
     </div>
   </main>
 </div>
+<form id="rentalForm" action="/metaCar/rental" method="post">
+    	<input name="id" type="hidden"/>
+    	<input name="useTime" type="hidden"/>
+    	<input name="returnAdd" type="hidden"/>
+    	<input name="carNum" type="hidden"/>
+    	<input name="sczoneNum" type="hidden"/>
+</form>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+<script>
+
+$(function(){
+	console.log("script");
+	
+	$('#country').on('change',function(){
+		console.log('change');
+		var howlong = $(this).val();
+		var howmuch = parseInt($('#money').text());
+		var totalprice = howlong*howmuch;
+		//var total price = howlong * 
+		$('#totalPrice').text(totalprice + "만원");
+	})
+	
+	
+	$('#submitButton').on("click",function(e){
+		e.preventDefault();
+		console.log("click");
+		
+		if($('#country').val()==""){
+			alert("이용시간을 선택하십시오.");
+			return;
+		}
+		
+		if($('#address').val()==""){
+			alert("반납주소를 입력해주세요");
+			return;
+		}
+		
+		$('input[name="id"]').val("p21356");
+		
+		$('input[name="useTime"]').val($('#country').val());
+		
+		$('input[name="returnAdd"]').val($('#address').val());
+		
+		var sczone= "<c:out value='${car.sczoneNum }'/>";
+		$('input[name="sczoneNum"]').val(sczone);
+		
+		var carnum = "<c:out value='${car.carNum }'/>"
+		$('input[name="carNum"]').val(carnum);
+		
+		$('#rentalForm').submit();
+		
+	});
+	
+	
+	
+	
+	
+	
+})
+
+</script>
+
+
 <%@include file="./includes/footer.jsp"%>

@@ -1,7 +1,6 @@
-package kosa.metacar.service;
+package kosa.metacar.mapper;
 
-import java.util.List;
-
+import org.apache.ibatis.annotations.Param;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,8 +8,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
-import kosa.metacar.dto.Have_CarDTO;
-
+import kosa.metacar.dto.Socar_MemberDTO;
 import lombok.extern.log4j.Log4j;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -21,17 +19,26 @@ import lombok.extern.log4j.Log4j;
 })
 
 @Log4j
-public class CarTestService {
-	
-	@Autowired
-	private CarService cs;
-	
-	/*
-	@Test
-	public void getList(){
-		List<Have_CarDTO>listCar = cs.getCarList();
-		listCar.forEach(car -> log.info(car));
-	}
-	*/
+public class UserTestMapper {
 
+	@Autowired
+	private UserMapper um;
+	
+	@Test
+	public void signinUserTest() {
+		
+		Socar_MemberDTO sm = um.getUserByIdAndPassword("kosa00", "1234");
+		
+		if (sm == null) {
+			// 회원 정보가 없는 경우 로그인 실패 처리
+			log.info("================fail");
+			
+			
+			
+		} else {
+			// 회원 정보가 있는 경우 로그인 성공 처리
+			log.info("================success");
+			
+		}
+	}
 }

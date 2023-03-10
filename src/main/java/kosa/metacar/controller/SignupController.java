@@ -1,5 +1,6 @@
 package kosa.metacar.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,15 +15,16 @@ import lombok.extern.log4j.Log4j;
 
 @Controller
 @Log4j
-@RequestMapping("/metaCar")
+@RequestMapping("/metaCar/*")
 @AllArgsConstructor
 public class SignupController {
 
+	@Autowired
 	private UserService uservice;
 	
 	@GetMapping("/addacount")
 	public String addacount() {
-		return "/signup";
+		return "/addacount";
 	}
 //GetMapping("/[기능명]")
 	@PostMapping("/addacount")
@@ -31,8 +33,6 @@ public class SignupController {
 
 		uservice.createUser(sc);
 
-		
-
-		return "redirect:/signin";
+		return "redirect:/metaCar/signin";
 	}
 }
