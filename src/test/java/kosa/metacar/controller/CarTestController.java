@@ -24,7 +24,7 @@ import lombok.extern.log4j.Log4j;
 })
 
 @Log4j
-public class Testcontroller {
+public class CarTestController {
 	
 	@Autowired
 	private WebApplicationContext ctx; //spring container / context
