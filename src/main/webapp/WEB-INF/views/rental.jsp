@@ -102,7 +102,7 @@
           </li>
           <li class="list-group-item d-flex justify-content-between">
             <span>시간당 가격</span>
-            <strong id="money"><c:out value="${distance.howmuch }"/>만원</strong>
+            <strong id="money"><c:out value="${car.distanceDto.howmuch }"/>만원</strong>
           </li>
         </ul>
 		<!-- 
