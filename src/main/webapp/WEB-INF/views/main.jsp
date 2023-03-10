@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@include file="./includes/header.jsp"%>
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 
 <!-- SIDE BAR -->
 <div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark"
@@ -15,19 +16,19 @@
 	<hr />
 	<ul class="nav nav-pills flex-column mb-auto">
 		<li>
-			<div class="text-white fs-4">차종 선택</div> <input type="checkbox"
+			<div class="text-white fs-4" id="carselect" name="carselect">차종 선택</div> <input type="checkbox"
 			style="float: left" />
 			<div style="height: 100%; width: 100%">
-				<p href="#" class="nav-link text-white">경차</p>
+				<p class="nav-link text-white" id="smallcar">경차</p>
 			</div> <input type="checkbox" style="float: left" />
 			<div style="height: 100%; width: 100%">
-				<p href="#" class="nav-link text-white">경차</p>
+				<p class="nav-link text-white" id="midddlecar">중형</p>
 			</div> <input type="checkbox" style="float: left" />
 			<div style="height: 100%; width: 100%">
-				<p href="#" class="nav-link text-white">경차</p>
+				<p class="nav-link text-white" id="bigcar">대형</p>
 			</div> <input type="checkbox" style="float: left" />
 			<div style="height: 100%; width: 100%">
-				<p href="#" class="nav-link text-white">경차</p>
+				<p class="nav-link text-white" id="suv">SUV</p>
 			</div>
 		</li>
 		<li>
@@ -37,20 +38,20 @@
 				</div>
 				<select class="custom-select" id="inputGroupSelect01">
 					<option selected>쏘카존을 선택하세요</option>
-					<option value="1">수서역</option>
-					<option value="2">학동역</option>
-					<option value="3">경찰병원역</option>
-					<option value="3">가락시장역</option>
+					<option value="station1">수서역</option>
+					<option value="station2">학동역</option>
+					<option value="station3">경찰병원역</option>
+					<option value="station4">가락시장역</option>
 				</select>
 			</div>
 		</li>
 		<li>
-			<form class="form-inline">
+			<form id='searchForm' action="/metaCar/main" method='get'>
 				<input class="form-control mr-sm-2" type="search"
 					placeholder="차량이름 검색" aria-label="search" />
 				<button class="btn btn-outline-success my-2 my-sm-0 text-bg-white"
-					type="submit" style="background-color: white">검색</button>
-			</form>
+					id="search"type="submit" style="background-color: white">검색</button>
+			</form>			
 		</li>
 	</ul>
 	<hr />
@@ -85,7 +86,36 @@
 			</c:forEach>
 		</div>
 	</div>
-</div>
+	
+				<div class='pull-right'>
+					<ul class="pagination">
+
+						<c:if test="${pageMaker.prev}">
+							<li class="paginate_button previous">
+							  <a href="${pageMaker.startPage -1}">Previous</a></li>
+						</c:if>
+
+						<c:forEach var="num" begin="${pageMaker.startPage}" end="${pageMaker.endPage}">
+							<li class="paginate_button ${pageMaker.cri.pageNum == num ? "active":""} ">
+								<a href="${num}">${num}</a>
+							</li>
+						</c:forEach>
+
+						<c:if test="${pageMaker.next}">
+							<li class="paginate_button next">
+								<a href="${pageMaker.endPage +1 }">Next</a>
+							</li>
+						</c:if>
+
+					</ul>
+				</div>
+				<!--  end Pagination -->				
+		</div>
+			
+				<form id='actionForm' action="/metaCar/main" method='get'>
+					<input type='hidden' name='pageNum' value='${pageMaker.cri.pageNum}'>
+					<input type='hidden' name='amount' value='${pageMaker.cri.amount}'>
+				</form>
 
 
 <div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark"
@@ -105,9 +135,31 @@
           <use xlink:href="#people-circle"></use>
         </svg> UserId
 		</a></li>
-		<a href="carPay"
-			style="text-decoration-line: none; text-align: center;" />결제하기
 	</ul>
+	<a href="carPay" style="text-decoration-line: none; text-align: center;">결제하기</a>
 </div>
+
+<script type="text/javascript">
+
+$(document).ready(function() {
+	
+			history.replaceState({}, null, null);
+
+			var actionForm = $("#actionForm");
+
+			$(".paginate_button a").on(
+					"click",
+					function(e) {
+
+						e.preventDefault();
+
+						console.log('click');
+
+						actionForm.find("input[name='pageNum']").val($(this).attr("href"));
+						actionForm.submit();
+					});
+		});
+
+</script>
 
 <%@include file="./includes/footer.jsp"%>

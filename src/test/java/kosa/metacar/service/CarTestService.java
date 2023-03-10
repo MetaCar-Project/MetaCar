@@ -9,8 +9,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
+import kosa.metacar.dto.Criteria;
 import kosa.metacar.dto.Have_CarDTO;
-
 import lombok.extern.log4j.Log4j;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -30,6 +30,17 @@ public class CarTestService {
 	@Test
 	public void getList(){
 		List<Have_CarDTO>listCar = cs.getCarList();
+		listCar.forEach(car -> log.info(car));
+	}
+	*/
+	
+	/*
+	@Test
+	public void pagecheck() {
+		Criteria cri = new Criteria();
+		List<Have_CarDTO>listCar = cs.carWithPaginggetList(cri);
+		cri.setPageNum(1);
+		cri.setAmount(6);
 		listCar.forEach(car -> log.info(car));
 	}
 	*/
