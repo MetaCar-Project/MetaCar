@@ -14,7 +14,7 @@ import lombok.extern.log4j.Log4j;
 
 @Controller
 @Log4j
-@RequestMapping("/metaCar")
+@RequestMapping("/metaCar/*")
 @AllArgsConstructor
 public class SignupController {
 
@@ -22,7 +22,7 @@ public class SignupController {
 	
 	@GetMapping("/addacount")
 	public String addacount() {
-		return "/signup";
+		return "/addacount";
 	}
 //GetMapping("/[기능명]")
 	@PostMapping("/addacount")
@@ -31,8 +31,6 @@ public class SignupController {
 
 		uservice.createUser(sc);
 
-		
-
-		return "redirect:/signin";
+		return "redirect:/metaCar/signin";
 	}
 }

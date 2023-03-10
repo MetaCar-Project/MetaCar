@@ -11,13 +11,13 @@
 	 -->
 	 <bean id="bcrytPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
 	 
-	 
+	
 	<security:http>
-		
+		<security:csrf disabled="true"/>
 		<!-- 
 		<security:form-login/>
 		 -->
-		<security:form-login />
+		<security:form-login login-page="/login"/>
 		
 		
 		
