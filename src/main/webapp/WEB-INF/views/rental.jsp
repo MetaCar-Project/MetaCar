@@ -313,6 +313,8 @@
     	<input name="id" type="hidden"/>
     	<input name="useTime" type="hidden"/>
     	<input name="returnAdd" type="hidden"/>
+    	<input name="carNum" type="hidden"/>
+    	<input name="sczoneNum" type="hidden"/>
 </form>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
@@ -345,11 +347,17 @@ $(function(){
 			return;
 		}
 		
-		$('input[name="id"]').val("test");
+		$('input[name="id"]').val("p21356");
 		
 		$('input[name="useTime"]').val($('#country').val());
 		
-		$('input[name=returnAdd]').val($('#address').val());
+		$('input[name="returnAdd"]').val($('#address').val());
+		
+		var sczone= "<c:out value='${car.sczoneNum }'/>";
+		$('input[name="sczoneNum"]').val(sczone);
+		
+		var carnum = "<c:out value='${car.carNum }'/>"
+		$('input[name="carNum"]').val(carnum);
 		
 		$('#rentalForm').submit();
 		
