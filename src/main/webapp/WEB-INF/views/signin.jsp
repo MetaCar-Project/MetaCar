@@ -90,12 +90,12 @@
   <body class="text-center">
     
 <main class="form-signin w-100 m-auto">
-  <form action="/metaCar/signin" method="post" name="member">
+  <form action="/login" method="post" name="member">
     <!-- <img class="mb-4" src="/docs/5.2/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57"> -->
     <h1 class="h3 mb-3 fw-normal">로그인 해주세요.</h1>
  
     <div class="form-floating">
-      <input type="text" class="form-control" name="id" placeholder="id">
+      <input type="text" class="form-control" name="username" placeholder="id">
       <label for="floatingInput">아이디</label>
     </div>
     <div class="form-floating">

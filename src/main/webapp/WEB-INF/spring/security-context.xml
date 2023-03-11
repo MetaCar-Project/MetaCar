@@ -9,14 +9,14 @@
 	<!-- 
 	<bean id="customPasswordEncoder" class="org.zerock.security.CustomNoOpPasswordEncoder"/>
 	 -->
-	 <bean id="bcrytPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
+	<bean id="CustomUserDetailsService" class="kosa.metacar.security.CustomUserDetailsService"></bean>
 	 
 	
 	<security:http>
 	
-		<security:intercept-url pattern="/metaCar/main" access="hasRole('ROLE_MEMBER')" />
+		<security:intercept-url pattern="/metaCar/main" access="hasRole('ROLE_USER')" />
         <security:intercept-url pattern="/metaCar/signin" access="permitAll" />
-        <security:form-login login-page="/metaCar/signin" default-target-url="/metaCar/main" authentication-failure-url="/metaCar/signin" />
+        <security:form-login login-page="/metaCar/signin" default-target-url="/metaCar/rental" authentication-failure-url="/metaCar/signin" />
         <security:logout logout-success-url="/metaCar/signin" />	
 		
 		<security:csrf disabled="true"/> 
@@ -31,8 +31,11 @@
 	</security:http>
 	
 	<security:authentication-manager>
-        <security:authentication-provider>
-            <security:jdbc-user-service data-source-ref="dataSource" />
+        <security:authentication-provider user-service-ref="CustomUserDetailsService">
+        
+           
+            <security:password-encoder ref="bcrytPasswordEncoder"/>
+            
         </security:authentication-provider>
     </security:authentication-manager>
 	

@@ -26,13 +26,15 @@ public class SignupController {
 	public String addacount() {
 		return "/addacount";
 	}
-//GetMapping("/[기능명]")
+	/*
+//GetMapping("/[湲곕뒫紐�]")
 	@PostMapping("/addacount")
 	public String addacount(Socar_MemberDTO sc) {
 		log.info("SocarMember : " + sc);
 
-		uservice.createUser(sc);
+		//uservice.createUser(sc);
 
 		return "redirect:/metaCar/signin";
 	}
+	*/
 }
