@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import kosa.metacar.dto.Cancel_CarDTO;
 import kosa.metacar.dto.DistanceDTO;
 import kosa.metacar.dto.Have_CarDTO;
 import kosa.metacar.dto.Rental_CarDTO;
@@ -41,4 +42,28 @@ public class RentalController {
 		return "main";
 	}
 	
+	@GetMapping("/cancel")
+	public String cancelPage() {
+	    return "cancel";
+	}
+	
+	@PostMapping("/cancel")
+	public String cancel(@RequestParam int reserveNum, @RequestParam String id, @RequestParam String cancelWhy) {
+		Cancel_CarDTO cc = new Cancel_CarDTO();
+		Rental_CarDTO rc = new Rental_CarDTO();
+		
+		
+		rc.setReserveNum(reserveNum);
+		rc.setId(id);
+		
+		cc.setReserveNum(reserveNum);
+		cc.setId(id);
+		cc.setCancelWhy(cancelWhy);
+		
+		service.cancelCar(cc, rc);
+
+		return "redirect:/main";
+	}
+
+
 }

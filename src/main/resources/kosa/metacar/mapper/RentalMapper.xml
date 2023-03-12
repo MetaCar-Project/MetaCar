@@ -18,6 +18,18 @@
 		<association property="distanceDto" resultMap="Distance"></association>
 	</resultMap>
 	
+	<resultMap type="kosa.metacar.dto.Rental_CarDTO" id="RentalCar">
+		<id column="reservenum" property="reserveNum"/>
+		<result column="id" property="id"/>
+		<result column="reservetime" property="reserveTime"/>
+		<result column="usetime" property="useTime"/>
+		<result column="returnadd" property="returnAdd"/>
+		<result column="sczonenum" property="sczoneNum"/>
+		<result column="carnum" property="carNum"/>
+		<result column="reservenow" property="reservenow"/>
+		
+	</resultMap>
+	
 	<resultMap type="kosa.metacar.dto.DistanceDTO" id="Distance">
 		<id column="carkind" property="carkind"/>
 		<result column="howmuch" property="howmuch"/>
@@ -32,7 +44,7 @@
 
 	<insert id="carRental">
 		insert into rental_car
-		values(reserve_seq.nextval, #{id}, sysdate, #{useTime}, #{returnAdd}, #{sczoneNum}, #{carNum} )
+		values(reserve_seq.nextval, #{id}, sysdate, #{useTime}, #{returnAdd}, #{sczoneNum}, #{carNum}, #{reservenow} )
 	</insert>
 	
 	<update id="carUpdate">
@@ -41,7 +53,22 @@
 		where carnum = #{carNum}
 	</update>
 	
+	<insert id="carCancel" >
+		 insert into cancel_car
+		 values( #{reserveNum}, #{id}, #{cancelWhy}, sysdate)
+	</insert>
 	
+	<update id="carCancelox">
+		update rental_car
+		set reservenow = 'x'
+		where reservenum = #{reserveNum}
+	</update>
 	
+	<update id="cancelUpdate">
+		update have_car hc 
+		set hc.reservenow = 'x'
+		where hc.carnum = (select carnum from rental_car)
+		and hc.carnum = #{carNum}
+	</update>
 	
 </mapper>
