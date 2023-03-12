@@ -26,17 +26,24 @@ public class CarTestMapper {
 	@Autowired
 	private CarMapper mapper;
 	
-	/*
-	@Test
-	public void mappercheck() {
-		List<Have_CarDTO>listCar = cs.cargetList();
-		listCar.forEach(car -> log.info(car));
-	}
-	*/
+//	@Test
+//	public void mappercheck() {
+//		log.info("CAR mapper Test");
+//		List<Have_CarDTO>listCar = mapper.cargetList();
+//		listCar.forEach(car -> log.info(car));
+//	}
 	
+//	
 	@Test
 	public void cargetListWithPagingTest() {
 		Criteria cri = new Criteria();
+		String temp[] = {};
+		cri.setCarType(temp);
+		cri.setZoneType(0);
+		log.info("---------------------------------------");
+		log.info(cri);
+		log.info("---------------------------------------");
+		
 		List<Have_CarDTO>listCar = mapper.cargetListWithPaging(cri);
 		listCar.forEach(car -> log.info(car));
 	}

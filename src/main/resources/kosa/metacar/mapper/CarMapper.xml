@@ -4,22 +4,37 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kosa.metacar.mapper.CarMapper">
 
-	<select id="cargetList" resultType="kosa.metacar.dto.Have_CarDTO">
+	<select id="cargetList"
+		resultType="kosa.metacar.dto.Have_CarDTO">
 		<![CDATA[
 			select * from have_car
 		]]>
 	</select>
-	
-	
-	
-	<select id="cargetListWithPaging" resultType="kosa.metacar.dto.Have_CarDTO">
+
+	<!-- private String carType[]; private int zoneType; private String keyword; -->
+
+	<select id="cargetListWithPaging"
+		resultType="kosa.metacar.dto.Have_CarDTO">
    	<![CDATA[
-			select carNum, carModel, carMaking from
-            (select /*+INDEX_DESC(tbl_board pk_board) */
-                    rownum rn, carNum, carModel, carMaking
-                    from have_car 
-                    where rownum <= 20)
-        	where rn > 10
+			SELECT carNum, carKind, sczonenum, carModel, carMaking FROM
+            (SELECT /*+INDEX_DESC(have_car carNum) */
+                    ROWNUM rn, carNum, carModel, carMaking, carKind, sczonenum
+                    FROM have_car             
+					WHERE  ((NULLIF(#{carSmall}, '') is null AND
+							 	NULLIF(#{carMiddle}, '') is null AND
+								NULLIF(#{carBig}, '') is null AND
+								NULLIF(#{carSUV}, '') is null)
+								 OR
+						 	(carKind = #{carSmall}
+							OR carKind = #{carMiddle}
+							OR carKind = #{carBig}
+							OR carKind = #{carSUV})) 
+						AND ((#{zoneType} != 0 AND sczonenum = #{zoneType})  
+							OR #{zoneType} = 0 )
+					AND  rownum <= 20)
+        	where rn > 0
 	]]>
 	</select>
+	        
+
 </mapper>

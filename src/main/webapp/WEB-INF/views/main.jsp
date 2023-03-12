@@ -44,29 +44,6 @@
 				</select>
 			</div>
 		</li>
-		<li>
-			<form class="form-inline" action="/metaCar/main" method='get'>
-				<select name='type'>
-					<option value=""
-						<c:out value="${pageMaker.cri.type == null?'selected':''}"/>>쏘카존을
-						선택하세요</option>
-					<option value="1"
-						<c:out value="${pageMaker.cri.type eq 1?'selected':''}"/>>수서역
-					</option>
-					<option value="2"
-						<c:out value="${pageMaker.cri.type eq 2?'selected':''}"/>>학동역
-					</option>
-					<option value="3"
-						<c:out value="${pageMaker.cri.type eq 3?'selected':''}"/>>경찰병원역
-					</option>
-					<option value="4"
-						<c:out value="${pageMaker.cri.type eq 4?'selected':''}"/>>가락시장역
-					</option>
-				</select> <input class="form-control mr-sm-2" type="search"
-					placeholder="차량이름 검색" aria-label="search" />
-
-			</form>
-		</li>
 	</ul>
 	<hr />
 </div>

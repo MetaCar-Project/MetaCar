@@ -9,6 +9,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
+import kosa.metacar.dto.Criteria;
 import kosa.metacar.dto.Have_CarDTO;
 import lombok.extern.log4j.Log4j;
 
@@ -23,7 +24,7 @@ import lombok.extern.log4j.Log4j;
 public class CarTestService {
 	
 	@Autowired
-	private CarService cs;
+	private CarService service;
 	
 	/*
 	@Test
@@ -33,4 +34,17 @@ public class CarTestService {
 	}
 	*/
 
+	@Test
+	public void cargetListWithPagingTest() {
+		Criteria cri = new Criteria();
+		String temp[] = {};
+		cri.setCarType(temp);
+		cri.setZoneType(1);
+		log.info("---------------------------------------");
+		log.info("service");
+		log.info("---------------------------------------");
+		
+		List<Have_CarDTO>listCar = service.getCarListWithPaging(cri);
+		listCar.forEach(car -> log.info(car));
+	}
 }
