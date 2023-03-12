@@ -45,7 +45,7 @@
 	<div class="container" id="wrap">
 		<div class="row">
 			<div class="col-md-7 col-md-offset-3">
-				<form action="/metaCar/addacount" method="post" accept-charset="utf-8" class="form"
+				<form action="/metaCar/addaccount" method="post" accept-charset="utf-8" class="form"
 					role="form">
 					<legend>회원 가입</legend>
 
@@ -77,6 +77,7 @@
 				   
 					<br /> <span class="help-block">내 계정 만들기를 클릭하면 약관에 동의하고 쿠키
 						사용을 포함한 데이터 사용 정책을 읽었음을 의미합니다.</span>
+					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 					<button class="btn btn-lg btn-primary btn-block signup-btn"
 						type="submit">계정 생성</button>
 				</form>

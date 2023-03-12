@@ -111,20 +111,30 @@
     <button class="w-100 btn btn-lg btn-primary" type="submit" value="Sign in">로그인</button>
     <br>
     <br>
-    <button class="w-100 btn btn-lg btn-primary" type="submit" onclick="Sign up">회원가입</button>
-    <p class="mt-5 mb-3 text-muted">&copy; 20230309 ~ 20230314</p>
      <input type="hidden" name="${_csrf.parameterName}"
     value="${_csrf.token}" />
   </form>
+  <button class="w-100 btn btn-lg btn-primary" id="signup">회원가입</button>
+  <p class="mt-5 mb-3 text-muted">&copy; 20230309 ~ 20230314</p>
   
       <c:if test="${not empty error}">
         <p style="color: red">${error}</p>
     </c:if>
-</main>
-
-
-    
-  </body>
+</main>    
+</body>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+	$(function(){
+		console.log("sciprt");
+		
+		$('#signup').on('click', function(){
+			console.log("sign in click");
+			location.href = '/metaCar/addaccount';
+		})
+		
+		
+	})
+</script>
 
  
 </html>

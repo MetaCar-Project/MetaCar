@@ -2,6 +2,7 @@ package kosa.metacar.controller;
 
 import java.util.List;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,7 +31,7 @@ public class MainController {
 	}
 	*/
 
-
+	@PreAuthorize("hasAnyRole('ROLE_USER')")
 	@GetMapping("/main")
 	public String main(Criteria cri,Model model) {
 		model.addAttribute("list",cs.carWithPaginggetList(cri));

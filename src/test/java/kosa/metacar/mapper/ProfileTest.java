@@ -22,12 +22,12 @@ public class ProfileTest {
 	
 	@Autowired
 	private ProfileService service;
-	/*
+	
 	@Test
 	public void profileTest() {
-		log.warn(mapper.userDetail("p21356"));
+		log.warn(mapper.userDetail("kosa00"));
 	}
-	*/
+	
 	/*
 	@Test 
 	public void serviceTest() {
@@ -43,15 +43,15 @@ public class ProfileTest {
 		log.warn(mapper.userUpdate(sm));
 	}
 	*/
-	
+	/*
 	@Test
 	public void userUpdateTest() {
 		Socar_MemberDTO sm = new Socar_MemberDTO();
 		sm.setId("p21356");
 		sm.setPhone("01026805401");
-		log.warn(" =======================바뀌었나요" + service.updateUser(sm));
+		log.warn(" =======================諛붾�뚯뿀�굹�슂" + service.updateUser(sm));
 	}
-	
+	*/
 	
 	
 	

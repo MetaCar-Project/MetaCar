@@ -12,7 +12,9 @@ import org.springframework.security.core.userdetails.User;
 
 
 import kosa.metacar.dto.Socar_MemberDTO;
+import lombok.Data;
 
+@Data
 public class CustomUser extends User{
 
 

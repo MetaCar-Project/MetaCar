@@ -1,6 +1,7 @@
 package kosa.metacar.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,10 +25,10 @@ public class RentalController {
 	@Autowired
 	private RentalService service;
 	
-	
+	@PreAuthorize("hasAnyRole('ROLE_USER')")
 	@GetMapping("/rental")
 	public String rentalPage(Have_CarDTO havecar, Model model) {
-		havecar.setCarNum("321루7449");
+		havecar.setCarNum("321猷�7449");
 		model.addAttribute("car",service.getCar(havecar));
 		log.warn(service.getCar(havecar));
 		return "rental";

@@ -191,6 +191,8 @@
 <form action="/metaCar/modifyprofile" method="post" id="modifyForm" >
 	<input type="hidden" name="id">
 	<input type="hidden" name="phone">
+	 <input type="hidden" name="${_csrf.parameterName}"
+    value="${_csrf.token}" />
 </form>
 
 </main>
@@ -234,7 +236,10 @@ $(function(){
 		
 		console.log(data);
 		
-		userModifyService.modify(data,function(result){
+		var csrfHeaderName = "${_csrf.headerName}";
+		var csrfTokenValue = "${_csrf.token}";
+		
+		userModifyService.modify(data, csrfHeaderName, csrfTokenValue, function(result){
 			$('#phoneNum').text("전화번호 : " + result);
 			
 			$('#exampleModal').modal('hide'); 

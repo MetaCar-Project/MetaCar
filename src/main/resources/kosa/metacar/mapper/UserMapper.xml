@@ -6,9 +6,13 @@
 
 	<insert id="userCreate">
 		insert into socar_member(id, password, phone, name, regnum)
-		values(#{id}, #{password}, #{phone},  #{name}, #{regnum})
+		values(#{id}, #{password}, #{phone},  #{name}, #{regNum})
 	</insert>
 
+	<insert id="userRole">
+		insert into socar_member_auth
+		values (#{id}, 'ROLE_USER')
+	</insert>
 
 	<resultMap type="kosa.metacar.dto.Socar_MemberDTO" id="socarmember">
 		<id column="id" property="id"/>
