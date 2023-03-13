@@ -16,9 +16,9 @@ public class Rental_CarDTO {
 	private String returnAdd;
 	private int sczoneNum;
 	private String carNum;
+	private String reservenow;
 	
 	
 	
-	
-	private Have_CarDTO haveCar;
+//	private Have_CarDTO haveCar;
 }
