@@ -14,12 +14,12 @@
 <resultMap id="socarMemberResultMap" type="kosa.metacar.dto.Socar_MemberDTO">
   <id property="id" column="id"/>
   <result property="password" column="password"/>
-  <!-- 
+  
   <result property="phone" column="phone"/>
   <result property="name" column="name"/>
   <result property="regNum" column="regNum"/>
   <result property="auth" column="auth"/>
-	-->
+	
 </resultMap>
 
 	
@@ -27,5 +27,8 @@
   SELECT id, password FROM socar_member WHERE id = #{id} AND password = #{password}
 </select>
 	
+<select id="userGet" resultType="kosa.metacar.dto.Socar_MemberDTO">
+  SELECT id, name FROM socar_member WHERE id = #{id}
+</select>
 
 </mapper>
