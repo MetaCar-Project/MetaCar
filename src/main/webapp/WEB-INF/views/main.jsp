@@ -2,10 +2,11 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
 
 <%@ include file="./includes/header.jsp"%>
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+
 
 <!-- SIDE BAR -->
 <div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark"
@@ -140,32 +141,39 @@
 	</a>
 	<hr />
 	<c:choose>
-		<c:when test="${rental_car.id eq 'null' }"> 
-			빌린 차량이 없습니다
+		<c:when test="${rental_car.id eq 'null' }">
+		<sec:authorize access="isAnonymous()">
+			<img
+				src="/resources/img/unx.jpg"
+				style="width: 100%; height: 225px;"/>
+		</sec:authorize>
 		</c:when>
 		<c:otherwise>
-			${rental_car.carnum }
-			${have_car.carmodel }
+			<img
+				src="/resources/img/${car.carModel }.jpg"
+				style="width: 100%; height: 225px;"/>
 		</c:otherwise>
 	</c:choose>
 	<hr />
 	<ul class="nav nav-pills flex-column mb-auto">
-		<li><a href="#" class="nav-link text-white"> <svg
+		<li><a class="nav-link text-white"> <svg
 					class="bi pe-none me-2" width="16" height="16">
           <use xlink:href=""></use>
         </svg>
-        <c:choose>
-			<c:when test= <%= session.getId()%> eq 'null'> 
-				로그인후 이용가능
-			</c:when>
-			<c:otherwise>
-				<%= session.getId()%> 님 반갑습니다
-			</c:otherwise>
-		</c:choose>
+         <c:choose>
+         <c:when test="${socar_member.id eq 'null'}"> 
+               로그인후 이용가능
+         </c:when>
+         <c:otherwise>
+            <sec:authorize access="isAnonymous()">
+               로그인후 이용가능
+            </sec:authorize>
+		 대여한 차량 여부에따라 달라지는값     
+         </c:otherwise>
+      	 </c:choose>
 		</a>
 		</li>
 	</ul>
-	<a href="carPay" style="text-decoration-line: none; text-align: center;">결제하기</a>
 	<!-- <a href="carPay" style="text-decoration-line: none; text-align: center;">이용하기</a> -->
 </div>
 

@@ -5,7 +5,7 @@
 <body>
 
 	<div class="form-group">
-		<label>차량사진</label>  <img
+		<label></label>  <img
 		src="/resources/img/${detail.carModel }.jpg"
 		style="width: 100%; height: 400px;" alt="${detail.carModel }" />
 	<br>
@@ -20,6 +20,30 @@
 	<div class="form-group">
 		<label>차량모델</label> <input class="form-control" name='carModel'
 			value='<c:out value="${detail.carModel }"/>' readonly="readonly">
+	</div>
+	<br>
+	<br>
+	<div class="form-group">
+		<label>차종</label> <input class="form-control" name='carKind'
+			value='<c:out value="${detail.carKind }"/>' readonly="readonly">
+	</div>
+	<br>
+	<br>
+	<div class="form-group">
+		<label>차량제조사</label> <input class="form-control" name='carMaking'
+			value='<c:out value="${detail.carMaking }"/>' readonly="readonly">
+	</div>
+	<br>
+	<br>
+	<div class="form-group">
+		<label>차량기름</label> <input class="form-control" name='carGas'
+			value='<c:out value="${detail.carGas }"/>' readonly="readonly">
+	</div>
+	<br>
+	<br>
+	<div class="form-group">
+		<label>연비</label> <input class="form-control" name='carEff'
+			value='<c:out value="${detail.carEff }"/>' readonly="readonly">
 	</div>
 	<br>
 	<br>
