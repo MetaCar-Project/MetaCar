@@ -4,13 +4,49 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kosa.metacar.mapper.CarMapper">
 
-	<select id="cargetList" resultType="kosa.metacar.dto.Have_CarDTO">
+	<select id="cargetList"
+		resultType="kosa.metacar.dto.Have_CarDTO">
 		<![CDATA[
 			select * from have_car
 		]]>
 	</select>
-	
-	<select id="carWithPaginggetList" resultType="kosa.metacar.dto.Have_CarDTO">
+
+	<select id="carWithPaginggetList"
+		resultType="kosa.metacar.dto.Have_CarDTO">
+   		<![CDATA[
+			SELECT carNum, carKind, sczonenum, carModel, carMaking FROM
+            (SELECT /*+INDEX_DESC(have_car carNum) */
+                    ROWNUM rn, carNum, carModel, carMaking, carKind, sczonenum
+                    FROM have_car             
+					WHERE 
+					(
+					 	(
+						 	carKind = #{carSmall} OR 
+							carKind = #{carMiddle} OR 
+							carKind = #{carBig} OR 
+							carKind = #{carSUV}
+						)
+						OR
+					 	(
+						 	NULLIF(#{carSmall}, '') is null AND
+							NULLIF(#{carMiddle}, '') is null AND
+							NULLIF(#{carBig}, '') is null AND
+							NULLIF(#{carSUV}, '') is null
+						)
+					)
+					AND 
+					(
+						(#{zoneType} = 0) OR
+						((#{zoneType} != 0) AND (sczonenum = #{zoneType}))
+					)
+					AND (carModel LIKE '%'|| #{keyword} ||'%')
+					AND rownum <= #{pageNum} * #{amount})
+        	where rn > (#{pageNum} - 1) * #{amount}
+	]]>
+	</select>
+
+	<!-- <select id="carWithPaginggetList"
+		resultType="kosa.metacar.dto.Have_CarDTO">
    		<![CDATA[
     
     	select carNum, carModel, carMaking from
@@ -18,31 +54,19 @@
                     from have_car 
                     where rownum <= #{pageNum} * #{amount})
         	where rn > (#{pageNum} - 1) * #{amount}
-    	]]>  
-   
+    	]]>
+	</select> -->
+
+	<select id="cargetDetail"
+		resultType="kosa.metacar.dto.Have_CarDTO">
+		select * from have_car where carNum = #{carNum}
 	</select>
-	
-	<select id="cargetDetail" resultType="kosa.metacar.dto.Have_CarDTO">
-		select * from have_car where carNum = #{carNum} 
-    </select>
-	
-	<!--
-	<select id="carsearchgetList" resultType="kosa.metacar.dto.Have_CarDTO">
-			select * from have_car
-			<trim prefix ="where" prefixOverrides="AND|OR">
-				carmodel like '%'||#{carmodel}||'%'
-			</trim>		
-			<if test='carselect != null'>
-				<trim prefix = "AND">
-				carselect = #{carselect}
-				</trim>
-			</if>
-			<if test='inputGroupSelect01 != null'>
-				<trim prefix = "AND">
-				 inputGroupSelect01 = #{inputGroupSelect01}
-				 </trim>
-			</if>
-	</select>
-	-->
-	
+
+	<!-- <select id="carsearchgetList" resultType="kosa.metacar.dto.Have_CarDTO"> 
+		select * from have_car <trim prefix ="where" prefixOverrides="AND|OR"> carmodel 
+		like '%'||#{carmodel}||'%' </trim> <if test='carselect != null'> <trim prefix 
+		= "AND"> carselect = #{carselect} </trim> </if> <if test='inputGroupSelect01 
+		!= null'> <trim prefix = "AND"> inputGroupSelect01 = #{inputGroupSelect01} 
+		</trim> </if> </select> -->
+
 </mapper>
