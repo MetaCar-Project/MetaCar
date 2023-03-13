@@ -1,5 +1,7 @@
 package kosa.metacar.mapper;
 
+import java.util.List;
+
 import kosa.metacar.dto.Cancel_CarDTO;
 import kosa.metacar.dto.DistanceDTO;
 import kosa.metacar.dto.Have_CarDTO;
@@ -18,4 +20,8 @@ public interface RentalMapper {
 	public int cancelUpdate(String carNum);
 	
 	public int carCancelox(int reserveNum);
+	
+	public String getCarnum(int reserveNum);
+	
+	public List<Cancel_CarDTO> getCancel(String id);
 }

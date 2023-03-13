@@ -1,5 +1,7 @@
 package kosa.metacar.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -29,11 +31,17 @@ public class RentalServiceImpl implements RentalService{
 	}
 
 	@Override
-	public void cancelCar(Cancel_CarDTO cc, Rental_CarDTO rc) {
-		int reserveNum = rc.getReserveNum();
+	public void cancelCar(Cancel_CarDTO cc) {
+		String carNum = mapper.getCarnum(cc.getReserveNum());
 		mapper.carCancel(cc);
-		mapper.cancelUpdate(rc.getCarNum());
-		mapper.carCancelox(reserveNum);
+		mapper.cancelUpdate(carNum);
+		mapper.carCancelox(cc.getReserveNum());
+	}
+
+	@Override
+	public List<Cancel_CarDTO> cancelGet(String id) {
+		
+		return mapper.getCancel(id);
 	}
 
 

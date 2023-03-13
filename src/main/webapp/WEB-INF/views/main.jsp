@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@include file="./includes/header.jsp"%>
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <script>
 
 function detailcar(){
@@ -86,7 +87,8 @@ function detailcar(){
 								<div class="btn-group">
 									<button type="button" class="btn btn-sm btn-outline-secondary"
 									onclick="detailcar();">상세보기</button>
-									<button type="button" class="btn btn-sm btn-outline-secondary">대여하기</button>
+									<button type="button" class="btn btn-sm btn-outline-secondary"
+									onclick="location.href='/metaCar/rental?carNum=${car.carNum}'">대여하기</button>
 								</div>
 								<small class="text-muted">대여가능여부</small>
 							</div>
@@ -159,7 +161,13 @@ function detailcar(){
 				로그인후 이용가능
 			</c:when>
 			<c:otherwise>
-				${socar_member.id} 님 반갑습니다
+				<sec:authorize access="isAnonymous()">
+					로그인 해주세요
+				</sec:authorize>
+				<sec:authorize access="isAuthenticated()">
+					<sec:authentication property="principal.sm.id"/> 님 반갑습니다
+				</sec:authorize>
+				
 			</c:otherwise>
 		</c:choose>
 		</a>
