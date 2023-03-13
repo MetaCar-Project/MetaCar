@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <!doctype html>
 <html lang="ko">
@@ -115,14 +116,19 @@
     </div>
   </header>
 
-  <main>
+  <main style="width: 100%; height: 100%;">
+  <div style="width: 1000px; height: 800%; margin: 0 auto;">
     <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
 
+	<c:out value="${car.id}" default="예약된 차량이 없습니다."/>
+	
       <div class="col">
         <div class="card mb-4 rounded-3 shadow-sm">
-          <div class="card-header py-3">
-            <h4 class="my-0 fw-normal">예약을 취소 하시겠습니까?</h4>
+          <button type="button" class="btn btn-primary">
+          <div>
+            <h5 class="my-0 fw-normal">예약을 취소 하시겠습니까?</h5>
           </div>
+          </button>
  
         </div>
       </div>
@@ -130,33 +136,30 @@
     </div>
 
     <h4 class="display-6 text-center mb-4">예약 취소 목록</h4>
-
-	<c:forEach var="cancelCar" items="${cancel}">
-    <div class="table-responsive">
       <table class="table text-center">
         <thead>
           <tr>
-            
-            <th style="width: 34%;">번호</th>
-            <th style="width: 22%;">아이디</th>
+            <th style="width: 34%;">예약번호</th>
             <th style="width: 22%;">취소이유</th>
             <th style="width: 22%;">취소 날짜</th>
           </tr>
         </thead>
+	<c:forEach var="cancelCar" items="${cancel}">
+
         <tbody>
+        
           <tr>
-            <th scope="row" class="text-start">${cancelCar.reserveNum}</th>
-            <!--<td><svg class="bi" width="24" height="24"><use xlink:href="#check"/></svg></td> -->
-            
-		          <td>${cancelCar.id}</td>
-		          <td>${cancelCar.cancelWhy}</td>
-		          <td>${cancelCar.cancelDate}</td>
+          
+            <td style="text-align: center">${cancelCar.reserveNum}</td>
+		    <td style="text-align: center">${cancelCar.cancelWhy}</td>
+		    <td><fmt:formatDate pattern="yyyy-MM-dd" value="${cancelCar.cancelDate}"/></td>
+		    
           </tr>
-        </tbody> 
+        </tbody>
+        
+        </c:forEach> 
       </table>
     </div>
-    </c:forEach>
-    
 	<!-- Button trigger modal -->
 
 <!-- Modal -->
