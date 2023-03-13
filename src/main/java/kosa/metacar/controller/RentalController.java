@@ -1,6 +1,8 @@
 package kosa.metacar.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,8 +10,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import kosa.metacar.dto.Cancel_CarDTO;
 import kosa.metacar.dto.DistanceDTO;
@@ -38,7 +42,12 @@ public class RentalController {
 	@PreAuthorize("hasAnyRole('ROLE_USER')")
 	@PostMapping("/rental")
 	public String rentalCar(Rental_CarDTO rc) {
-		service.rentalCar(rc);
+		try {
+			service.rentalCar(rc);
+		} catch (Exception e) {
+			e.printStackTrace();
+			 
+		}
 		log.warn("======================================================"+rc);
 		
 		return "redirect:/metaCar/main";
@@ -62,5 +71,21 @@ public class RentalController {
 		return "redirect:/profile/" + id;
 	}
 
+	@PreAuthorize("hasAnyRole('ROLE_USER')")
+	@PostMapping("/checkreserve")
+	@ResponseBody
+	public ResponseEntity<String> checkReserve(@RequestBody String id){
+	
+		System.out.println("=====-=-=-=0=-0=0=-0=-0=-0=-0=-0=-0=-0=0=-0=-0=0=");
+		String checkid=id.trim().substring(1).substring(0, id.length()-2);
+		System.out.println("========================아 이 디====================="+checkid);
+		
+		if(service.checkReserve(checkid)) {
+			log.warn("예약차량있음");
+			return new ResponseEntity<> ("havereserve", HttpStatus.OK);
+		}
+		log.warn("예약차량없음");
+		return new ResponseEntity<> ("noreserve", HttpStatus.OK);
+	}
 
 }
