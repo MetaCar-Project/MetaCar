@@ -29,7 +29,10 @@ public class UserTestMapper {
 	private PasswordEncoder pe;
 	/*
 	@Test
-	public void signinUserTest() {
+	public void testuser() {
+		Socar_MemberDTO sm = new Socar_MemberDTO();
+		sm.setId("123");
+		um.userGet(sm);
 		
 		Socar_MemberDTO sm = um.getUserByIdAndPassword("kosa00", "1234");
 		

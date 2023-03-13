@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import kosa.metacar.dto.Cancel_CarDTO;
 import kosa.metacar.dto.DistanceDTO;
 import kosa.metacar.dto.Have_CarDTO;
 import kosa.metacar.dto.Rental_CarDTO;
@@ -27,8 +28,15 @@ public class RentalServiceImpl implements RentalService{
 		return mapper.carGet(hc);
 	}
 
-	
-	
-	
+	@Override
+	public void cancelCar(Cancel_CarDTO cc, Rental_CarDTO rc) {
+		int reserveNum = rc.getReserveNum();
+		mapper.carCancel(cc);
+		mapper.cancelUpdate(rc.getCarNum());
+		mapper.carCancelox(reserveNum);
+	}
+
+
+
 
 }

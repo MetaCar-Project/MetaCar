@@ -10,7 +10,7 @@
 	<bean id="customPasswordEncoder" class="org.zerock.security.CustomNoOpPasswordEncoder"/>
 	 -->
 	<bean id="CustomUserDetailsService" class="kosa.metacar.security.CustomUserDetailsService"></bean>
-	 
+	<bean id="bcrytPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
 	
 	<security:http>
 		
@@ -27,12 +27,8 @@
 		<!-- <security:form-login/> -->
 		
 		<!-- <security:form-login login-page="/login"/> -->
-		
-		
-		
-		
-
-	</security:http>
+	</security:http> 
+	 
 	
 	<security:authentication-manager>
         <security:authentication-provider user-service-ref="CustomUserDetailsService">

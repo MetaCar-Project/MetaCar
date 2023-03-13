@@ -3,6 +3,15 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@include file="./includes/header.jsp"%>
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script>
+
+function detailcar(){
+	window.open("detailcar?carnum=","차량상세정보","width=600,height=700");
+	return;
+}
+
+
+</script>
 
 <!-- SIDE BAR -->
 <div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark"
@@ -75,7 +84,8 @@
 							<p class="card-text"></p>
 							<div class="d-flex justify-content-between align-items-center">
 								<div class="btn-group">
-									<button type="button" class="btn btn-sm btn-outline-secondary">상세보기</button>
+									<button type="button" class="btn btn-sm btn-outline-secondary"
+									onclick="detailcar();">상세보기</button>
 									<button type="button" class="btn btn-sm btn-outline-secondary">대여하기</button>
 								</div>
 								<small class="text-muted">대여가능여부</small>
@@ -92,7 +102,8 @@
 
 						<c:if test="${pageMaker.prev}">
 							<li class="paginate_button previous">
-							  <a href="${pageMaker.startPage -1}">Previous</a></li>
+							  <a href="${pageMaker.startPage -1}">Previous</a>
+							</li>
 						</c:if>
 
 						<c:forEach var="num" begin="${pageMaker.startPage}" end="${pageMaker.endPage}">
@@ -123,18 +134,36 @@
 	<a href="/"
 		class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
 		<svg class="bi pe-none me-2" width="40" height="32">
-      <use xlink:href="#bootstrap"></use>
+      <use xlink:href="metaCar/main"></use>
     </svg> <span class="fs-4">예약된 차 확인</span>
 	</a>
 	<hr />
+	<c:choose>
+		<c:when test="${rental_car.id eq 'null'}"> 
+			빌린 차량이 없습니다
+		</c:when>
+		<c:otherwise>
+			${rental_car.carnum}
+			${have_car.carmodel}
+		</c:otherwise>
+	</c:choose>
 	예약된 차 정보
 	<hr />
 	<ul class="nav nav-pills flex-column mb-auto">
 		<li><a href="#" class="nav-link text-white"> <svg
 					class="bi pe-none me-2" width="16" height="16">
-          <use xlink:href="#people-circle"></use>
-        </svg> UserId
-		</a></li>
+          <use xlink:href=""></use>
+        </svg>
+        <c:choose>
+			<c:when test="${socar_member.id eq 'null'}"> 
+				로그인후 이용가능
+			</c:when>
+			<c:otherwise>
+				${socar_member.id} 님 반갑습니다
+			</c:otherwise>
+		</c:choose>
+		</a>
+		</li>
 	</ul>
 	<a href="carPay" style="text-decoration-line: none; text-align: center;">결제하기</a>
 </div>

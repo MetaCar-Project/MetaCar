@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import kosa.metacar.dto.Criteria;
 import kosa.metacar.dto.Have_CarDTO;
@@ -22,21 +23,18 @@ import lombok.extern.log4j.Log4j;
 public class MainController {
 	
 	private CarService cs;
-	
-	/*
-	@GetMapping("/main")
-	public String main(Model model) {
-		model.addAttribute("list",cs.getCarList());
-		return "main";		
-	}
-	*/
 
-	@PreAuthorize("hasAnyRole('ROLE_USER')")
+	@PreAuthorize("permitAll()")
 	@GetMapping("/main")
 	public String main(Criteria cri,Model model) {
 		model.addAttribute("list",cs.carWithPaginggetList(cri));
 		model.addAttribute("pageMaker",new PageDTO(cri,200));
 		return "main";		
+	}
+	
+	@GetMapping("/detailcar")
+	public void detailcar(@RequestParam("carNum") String carNum,Model model){
+		model.addAttribute("detail", cs.cardetail(carNum));
 	}
 
 }
