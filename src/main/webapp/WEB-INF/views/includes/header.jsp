@@ -187,14 +187,41 @@
             </sec:authorize>
             <sec:authorize access="isAuthenticated()">
                		<sec:authentication property="principal.sm.id"/> 님 반갑습니다
-                	<button type="button" class="btn btn-primary">내정보</button>
-              		<button type="button" class="btn btn-outline-primary me-2">로그아웃</button>
+                	<button type="button" class="btn btn-primary" onclick="location.href='/metaCar/profile/<sec:authentication property="principal.sm.id"/>'" >내정보</button>
+              		<button type="button" id="logout" class="btn btn-outline-primary me-2">로그아웃</button>
             </sec:authorize>            
          </c:otherwise>
       	 </c:choose>
+      	  <input type="hidden" name="${_csrf.parameterName}"
+  			  value="${_csrf.token}" />
       </div>
       
     </header>
   </div>
 </main>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+	$(function(){
+		$('#logout').on("click", function(){
+			console.log("click");
+			
+			var csrfHeaderName = "${_csrf.headerName}";
+			var csrfTokenValue = "${_csrf.token}";
+			$.ajax({
+                type : 'post',
+                url : '/metaCar/logout',
+                beforeSend : function(xhr){
+                	xhr.setRequestHeader(csrfHeaderName,csrfTokenValue);		
+                },
+                
+                contentType : "application/json; charset=utf-8",
+                success : function(result, status, xhr){
+                   location.replace('/metaCar/main');
+                }  
+            });	
+			
+		})
+	})
+	
+</script>
  
