@@ -43,4 +43,13 @@ public class CarTestMapper {
 	}
 	*/
 	
+	/*
+	@Test
+	public void detailcheck() {
+		String carNum = "321루7449";
+		Have_CarDTO havecar = cs.cargetDetail(carNum);
+		log.info(havecar);
+	}
+	*/
+	
 }
