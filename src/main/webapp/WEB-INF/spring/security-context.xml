@@ -15,7 +15,7 @@
    <security:http>
       
         <security:form-login login-page="/metaCar/signin" default-target-url="/metaCar/main" authentication-failure-url="/metaCar/signin" />
-        <security:logout logout-success-url="/metaCar/signin" />   
+        <security:logout delete-cookies="remember-me,JSESSION_ID" logout-url="/metaCar/logout" invalidate-session="true" logout-success-url="/metaCar/signin" />   
       <!-- 
       <security:intercept-url pattern="/metaCar/main" access="hasRole('ROLE_USER')" />
       <security:intercept-url pattern="/metaCar/rental" access="hasRole('ROLE_USER')" />
