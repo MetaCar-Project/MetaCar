@@ -1,18 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@include file="./includes/header.jsp"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
+
+<%@ include file="./includes/header.jsp"%>
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <script>
 
-function detailcar(){
-	window.open("detailcar?carnum=","차량상세정보","width=600,height=700");
-	return;
-}
-
-
-</script>
 
 <!-- SIDE BAR -->
 <div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark"
@@ -78,17 +74,23 @@ function detailcar(){
 				<div class="col">
 					<div class="card shadow-sm">
 						<title>Placeholder</title> <img
-							src="/resources/img/${car.carModel}.jpg"
-							style="width: 100%; height: 225px;" alt="${car.carModel}" />
+							src="/resources/img/${car.carModel }.jpg"
+							style="width: 100%; height: 225px;" alt="${car.carModel }" />
 						<div class="card-body">
-							<c:out value="${car.carModel}" />
+							<c:out value="${car.carModel }" />
 							<p class="card-text"></p>
 							<div class="d-flex justify-content-between align-items-center">
 								<div class="btn-group">
+<<<<<<< HEAD
 									<button type="button" class="btn btn-sm btn-outline-secondary"
 									onclick="detailcar();">상세보기</button>
 									<button type="button" class="btn btn-sm btn-outline-secondary"
 									onclick="location.href='/metaCar/rental?carNum=${car.carNum}'">대여하기</button>
+=======
+									<button onclick="window.open('detailcar?carNum=${car.carNum }','차량상세정보','width=600,height=600,location=no,status=no,scrollbars=yes');">
+									상세정보</button>
+									<button type="button" class="btn btn-sm btn-outline-secondary">대여하기</button>
+>>>>>>> main
 								</div>
 								<small class="text-muted">대여가능여부</small>
 							</div>
@@ -96,25 +98,32 @@ function detailcar(){
 					</div>
 				</div>
 			</c:forEach>
+			
 		</div>
 	</div>
 	
+	<!--
+	<form id="detail" name="detail">
+		<input type="hidden" name="carNum" id="carNum" value="${car.carNum }">
+		<input type="hidden" name="carModel" id="carModel" value="${car.carModel }"> 
+	</form>
+	 -->
 				<div class='pull-right'>
 					<ul class="pagination">
 
-						<c:if test="${pageMaker.prev}">
+						<c:if test="${pageMaker.prev }">
 							<li class="paginate_button previous">
-							  <a href="${pageMaker.startPage -1}">Previous</a>
+							  <a href="${pageMaker.startPage -1 }">Previous</a>
 							</li>
 						</c:if>
 
-						<c:forEach var="num" begin="${pageMaker.startPage}" end="${pageMaker.endPage}">
-							<li class="paginate_button ${pageMaker.cri.pageNum == num ? "active":""} ">
-								<a href="${num}">${num}</a>
+						<c:forEach var="num" begin="${pageMaker.startPage }" end="${pageMaker.endPage }">
+							<li class="paginate_button ${pageMaker.cri.pageNum == num ? "active":"" } ">
+								<a href="${num }">${num }</a>
 							</li>
 						</c:forEach>
 
-						<c:if test="${pageMaker.next}">
+						<c:if test="${pageMaker.next }">
 							<li class="paginate_button next">
 								<a href="${pageMaker.endPage +1 }">Next</a>
 							</li>
@@ -126,8 +135,8 @@ function detailcar(){
 		</div>
 			
 				<form id='actionForm' action="/metaCar/main" method='get'>
-					<input type='hidden' name='pageNum' value='${pageMaker.cri.pageNum}'>
-					<input type='hidden' name='amount' value='${pageMaker.cri.amount}'>
+					<input type='hidden' name='pageNum' value='${pageMaker.cri.pageNum }'>
+					<input type='hidden' name='amount' value='${pageMaker.cri.amount }'>
 				</form>
 
 
@@ -141,21 +150,26 @@ function detailcar(){
 	</a>
 	<hr />
 	<c:choose>
-		<c:when test="${rental_car.id eq 'null'}"> 
-			빌린 차량이 없습니다
+		<c:when test="${rental_car.id eq 'null' }">
+		<sec:authorize access="isAnonymous()">
+			<img
+				src="/resources/img/unx.jpg"
+				style="width: 100%; height: 225px;"/>
+		</sec:authorize>
 		</c:when>
 		<c:otherwise>
-			${rental_car.carnum}
-			${have_car.carmodel}
+			<img
+				src="/resources/img/${car.carModel }.jpg"
+				style="width: 100%; height: 225px;"/>
 		</c:otherwise>
 	</c:choose>
-	예약된 차 정보
 	<hr />
 	<ul class="nav nav-pills flex-column mb-auto">
-		<li><a href="#" class="nav-link text-white"> <svg
+		<li><a class="nav-link text-white"> <svg
 					class="bi pe-none me-2" width="16" height="16">
           <use xlink:href=""></use>
         </svg>
+<<<<<<< HEAD
         <c:choose>
 			<c:when test="${socar_member.id eq 'null'}"> 
 				로그인후 이용가능
@@ -170,10 +184,23 @@ function detailcar(){
 				
 			</c:otherwise>
 		</c:choose>
+=======
+         <c:choose>
+         <c:when test="${socar_member.id eq 'null'}"> 
+               로그인후 이용가능
+         </c:when>
+         <c:otherwise>
+            <sec:authorize access="isAnonymous()">
+               로그인후 이용가능
+            </sec:authorize>
+		 대여한 차량 여부에따라 달라지는값     
+         </c:otherwise>
+      	 </c:choose>
+>>>>>>> main
 		</a>
 		</li>
 	</ul>
-	<a href="carPay" style="text-decoration-line: none; text-align: center;">결제하기</a>
+	<!-- <a href="carPay" style="text-decoration-line: none; text-align: center;">이용하기</a> -->
 </div>
 
 <script type="text/javascript">

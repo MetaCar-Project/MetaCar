@@ -44,5 +44,14 @@ public class CarTestService {
 		listCar.forEach(car -> log.info(car));
 	}
 	*/
+	
+	/*
+	@Test
+	public void detailservice() {
+		String carNum = "321루7449";
+		Have_CarDTO havecar = cs.cardetail(carNum);
+		log.info(havecar);
+	}
+	*/
 
 }
