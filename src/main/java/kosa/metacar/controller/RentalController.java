@@ -43,6 +43,7 @@ public class RentalController {
 		return "main";
 	}
 	
+	
 	@GetMapping("/cancel")
 	public String cancelPage() {
 	    return "cancel";
