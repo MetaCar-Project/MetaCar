@@ -41,9 +41,10 @@ public class RentalController {
 	
 	@PreAuthorize("hasAnyRole('ROLE_USER')")
 	@PostMapping("/rental")
-	public String rentalCar(Rental_CarDTO rc) {
+	public String rentalCar(Rental_CarDTO rc, Model model) {
 		try {
 			service.rentalCar(rc);
+			model.addAttribute("getCar",rc);
 		} catch (Exception e) {
 			e.printStackTrace();
 			 
@@ -55,10 +56,10 @@ public class RentalController {
 	
 	@PreAuthorize("hasAnyRole('ROLE_USER')")
 	@GetMapping("/cancel/{id}")
-	public String cancelPage(@PathVariable("id")String id, Model model) {
+	public String cancelPage(@PathVariable("id")String id, Rental_CarDTO rc, Model model) {
 	    
 	    model.addAttribute("cancel", service.cancelGet(id));
-		
+	    model.addAttribute("rentalGet", service.checkRental(id));
 		return "cancel";
 	}
 	

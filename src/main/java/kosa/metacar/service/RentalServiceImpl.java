@@ -51,6 +51,13 @@ public class RentalServiceImpl implements RentalService{
 		return mapper.getRental(id) == null? false : true;
 	}
 
+	@Override
+	public List<Rental_CarDTO> checkRental(String id) {
+		
+		return mapper.getRental(id);
+		
+	}
+
 
 
 

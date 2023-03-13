@@ -148,6 +148,7 @@
 		<svg class="bi pe-none me-2" width="40" height="32">
       <use xlink:href="metaCar/main"></use>
     </svg> <span class="fs-4">예약된 차 확인</span>
+    
 	</a>
 	<hr />
 	<c:choose>
@@ -171,7 +172,8 @@
           <use xlink:href=""></use>
         </svg>
         <c:choose>
-			<c:when test="${socar_member.id eq 'null'}"> 
+			<c:when test="${socar_member.id eq 'null'}">
+			
 				로그인후 이용가능
 			</c:when>
 			<c:otherwise>
@@ -201,6 +203,7 @@
 		</li>
 	</ul>
 	<!-- <a href="carPay" style="text-decoration-line: none; text-align: center;">이용하기</a> -->
+	
 </div>
 
 <script type="text/javascript">

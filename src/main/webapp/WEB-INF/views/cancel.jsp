@@ -110,21 +110,50 @@
         <span class="fs-4">예약취소</span>
       </a>
     </div>
+        <h4 class="display-6 text-center mb-4">삭제 가능한 예약 목록</h4>
+          <table class="table text-center">
+        <thead>
+          <tr>
+            <th style="width: 20%;">아이디</th>
+            <th style="width: 20%;">대여신청시간</th>
+            <th style="width: 20%;">사용시간</th>
+            <th style="width: 20%;">반납주소</th>
+            <th style="width: 20%;">차번호</th>
+          </tr>
+        </thead>
 
 
-      
-    </div>
+        <tbody>
+        
+          <tr>
+				</tr>
+				<c:forEach items="${rentalGet}" var="rentalGet">
+					<tr>
+						<td>${rentalGet.id}</td>
+						<td><fmt:formatDate pattern="yyyy-MM-dd" value="${rentalGet.reserveTime}"/></td>
+						<td>${rentalGet.useTime}</td>
+						<td>${rentalGet.returnAdd}</td>
+						<td>${rentalGet.carNum}</td>
+						
+					</tr>
+				</c:forEach>
+        </tbody>
+       
+      </table>
+
+</div>
   </header>
 
   <main style="width: 100%; height: 100%;">
   <div style="width: 1000px; height: 800%; margin: 0 auto;">
     <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
 
-	<c:out value="${car.id}" default="예약된 차량이 없습니다."/>
+	
+	
 	
       <div class="col">
         <div class="card mb-4 rounded-3 shadow-sm">
-          <button type="button" class="btn btn-primary">
+          <button type="button" class="btn btn-primary" onclick="cancelRes()">
           <div>
             <h5 class="my-0 fw-normal">예약을 취소 하시겠습니까?</h5>
           </div>
@@ -188,5 +217,26 @@
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/User.js"></script> 
 	<!-- <script src="/resources/js/User.js"></script>  -->
+	<script>
+	function cancelRes() {
+	    $.ajax({
+	        url: "/api/reservation",
+	        type: "DELETE",
+	        success: function(response) {
+	            // 예약 삭제 성공 시 실행할 코드 작성
+	        },
+	        error: function(xhr) {
+	            
+	            alert("예약 취소에 실패했습니다.");
+	        }
+	    });
+	}
+	
+	
+	
+	
+	
+	
+	</script>
 
   <%@include file="./includes/footer.jsp"%>
