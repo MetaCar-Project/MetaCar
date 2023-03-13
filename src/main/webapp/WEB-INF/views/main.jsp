@@ -108,23 +108,24 @@
 		<input type="hidden" name="carModel" id="carModel" value="${car.carModel }"> 
 	</form>
 	 -->
+	 <br>
 				<div class='pull-right'>
-					<ul class="pagination">
+					<ul style="text-align: center; class="pagination">
 
 						<c:if test="${pageMaker.prev }">
-							<li class="paginate_button previous">
-							  <a href="${pageMaker.startPage -1 }">Previous</a>
+							<li style="display :inline-block; class="paginate_button previous">
+							  <a  href="${pageMaker.startPage -1 }">Previous</a>
 							</li>
 						</c:if>
 
 						<c:forEach var="num" begin="${pageMaker.startPage }" end="${pageMaker.endPage }">
-							<li class="paginate_button ${pageMaker.cri.pageNum == num ? "active":"" } ">
-								<a href="${num }">${num }</a>
+							<li style="display :inline-block;" class="paginate_button ${pageMaker.cri.pageNum == num ? "active":"" } ">
+								<a style="margin-left : 4px " class="btn btn-outline-primary" href="${num }">${num }</a>
 							</li>
 						</c:forEach>
 
 						<c:if test="${pageMaker.next }">
-							<li class="paginate_button next">
+							<li style="display :inline-block; class="paginate_button next">
 								<a href="${pageMaker.endPage +1 }">Next</a>
 							</li>
 						</c:if>

@@ -16,5 +16,5 @@ public interface RentalService {
 	public Have_CarDTO getCar(Have_CarDTO hc);
 	public void cancelCar(Cancel_CarDTO cc);
 	public List<Cancel_CarDTO> cancelGet(String id);
-	
+	public boolean checkReserve(String id);
 }
