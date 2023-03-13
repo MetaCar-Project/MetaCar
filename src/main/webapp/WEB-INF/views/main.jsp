@@ -3,6 +3,15 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@include file="./includes/header.jsp"%>
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script>
+
+function detailcar(){
+	window.open("detailcar?carnum=","차량상세정보","width=600,height=700");
+	return;
+}
+
+
+</script>
 
 <!-- SIDE BAR -->
 <div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark"
@@ -75,7 +84,8 @@
 							<p class="card-text"></p>
 							<div class="d-flex justify-content-between align-items-center">
 								<div class="btn-group">
-									<button type="button" class="btn btn-sm btn-outline-secondary">상세보기</button>
+									<button type="button" class="btn btn-sm btn-outline-secondary"
+									onclick="detailcar();">상세보기</button>
 									<button type="button" class="btn btn-sm btn-outline-secondary">대여하기</button>
 								</div>
 								<small class="text-muted">대여가능여부</small>
