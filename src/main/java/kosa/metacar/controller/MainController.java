@@ -10,11 +10,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import kosa.metacar.dto.Criteria;
-import kosa.metacar.dto.Have_CarDTO;
 import kosa.metacar.dto.PageDTO;
 import kosa.metacar.service.CarService;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
+
 
 @Controller
 @Log4j
@@ -32,9 +32,11 @@ public class MainController {
 		return "main";		
 	}
 	
+	@PreAuthorize("permitAll()")
 	@GetMapping("/detailcar")
-	public void detailcar(@RequestParam("carNum") String carNum,Model model){
+	public String detailcar(@RequestParam("carNum") String carNum,Model model)throws Exception{
 		model.addAttribute("detail", cs.cardetail(carNum));
+		return "detailcar";
 	}
 
 }
