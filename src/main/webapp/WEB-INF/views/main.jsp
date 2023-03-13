@@ -3,11 +3,11 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
-
 <%@ include file="./includes/header.jsp"%>
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
-
+<sec:authorize access="isAuthenticated()">
+          <sec:authentication property="principal.sm.id"  var="user_id"/>           	
+</sec:authorize>  
 
 
 <!-- SIDE BAR -->
@@ -139,7 +139,6 @@
 					<input type='hidden' name='amount' value='${pageMaker.cri.amount }'>
 				</form>
 
-
 <div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark"
 	style="width: 280px; float: right">
 	<a href="/"
@@ -147,55 +146,41 @@
 		<svg class="bi pe-none me-2" width="40" height="32">
       <use xlink:href="metaCar/main"></use>
     </svg> <span class="fs-4">예약된 차 확인</span>
+    ${user_id }
+    ${rental.id }
 	</a>
 	<hr />
-	<c:choose>
-		<c:when test="${rental_car.id eq 'null' }">
-		<sec:authorize access="isAnonymous()">
-			<img
-				src="/resources/img/unx.jpg"
-				style="width: 100%; height: 225px;"/>
-		</sec:authorize>
-		</c:when>
-		<c:otherwise>
-			<img
-				src="/resources/img/${car.carModel }.jpg"
-				style="width: 100%; height: 225px;"/>
-		</c:otherwise>
-	</c:choose>
+		<c:choose>
+			<c:when test="${(empty rental_car.id)  or (empty user_id)}">				
+					<img
+					src="/resources/img/unx.jpg"
+					style="width: 100%; height: 225px;"/>
+			</c:when>
+			<c:when test="${rental_car.id eq user_id}"> 
+				<img
+					src="/resources/img/${car.carModel }.jpg"
+					style="width: 100%; height: 225px;"/>
+			</c:when>
+		</c:choose>
 	<hr />
 	<ul class="nav nav-pills flex-column mb-auto">
 		<li><a class="nav-link text-white"> <svg
 					class="bi pe-none me-2" width="16" height="16">
           <use xlink:href=""></use>
         </svg>
-        <c:choose>
-			<c:when test="${socar_member.id eq 'null'}"> 
-				로그인후 이용가능
-			</c:when>
-			<c:otherwise>
-				<sec:authorize access="isAnonymous()">
-					로그인 해주세요
-				</sec:authorize>
-				<sec:authorize access="isAuthenticated()">
-					<sec:authentication property="principal.sm.id"/> 님 반갑습니다
-				</sec:authorize>
-				
-			</c:otherwise>
-		</c:choose>
-<%-- =======
-         <c:choose>
-         <c:when test="${socar_member.id eq 'null'}"> 
-               로그인후 이용가능
-         </c:when>
-         <c:otherwise>
-            <sec:authorize access="isAnonymous()">
-               로그인후 이용가능
-            </sec:authorize>
-		 대여한 차량 여부에따라 달라지는값     
-         </c:otherwise>
-      	 </c:choose>
->>>>>>> main --%>
+        	<c:choose>
+        		<c:when test="${(empty user_id) or (user_id == 'null')}">       
+						로그인 후 사용 가능
+				</c:when>
+				<c:when test="${(empty rental_car.id) or (rental_member.id == 'null')}">       
+						대여한 차량이 없습니다
+				</c:when>
+				<c:when test="${rental_car.id eq user_id}">
+					<sec:authorize access="isAuthenticated()">
+					<a href="" style="text-decoration-line: none;">사용하기</a>
+					</sec:authorize>
+				</c:when>
+			</c:choose>		
 		</a>
 		</li>
 	</ul>
@@ -204,8 +189,9 @@
 
 <script type="text/javascript">
 
+
 $(document).ready(function() {
-	
+		
 			history.replaceState({}, null, null);
 
 			var actionForm = $("#actionForm");
