@@ -22,17 +22,16 @@ public class SignupController {
 	@Autowired
 	private UserService uservice;
 	
-	@GetMapping("/addacount")
+	@GetMapping("/addaccount")
 	public String addacount() {
-		return "/addacount";
+		return "/addaccount";
 	}
-//GetMapping("/[기능명]")
-	@PostMapping("/addacount")
-	public String addacount(Socar_MemberDTO sc) {
-		log.info("SocarMember : " + sc);
-
-		uservice.createUser(sc);
-
-		return "redirect:/metaCar/signin";
+	
+	@PostMapping("/addaccount")
+	public String addAccount(Socar_MemberDTO sm) {
+		log.warn(sm);
+		uservice.createUser(sm);
+		return "/signin";
 	}
+	
 }

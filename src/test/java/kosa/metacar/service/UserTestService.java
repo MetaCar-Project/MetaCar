@@ -25,24 +25,4 @@ public class UserTestService {
 	private UserService us;
 	private UserMapper um;
 	
-	
-	@Test
-	public void signinUserTest() {
-		
-		Socar_MemberDTO sm = us.signinUser("kosa00", "1234");
-		
-		if (sm == null) {
-			// 회원 정보가 없는 경우 로그인 실패 처리
-			log.info("==============fail");
-			
-			
-			
-			
-		} else {
-			// 회원 정보가 있는 경우 로그인 성공 처리
-			
-			log.info("=================success");
-			
-		}
-	}
 }

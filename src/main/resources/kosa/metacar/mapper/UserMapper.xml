@@ -5,27 +5,37 @@
 <mapper namespace="kosa.metacar.mapper.UserMapper">
 
 	<insert id="userCreate">
-		insert into socar_member
-		(id,password,phone,name,regNum,auth)
-		values (#{id}, #{password}, #{phone},
-		#{name},#{regNum},'ROLE_ADMIN')
+		insert into socar_member(id, password, phone, name, regnum)
+		values(#{id}, #{password}, #{phone},  #{name}, #{regNum})
 	</insert>
 
-<resultMap id="socarMemberResultMap" type="kosa.metacar.dto.Socar_MemberDTO">
-  <id property="id" column="id"/>
-  <result property="password" column="password"/>
-  
-  <result property="phone" column="phone"/>
-  <result property="name" column="name"/>
-  <result property="regNum" column="regNum"/>
-  <result property="auth" column="auth"/>
+	<insert id="userRole">
+		insert into socar_member_auth
+		values (#{id}, 'ROLE_USER')
+	</insert>
+
+	<resultMap type="kosa.metacar.dto.Socar_MemberDTO" id="socarmember">
+		<id column="id" property="id"/>
+		<result column="password" property="password"/>
+		<result column="phone" property="phone"/>
+		<result column="name" property="name"/>
+		<result column="regnum" property="regNum"/>
+		<result column="totaldistance" property="totalDistance"/>
+		<collection property="roles" resultMap="auth"/>
+	</resultMap>
 	
-</resultMap>
+	<resultMap type="kosa.metacar.dto.Socar_Member_AuthDTO" id="auth">
+		<result column="id" property="id"/>
+		<result column="auth" property="auth"/>
+	</resultMap>
 
 	
-<select id="getUserByIdAndPassword" resultType="kosa.metacar.dto.Socar_MemberDTO">
-  SELECT id, password FROM socar_member WHERE id = #{id} AND password = #{password}
-</select>
+	<select id="getUserByIdAndPassword" resultMap="socarmember">
+	  select sm.id, password, phone, name, regnum, totaldistance, auth
+	  from socar_member sm, socar_member_auth sma
+	  where sm.id = sma.id(+)
+	  and sm.id = #{id}
+	</select>
 	
 <select id="userGet" resultType="kosa.metacar.dto.Socar_MemberDTO">
   SELECT id, name FROM socar_member WHERE id = #{id}

@@ -33,9 +33,9 @@
 	<select id="userDetail" resultMap="member">
 		select sm.id, phone, name, address, carmodel, usetime
 		from socar_member sm, rental_car rc, zone_car zc, have_car hc
-		where sm.id=rc.id
-		and rc.sczonenum = zc.sczonenum
-		and rc.carnum = hc.carnum
+		where sm.id=rc.id(+)
+		and rc.sczonenum = zc.sczonenum(+)
+		and rc.carnum = hc.carnum(+)
 		and sm.id = #{id}
 	</select>
 

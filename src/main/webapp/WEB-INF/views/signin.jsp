@@ -90,12 +90,12 @@
   <body class="text-center">
     
 <main class="form-signin w-100 m-auto">
-  <form action="/metaCar/signin" method="post" name="member">
+  <form action="/login" method="post" name="member">
     <!-- <img class="mb-4" src="/docs/5.2/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57"> -->
     <h1 class="h3 mb-3 fw-normal">로그인 해주세요.</h1>
  
     <div class="form-floating">
-      <input type="text" class="form-control" name="id" placeholder="id">
+      <input type="text" class="form-control" name="username" placeholder="id">
       <label for="floatingInput">아이디</label>
     </div>
     <div class="form-floating">
@@ -111,20 +111,30 @@
     <button class="w-100 btn btn-lg btn-primary" type="submit" value="Sign in">로그인</button>
     <br>
     <br>
-    <button class="w-100 btn btn-lg btn-primary" type="submit" onclick="Sign up">회원가입</button>
-    <p class="mt-5 mb-3 text-muted">&copy; 20230309 ~ 20230314</p>
      <input type="hidden" name="${_csrf.parameterName}"
     value="${_csrf.token}" />
   </form>
+  <button class="w-100 btn btn-lg btn-primary" id="signup">회원가입</button>
+  <p class="mt-5 mb-3 text-muted">&copy; 20230309 ~ 20230314</p>
   
       <c:if test="${not empty error}">
         <p style="color: red">${error}</p>
     </c:if>
-</main>
-
-
-    
-  </body>
+</main>    
+</body>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+	$(function(){
+		console.log("sciprt");
+		
+		$('#signup').on('click', function(){
+			console.log("sign in click");
+			location.href = '/metaCar/addaccount';
+		})
+		
+		
+	})
+</script>
 
  
 </html>

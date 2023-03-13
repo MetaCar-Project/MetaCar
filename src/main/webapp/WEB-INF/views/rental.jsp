@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <%@include file="./includes/header.jsp"%>
 <style>
       .bd-placeholder-img {
@@ -127,7 +128,7 @@
               	<ul class="list-group mb-3">
           			<li class="list-group-item d-flex justify-content-between lh-sm">
             			<div>
-              				<h6 class="my-0">pp21356</h6>
+              				<h6 class="my-0"><sec:authentication property="principal.sm.id"/></h6>
               				<small class="text-muted"></small>
             			</div>
             		</li>
@@ -153,7 +154,7 @@
                 <ul class="list-group mb-3">
           			<li class="list-group-item d-flex justify-content-between lh-sm">
             			<div>
-              				<h6 class="my-0">전인성</h6>
+              				<h6 class="my-0"><sec:authentication property="principal.sm.name"/></h6>
               				<small class="text-muted"></small>
             			</div>
             		</li>
@@ -315,6 +316,8 @@
     	<input name="returnAdd" type="hidden"/>
     	<input name="carNum" type="hidden"/>
     	<input name="sczoneNum" type="hidden"/>
+    	 <input type="hidden" name="${_csrf.parameterName}"
+    value="${_csrf.token}" />
 </form>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 

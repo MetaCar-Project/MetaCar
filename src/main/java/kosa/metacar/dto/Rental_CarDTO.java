@@ -20,5 +20,5 @@ public class Rental_CarDTO {
 	
 	
 	
-//	private Have_CarDTO haveCar;
+	private Have_CarDTO haveCar;
 }

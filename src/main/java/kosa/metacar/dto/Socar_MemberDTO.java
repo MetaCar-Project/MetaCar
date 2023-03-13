@@ -1,5 +1,7 @@
 package kosa.metacar.dto;
 
+import java.util.List;
+
 import lombok.Data;
 
 @Data
@@ -8,13 +10,11 @@ public class Socar_MemberDTO {
 	private String password;
 	private String phone;
 	private String name;
-	//주민번호
+	//二쇰�쇰쾲�샇
 	private String regNum;
-	//총주행거리 (등급위해서)
-	private String auth;
 	private int totalDistance;
 	
 	
-	
+	private List<Socar_Member_AuthDTO> roles;
 	private Rental_CarDTO rentalCar;
 }

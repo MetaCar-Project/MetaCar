@@ -31,7 +31,7 @@ public class LoginController {
 	}
 
 	
-
+	/*
 	@RequestMapping(value = "/signin", method = RequestMethod.POST)
 	public String signin(@RequestParam("id") String id, @RequestParam("password") String password,
 			HttpServletRequest request) {
@@ -43,4 +43,5 @@ public class LoginController {
 		// 로그인 성공 시, 메인 페이지로 이동
 		
 	}
+	*/
 }
