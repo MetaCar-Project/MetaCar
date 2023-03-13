@@ -1,5 +1,8 @@
 package kosa.metacar.dto;
 
+import java.sql.Array;
+import java.util.Arrays;
+
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -19,9 +22,9 @@ public class Criteria {
   private String carSmall = "";
   private String carSUV = "";
   
+  private String keyword = "";
   private int zoneType;
-  private String keyword;
-
+  
   public Criteria() {
     this(1, 6);
   }
@@ -42,8 +45,16 @@ public class Criteria {
 		  if (carType[i].equals("대형"))
 			  carBig = "대형";
 		  if (carType[i].equals("SUV"))
-			  carSUV = "SUV";
+			  carSUV = "suv";
 	  }
   }
-  
+  @Override
+  public String toString() {
+	  return "Criteria ["
+  		+ 	"pageNum="+ pageNum +
+  			"amount=" + amount + 
+  			"zoneType="+ zoneType + 
+  			"keyword="+ keyword + 
+  			"carType="+ Arrays.toString(carType) + "]";
+  }
 }

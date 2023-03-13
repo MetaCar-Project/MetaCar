@@ -39,7 +39,8 @@ public class CarTestService {
 		Criteria cri = new Criteria();
 		String temp[] = {};
 		cri.setCarType(temp);
-		cri.setZoneType(1);
+		cri.setZoneType(0);
+		cri.setKeyword("");
 		log.info("---------------------------------------");
 		log.info("service");
 		log.info("---------------------------------------");

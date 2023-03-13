@@ -31,16 +31,29 @@ public class CarTestController {
 	
 	private MockMvc mockMvc; //Server
 	
-	/*
+	
+//	@Test
+//	public void testList() throws Exception{
+//		log.info(
+//				mockMvc.perform(MockMvcRequestBuilders.get("/metaCar/main"))
+//					.andReturn()
+//					.getModelAndView()
+//					.getModelMap()
+//				);
+//	}
+	
+	
 	@Test
-	public void testList() throws Exception{
+	public void testListPaging() throws Exception{
 		log.info(
-				mockMvc.perform(MockMvcRequestBuilders.get("/metaCar/main"))
+				mockMvc.perform(MockMvcRequestBuilders.get("/metaCar/main")
+						.param("pageNum","2")
+						.param("amount","10")
+					)
 					.andReturn()
 					.getModelAndView()
 					.getModelMap()
 				);
 	}
-	*/
 
 }

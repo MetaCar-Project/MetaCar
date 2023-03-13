@@ -37,9 +37,10 @@ public class CarTestMapper {
 	@Test
 	public void cargetListWithPagingTest() {
 		Criteria cri = new Criteria();
-		String temp[] = {};
+		String temp[] = {"경차", "중형"};
 		cri.setCarType(temp);
 		cri.setZoneType(0);
+		cri.setKeyword("");
 		log.info("---------------------------------------");
 		log.info(cri);
 		log.info("---------------------------------------");
@@ -47,5 +48,4 @@ public class CarTestMapper {
 		List<Have_CarDTO>listCar = mapper.cargetListWithPaging(cri);
 		listCar.forEach(car -> log.info(car));
 	}
-	
 }

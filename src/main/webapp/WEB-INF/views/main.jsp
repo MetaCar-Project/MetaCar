@@ -13,121 +13,86 @@
     </svg> <span class="fs-4">Sidebar3</span>
 	</a>
 	<hr />
-	<ul class="nav nav-pills flex-column mb-auto">
-		<li>
-			<div class="text-white fs-4">차종 선택</div> <input type="checkbox"
-			id="typeSmall" style="float: left" />
-			<div style="height: 100%; width: 100%">
-				<p class="nav-link text-white">경차</p>
-			</div> <input type="checkbox" id="typeMiddle" style="float: left" />
-			<div style="height: 100%; width: 100%">
-				<p class="nav-link text-white">중형</p>
-			</div> <input type="checkbox" id="typeBig" style="float: left" />
-			<div style="height: 100%; width: 100%">
-				<p class="nav-link text-white">대형</p>
-			</div> <input type="checkbox" id="typeSUV" style="float: left" />
-			<div style="height: 100%; width: 100%">
-				<p class="nav-link text-white">SUV</p>
-			</div>
-		</li>
-		<li>
-			<div class="input-group mb-3">
-				<div class="input-group-prepend">
-					<label class="input-group-text" for="inputGroupSelect01">쏘카존</label>
+	<form id='searchForm' action="/metaCar/main" method='get'>
+		<ul class="nav nav-pills flex-column mb-auto">
+			<li>
+				<div class="text-white fs-4">차종 선택</div>
+
+				<div class="input-group mb-3">
+					<div class="input-group-text">
+						<input class="form-check-input mt-0" type="checkbox"
+							aria-label="Checkbox for following text input" id="carSmall"
+							name="carSmall" value="경차" />
+					</div>
+					<div class="form-control text-black">경차</div>
 				</div>
-				<select class="custom-select" id="zoneSelect" name="zoneSelect">
-					<option selected>쏘카존을 선택하세요</option>
-					<option value="1">수서역</option>
-					<option value="2">학동역</option>
-					<option value="3">경찰병원역</option>
-					<option value="4">가락시장역</option>
-				</select>
-			</div>
-		</li>
-	</ul>
+				
+				
+				
+				<div class="input-group mb-3">
+					<div class="input-group-text">
+						<input class="form-check-input mt-0" type="checkbox"
+							aria-label="Checkbox for following text input" id="carMiddle"
+							name="carMiddle" value="중형" />
+					</div>
+					<div class="form-control text-black">중형</div>
+				</div>
+				
+				
+				<div class="input-group mb-3">
+					<div class="input-group-text">
+						<input class="form-check-input mt-0" type="checkbox"
+							aria-label="Checkbox for following text input" id="carBig"
+							name="carBig" value="대형" />
+					</div>
+					<div class="form-control text-black">대형</div>
+				</div>
+				
+				<div class="input-group mb-3">
+					<div class="input-group-text">
+						<input class="form-check-input mt-0" type="checkbox"
+							aria-label="Checkbox for following text input" id="carSUV"
+							name="carSUV" value="suv" />
+					</div>
+					<div class="form-control text-black">SUV</div>
+				</div>
+			</li>
+			<li>
+				<div class="input-group mb-3">
+					<div class="input-group-prepend">
+						<label class="input-group-text" for="inputGroupSelect01">쏘카존</label>
+					</div>
+					<select class="custom-select" id="zoneType" name="zoneType">
+						<option selected value="0">쏘카존을 선택하세요</option>
+						<option value="1">수서역</option>
+						<option value="2">학동역</option>
+						<option value="3">경찰병원역</option>
+						<option value="4">가락시장역</option>
+					</select>
+				</div>
+			</li>
+			<li>
+				<div class="input-group mb-3">
+					<div class="input-group-prepend">
+						<label class="input-group-text" for="inputGroupSelect01">검색</label>
+					</div>
+					<input type='text' name='keyword'>
+				</div>
+			</li>
+		</ul>
+		<input type='hidden' name='amount' value='${pageMaker.cri.amount}'>
+		<input type='hidden' name='pageNum' value='${pageMaker.cri.pageNum}'>
+		<button type="submit" class="btn btn-primary">제출</button>
+	</form>
 	<hr />
 </div>
-<%-- 
-<form id='searchForm' action="/board/list" method='get'>
-	<select name='type'>
-		<option value=""
-			<c:out value="${pageMaker.cri.type == null?'selected':''}"/>>--</option>
-		<option value="T"
-			<c:out value="${pageMaker.cri.type eq 'T'?'selected':''}"/>>제목</option>
-		<option value="C"
-			<c:out value="${pageMaker.cri.type eq 'C'?'selected':''}"/>>내용</option>
-		<option value="W"
-			<c:out value="${pageMaker.cri.type eq 'W'?'selected':''}"/>>작성자</option>
-		<option value="TC"
-			<c:out value="${pageMaker.cri.type eq 'TC'?'selected':''}"/>>제목
-			or 내용</option>
-		<option value="TW"
-			<c:out value="${pageMaker.cri.type eq 'TW'?'selected':''}"/>>제목
-			or 작성자</option>
-		<option value="TWC"
-			<c:out value="${pageMaker.cri.type eq 'TWC'?'selected':''}"/>>제목
-			or 내용 or 작성자</option>
-	</select> <input type='text' name='keyword'
-		value='<c:out value="${pageMaker.cri.keyword}"/>' /> <input
-		type='hidden' name='pageNum'
-		value='<c:out value="${pageMaker.cri.pageNum}"/>' /> <input
-		type='hidden' name='amount'
-		value='<c:out value="${pageMaker.cri.amount}"/>' />
-	<button class='btn btn-default'>Search</button>
-</form>
-
- --%>
-
-
-<button id="searchBtn">search3</button>
-<button id='abcBtn' name='save'>저장</button>
-<br />
-
-<!-- 
-	typeSmall
-	typeMiddle
-	typeBig 
-	typeSUV
- -->
-
-<script type="text/javascript">
-	$(document).ready(function() {
-		$("button[id='abcBtn']").click(function() {
-			$("body").append("click!@!!<br/>");
-		});
-	});
-	$(document).ready(function() {
-		let zoneNum;
-		$("#zoneSelect").change(function() {
-			console.log("change");
-			zoneNum = $(this).val();
-		});
-
-		$('#searchBtn').click(function() {
-			let carType = [];
-			if ($('#typeSmall').is(':checked')) {
-				carType.push('경차');
-			}
-			if ($('#typeMiddle').is(':checked')) {
-				carType.push('중형');
-			}
-			if ($('#typeBig').is(':checked')) {
-				carType.push('대형');
-			}
-			if ($('#typeSUV').is(':checked')) {
-				carType.push('SUV');
-			}
-			alert(carType);
-			alert(zoneNum);
-		})
-	});
-</script>
 
 <div class="album py-5 bg-light"
 	style="float: left; padding-left: 20px;">
 	<!-- ALBUM -->
 	<div class="container">
-		<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+		<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3"
+			style="width: 1300px">
 
 			<c:forEach items="${list}" var="car">
 				<div class="col">
