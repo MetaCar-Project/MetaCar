@@ -30,5 +30,12 @@ public class UserServiceImpl implements UserService {
 		mapper.userRole(sm.getId());
 	}
 
+
+	@Override
+	public boolean getId(String id) {
+		// TODO Auto-generated method stub
+		return mapper.idGet(id)==null? false : true;
+	}
+
 	
 }

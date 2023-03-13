@@ -37,8 +37,14 @@
 	  and sm.id = #{id}
 	</select>
 	
-<select id="userGet" resultType="kosa.metacar.dto.Socar_MemberDTO">
-  SELECT id, name FROM socar_member WHERE id = #{id}
-</select>
+	<select id="userGet" resultType="kosa.metacar.dto.Socar_MemberDTO">
+	  SELECT id, name FROM socar_member WHERE id = #{id}
+	</select>
+
+	<select id="idGet" resultType="kosa.metacar.dto.Socar_MemberDTO">
+		select id from socar_member where id=#{id}
+	</select>
+
+
 
 </mapper>

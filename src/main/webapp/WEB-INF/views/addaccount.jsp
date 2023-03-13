@@ -17,45 +17,30 @@
 <link href="${pageContext.request.contextPath}/resources/css/signup.css"
 	rel="stylesheet" type="text/css">
 
-<script type="text/javascript">
-	/* 자바 스크립트 함수 선언(비밀번호 확인) */
-
-	function passConfirm() {
-	/* 비밀번호, 비밀번호 확인 입력창에 입력된 값을 비교해서 같다면 비밀번호 일치, 그렇지 않으면 불일치 라는 텍스트 출력.*/
-	/* document : 현재 문서를 의미함. 작성되고 있는 문서를 뜻함. */
-	/* getElementByID('아이디') : 아이디에 적힌 값을 가진 id의 value를 get을 해서 password 변수 넣기 */
-		var password = document.getElementById('password');					//비밀번호 
-		var passwordConfirm = document.getElementById('confirm_password');	//비밀번호 확인 값
-		var confrimMsg = document.getElementById('confirmMsg');				//확인 메세지
-		var correctColor = "#00ff00";	//맞았을 때 출력되는 색깔.
-		var wrongColor ="#ff0000";	//틀렸을 때 출력되는 색깔
-		
-		if(password.value == passwordConfirm.value){//password 변수의 값과 passwordConfirm 변수의 값과 동일하다.
-			confirmMsg.style.color = correctColor;/* span 태그의 ID(confirmMsg) 사용  */
-			confirmMsg.innerHTML ="비밀번호 일치";/* innerHTML : HTML 내부에 추가적인 내용을 넣을 때 사용하는 것. */
-		}else{
-			confirmMsg.style.color = wrongColor;
-			confirmMsg.innerHTML ="비밀번호 불일치";
-		}
-	}
-</script>
-
 </head>
 <body>
 	<div class="container" id="wrap">
 		<div class="row">
 			<div class="col-md-7 col-md-offset-3">
 				<form action="/metaCar/addaccount" method="post" accept-charset="utf-8" class="form"
-					role="form">
+					role="form" id="addForm">
 					<legend>회원 가입</legend>
 
 
 					<input type="text" name="name" value=""
 						class="form-control input-lg" placeholder="이름" /> 
+					<div id="namenull" hidden="hidden" style="color : red">이름을 입력해주세요.</div>
 					<br>
 					
 					<input type="text" name="id" value="" 
 					class="form-control input-lg" placeholder="아이디" />
+		
+					<button class="btn btn-lg btn-primary btn-block signup-btn" type="button" id="checkbutton" >확인</button>
+					<div id="canpost" hidden="hidden" data-validation='false'></div>
+					<div id="valid" hidden="hidden" style="color : red">이미 존재하는 아이디입니다.</div>
+					<div id="valid2" hidden="hidden" style="color : red">아이디를 입력해주세요</div>
+					<div id="valid3" hidden="hidden" style="color : green">가입 가능한 아이디입니다</div>
+					<br>
 					<br>
 					<input type="password" name="password" value="" 
 						class="form-control input-lg" placeholder="비밀번호" />
@@ -68,17 +53,18 @@
 					<span id = "confirmMsg"></span>
 					
 					<br>
-					<input type="text" name="phone" value=""
+					<input type="text" id="name" name="phone" value=""
 						class="form-control input-lg" placeholder="전화번호" />
-					<br>
-					<input type="text" name="regNum" value=""
+					
+					<div id="phonenull" hidden="hidden" style="color : red">전화번호를 입력해주세요.</div>
+					<input type="text" id="regnum" name="regNum" value=""
 						class="form-control input-lg" placeholder="주민등록번호" />
-					<br>
-				   
+					
+				    <div id="regnull" hidden="hidden" style="color : red">주민등록번호를 입력해주세요.</div>
 					<br /> <span class="help-block">내 계정 만들기를 클릭하면 약관에 동의하고 쿠키
 						사용을 포함한 데이터 사용 정책을 읽었음을 의미합니다.</span>
 					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-					<button class="btn btn-lg btn-primary btn-block signup-btn"
+					<button id="add" class="btn btn-lg btn-primary btn-block signup-btn"
 						type="submit">계정 생성</button>
 				</form>
 			</div>
@@ -87,5 +73,96 @@
 	</div>
 </body>
 
+ <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+ <script>
+ 	$(function(){
+ 		$('#checkbutton').on("click", function(){
+ 			console.log('checkbutton click');
+ 			
+ 			var csrfHeaderName = "${_csrf.headerName}";
+ 			var csrfTokenValue = "${_csrf.token}";
+ 			var data = $('input[name="id"]').val();
+ 			if (data==""){
+ 				$('#valid2').show();
+ 				return;
+ 			}
+ 			console.log(data);
+ 			
+ 			$.ajax({
+                type : 'post',
+                url : '/metaCar/checkid',
+                beforeSend : function(xhr){
+                	xhr.setRequestHeader(csrfHeaderName,csrfTokenValue);		
+                },
+                data : JSON.stringify(data),
+                contentType : "application/json; charset=utf-8",
+                success : function(result, status, xhr){
+                    //console.log(result);
+                    if(result=='success'){
+                    	$('#valid2').hide();
+                    	$('#valid').show();
+                    }
+                    else if(result == 'fail'){
+                    	//console.log("failfailfail");
+                    	$('#valid2').hide();
+                    	$('#valid').hide();
+                    	$('#valid3').show();
+                    	$('#canpost').data("validation", "true");
+                    	console.log($('#canpost').data("validation"));
+                    	
+                    }
+                }
+            });	
+ 		})
+ 		
+ 		
+ 		$('#add').on('click',function(e){
+ 			e.preventDefault();
+ 			
+ 			if($('input[name="name"]').val()==""){
+ 				console.log("주번입력안함");
+ 				$('#namenull').show();
+ 				return;
+ 			}
+ 			
+ 			var check = $('#canpost').data("validation");
+ 			console.log(check);
+ 			if(check == false){
+ 				$('#namenull').hide();
+ 				alert("아이디 중복확인을 해주세요");
+ 				return;
+ 			}
+ 			var password = $('input[name="password"]').val();
+ 			var passcheck = $('input[name="confirm_password"]').val();
+ 			if(password != passcheck){
+ 				alert("비밀번호가 다릅니다.");
+ 				return;
+ 			}
+ 			
+ 			if(password == ""){
+ 				alert("비밀번호를 입력해주세요");
+ 				return;
+ 			}
+ 			
+ 			if($('#name').val()==""){
+ 				console.log("폰번호입력안함");
+ 				$('#namenull').hide();
+ 				$('#phonenull').show();
+ 				return;
+ 			}
+ 			if($('#regnum').val()==""){
+ 				console.log("주번입력안함");
+ 				$('#namenull').hide();
+ 				$('#phonenull').hide();
+ 				$('#regnull').show();
+ 				return;
+ 			}
+ 			
+ 			$('#addForm').submit();
+ 			
+ 		})
+ 		
+ 	})
+ </script>
 
 </html>
