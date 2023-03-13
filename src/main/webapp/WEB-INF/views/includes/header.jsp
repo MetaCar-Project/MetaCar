@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -171,11 +174,27 @@
         <li><a href="main" class="nav-link px-2 link-secondary">Home</a></li>
       </ul>
 
-      <div class="col-md-3 text-end">
-        <button type="button" class="btn btn-outline-primary me-2">로그인</button>
-        <button type="button" class="btn btn-primary">회원가입</button>
+      <div class="col-md-3 text-end">     		
+         <c:choose>
+         	<c:when test="${socar_member.id eq 'null'}"> 
+            	<button type="button" onclick="location.href='signin'" class="btn btn-outline-primary me-2">로그인</button>
+              	<button type="button" onclick="location.href='addaccount'" class="btn btn-primary">회원가입</button>
+        	</c:when>
+         <c:otherwise>
+            <sec:authorize access="isAnonymous()">
+              <button type="button" onclick="location.href='signin'" class="btn btn-outline-primary me-2">로그인</button>
+              <button type="button" onclick="location.href='addaccount'" class="btn btn-primary">회원가입</button>
+            </sec:authorize>
+            <sec:authorize access="isAuthenticated()">
+               		<sec:authentication property="principal.sm.id"/> 님 반갑습니다
+                	<button type="button" class="btn btn-primary">내정보</button>
+              		<button type="button" class="btn btn-outline-primary me-2">로그아웃</button>
+            </sec:authorize>            
+         </c:otherwise>
+      	 </c:choose>
       </div>
+      
     </header>
   </div>
-
+</main>
  

@@ -14,6 +14,8 @@ import kosa.metacar.dto.PageDTO;
 import kosa.metacar.service.CarService;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 
 @Controller
@@ -23,7 +25,7 @@ import lombok.extern.log4j.Log4j;
 public class MainController {
 	
 	private CarService cs;
-
+	
 	@PreAuthorize("permitAll()")
 	@GetMapping("/main")
 	public String main(Criteria cri,Model model) {
