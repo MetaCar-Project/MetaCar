@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -29,42 +30,36 @@ public class RentalController {
 	@PreAuthorize("hasAnyRole('ROLE_USER')")
 	@GetMapping("/rental")
 	public String rentalPage(Have_CarDTO havecar, Model model) {
-		havecar.setCarNum("321루7449");
 		model.addAttribute("car",service.getCar(havecar));
 		log.warn(service.getCar(havecar));
 		return "rental";
 	}
 	
+	@PreAuthorize("hasAnyRole('ROLE_USER')")
 	@PostMapping("/rental")
 	public String rentalCar(Rental_CarDTO rc) {
 		service.rentalCar(rc);
 		log.warn("======================================================"+rc);
 		
-		return "main";
+		return "redirect:/metaCar/main";
 	}
 	
-	
-	@GetMapping("/cancel")
-	public String cancelPage() {
-	    return "cancel";
+	@PreAuthorize("hasAnyRole('ROLE_USER')")
+	@GetMapping("/cancel/{id}")
+	public String cancelPage(@PathVariable("id")String id, Model model) {
+	    
+	    model.addAttribute("cancel", service.cancelGet(id));
+		
+		return "cancel";
 	}
 	
+	@PreAuthorize("hasAnyRole('ROLE_USER')")
 	@PostMapping("/cancel")
-	public String cancel(@RequestParam int reserveNum, @RequestParam String id, @RequestParam String cancelWhy) {
-		Cancel_CarDTO cc = new Cancel_CarDTO();
-		Rental_CarDTO rc = new Rental_CarDTO();
+	public String cancel(Cancel_CarDTO cc) {
 		
-		
-		rc.setReserveNum(reserveNum);
-		rc.setId(id);
-		
-		cc.setReserveNum(reserveNum);
-		cc.setId(id);
-		cc.setCancelWhy(cancelWhy);
-		
-		service.cancelCar(cc, rc);
-
-		return "redirect:/main";
+		service.cancelCar(cc);
+		String id = cc.getId();
+		return "redirect:/profile/" + id;
 	}
 
 

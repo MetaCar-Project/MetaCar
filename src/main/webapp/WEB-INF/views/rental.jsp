@@ -61,7 +61,7 @@
 <div class="container">
   <main>
     <div class="py-5 text-center">
-      <img class="d-block mx-auto mb-4" src="../assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
+      <img class="d-block mx-auto mb-4" src="/resources/img/${car.carModel}.jpg" alt="${car.carModel }" width="800" height="400">
       <h2>대여 신청</h2>
       <p class="lead"><c:out value="${car.carNum }"/></p>
     </div>
@@ -168,7 +168,7 @@
 
             <div class="col-12">
               <label for="email" class="form-label">반납주소</label>
-              <input type="text" class="form-control" id="address" placeholder="서울시 강남구 논현동" required="required">
+              <input type="text" class="form-control" id="address" placeholder="ex)경찰병원, 가락시장" required="required">
               <div class="invalid-feedback">
                 Please enter a valid email address for shipping updates.
               </div>
@@ -350,7 +350,7 @@ $(function(){
 			return;
 		}
 		
-		$('input[name="id"]').val("p21356");
+		$('input[name="id"]').val("<sec:authentication property="principal.sm.id"/>");
 		
 		$('input[name="useTime"]').val($('#country').val());
 		

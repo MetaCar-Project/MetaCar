@@ -6,6 +6,8 @@
 
 <%@ include file="./includes/header.jsp"%>
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+<script>
 
 
 <!-- SIDE BAR -->
@@ -79,9 +81,16 @@
 							<p class="card-text"></p>
 							<div class="d-flex justify-content-between align-items-center">
 								<div class="btn-group">
+<<<<<<< HEAD
+									<button type="button" class="btn btn-sm btn-outline-secondary"
+									onclick="detailcar();">상세보기</button>
+									<button type="button" class="btn btn-sm btn-outline-secondary"
+									onclick="location.href='/metaCar/rental?carNum=${car.carNum}'">대여하기</button>
+=======
 									<button onclick="window.open('detailcar?carNum=${car.carNum }','차량상세정보','width=600,height=600,location=no,status=no,scrollbars=yes');">
 									상세정보</button>
 									<button type="button" class="btn btn-sm btn-outline-secondary">대여하기</button>
+>>>>>>> main
 								</div>
 								<small class="text-muted">대여가능여부</small>
 							</div>
@@ -160,6 +169,22 @@
 					class="bi pe-none me-2" width="16" height="16">
           <use xlink:href=""></use>
         </svg>
+<<<<<<< HEAD
+        <c:choose>
+			<c:when test="${socar_member.id eq 'null'}"> 
+				로그인후 이용가능
+			</c:when>
+			<c:otherwise>
+				<sec:authorize access="isAnonymous()">
+					로그인 해주세요
+				</sec:authorize>
+				<sec:authorize access="isAuthenticated()">
+					<sec:authentication property="principal.sm.id"/> 님 반갑습니다
+				</sec:authorize>
+				
+			</c:otherwise>
+		</c:choose>
+=======
          <c:choose>
          <c:when test="${socar_member.id eq 'null'}"> 
                로그인후 이용가능
@@ -171,6 +196,7 @@
 		 대여한 차량 여부에따라 달라지는값     
          </c:otherwise>
       	 </c:choose>
+>>>>>>> main
 		</a>
 		</li>
 	</ul>
