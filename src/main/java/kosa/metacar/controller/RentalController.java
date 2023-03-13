@@ -29,7 +29,7 @@ public class RentalController {
 	@PreAuthorize("hasAnyRole('ROLE_USER')")
 	@GetMapping("/rental")
 	public String rentalPage(Have_CarDTO havecar, Model model) {
-		havecar.setCarNum("321猷�7449");
+		havecar.setCarNum("321루7449");
 		model.addAttribute("car",service.getCar(havecar));
 		log.warn(service.getCar(havecar));
 		return "rental";
@@ -42,6 +42,7 @@ public class RentalController {
 		
 		return "main";
 	}
+	
 	
 	@GetMapping("/cancel")
 	public String cancelPage() {

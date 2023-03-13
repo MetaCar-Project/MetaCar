@@ -16,7 +16,8 @@ import lombok.extern.log4j.Log4j;
 @WebAppConfiguration
 @ContextConfiguration({
 	"file:src/main/webapp/WEB-INF/spring/root-context.xml",
-	"file:src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml"
+	"file:src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml",
+	"file:src/main/webapp/WEB-INF/spring/security-context.xml"
 })
 
 @Log4j
@@ -61,15 +62,18 @@ public class UserTestMapper {
 		um.userCreate(sm);	
 	}
 	*/
-	
+	/*
 	@Test
 	public void testSelect() {
 		Socar_MemberDTO sm = um.getUserByIdAndPassword("kosa00");
 		log.warn(sm);
 	}
+	*/
 	
-	
-	
+	@Test
+	public void testId() {
+		log.warn(um.idGet("123456"));
+	}
 	
 	
 	
