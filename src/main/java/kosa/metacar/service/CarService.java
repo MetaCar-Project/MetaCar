@@ -13,5 +13,7 @@ public interface CarService {
 	
 	public List<Have_CarDTO> carWithPaginggetList(Criteria cri);
 	
+	public Have_CarDTO cardetail(String carNum);
+	
 
 }

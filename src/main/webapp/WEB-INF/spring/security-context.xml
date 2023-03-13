@@ -13,22 +13,17 @@
 	 
 	
 	<security:http>
-	
 		<security:intercept-url pattern="/metaCar/main" access="hasRole('ROLE_MEMBER')" />
         <security:intercept-url pattern="/metaCar/signin" access="permitAll" />
-        <security:form-login login-page="/metaCar/signin" default-target-url="/metaCar/main" authentication-failure-url="/metaCar/signin" />
+     	<security:form-login login-page="/metaCar/signin" default-target-url="/metaCar/main" authentication-failure-url="/metaCar/main" />
         <security:logout logout-success-url="/metaCar/signin" />	
 		
 		<security:csrf disabled="true"/> 
 		<!-- <security:form-login/> -->
 		
 		<!-- <security:form-login login-page="/login"/> -->
-		
-		
-		
-		
-
-	</security:http>
+	</security:http> 
+	 
 	
 	<security:authentication-manager>
         <security:authentication-provider>

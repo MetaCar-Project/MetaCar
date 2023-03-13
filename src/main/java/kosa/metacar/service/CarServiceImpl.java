@@ -25,5 +25,9 @@ public class CarServiceImpl implements CarService {
 		return mapper.carWithPaginggetList(cri);
 	}
 
+	@Override
+	public Have_CarDTO cardetail(String carNum) {
+		return mapper.cargetDetail(carNum);
+	}
 
 }
