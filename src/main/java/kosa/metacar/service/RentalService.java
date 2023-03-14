@@ -18,4 +18,5 @@ public interface RentalService {
 	public List<Cancel_CarDTO> cancelGet(String id);
 	public boolean checkReserve(String id);
 	public Rental_CarDTO checkRental(String id);
+	public boolean canReserve (String carNum);
 }

@@ -79,11 +79,12 @@ public class RentalController {
 	@PreAuthorize("hasAnyRole('ROLE_USER')")
 	@PostMapping("/checkreserve")
 	@ResponseBody
-	public ResponseEntity<String> checkReserve(@RequestBody String id){	
+	public ResponseEntity<String> checkReserve(@RequestBody Rental_CarDTO rc){	
 		System.out.println("=====-=-=-=0=-0=0=-0=-0=-0=-0=-0=-0=-0=0=-0=-0=0=");
-		String checkid=id.trim().substring(1).substring(0, id.length()-2);
-		System.out.println("========================아 이 디====================="+checkid);		
-		if(service.checkReserve(checkid)) {
+		//String checkid=id.trim().substring(1).substring(0, id.length()-2);
+		//String checkcarNum = carNum.trim().substring(1).substring(0, id.length()-2);
+		System.out.println("========================아 이 디====================="+rc.getId() + "============" + rc.getCarNum());		
+		if(service.checkReserve(rc.getId()) || service.canReserve(rc.getCarNum())) {
 			log.warn("예약차량있음");
 			return new ResponseEntity<> ("havereserve", HttpStatus.OK);
 		}
