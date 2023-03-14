@@ -63,5 +63,10 @@ public class RentalServiceImpl implements RentalService{
 		
 	}
 
+	@Override
+	public boolean canReserve(String carNum) {
+		return mapper.canRental(carNum) == null? false : true;
+	}
+
 
 }

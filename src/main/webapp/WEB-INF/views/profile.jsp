@@ -207,7 +207,7 @@
 $(function(){
 	console.log("script");
 
-	
+	var regPhone = /^\d{3}-\d{3,4}-\d{4}$/;
 			
 		
 	
@@ -217,6 +217,11 @@ $(function(){
 		
 		if($('#modiphone').val()==""){
 			alert("전화번호를 입력해주세요");
+			return;
+		}
+		
+		if(!regPhone.test($('#modiphone').val())){
+			alert("전화번호 형식이다릅니다.");
 			return;
 		}
 		

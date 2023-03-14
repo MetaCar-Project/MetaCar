@@ -26,8 +26,7 @@
 		<result column="returnadd" property="returnAdd"/>
 		<result column="sczonenum" property="sczoneNum"/>
 		<result column="carnum" property="carNum"/>
-		<result column="reservenow" property="reservenow"/>
-		
+		<result column="reservenow" property="reservenow"/>		
 	</resultMap>
 	
 	<resultMap type="kosa.metacar.dto.DistanceDTO" id="Distance">
@@ -83,6 +82,12 @@
 	<select id="getRental" resultType="kosa.metacar.dto.Rental_CarDTO">
 		select * from rental_car
 		where id= #{id}
+		and reservenow = 'o'
+	</select>
+	
+	<select id="canRental" resultType="kosa.metacar.dto.Rental_CarDTO">
+		select * from rental_car
+		where carnum = #{carNum}
 		and reservenow = 'o'
 	</select>
 	

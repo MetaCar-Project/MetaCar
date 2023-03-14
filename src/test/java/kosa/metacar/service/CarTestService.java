@@ -11,6 +11,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 
 import kosa.metacar.dto.Criteria;
 import kosa.metacar.dto.Have_CarDTO;
+import kosa.metacar.dto.Rental_CarDTO;
 import lombok.extern.log4j.Log4j;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -25,6 +26,9 @@ public class CarTestService {
 	
 	@Autowired
 	private CarService cs;
+	
+	@Autowired
+	private RentalService rs;
 	
 	/*
 	@Test
@@ -53,5 +57,12 @@ public class CarTestService {
 		log.info(havecar);
 	}
 	*/
-
+	
+	/*
+	@Test
+	public void testcheckReserve() {
+		Rental_CarDTO rental = new Rental_CarDTO();
+		rental.getId();
+	}
+	*/
 }
