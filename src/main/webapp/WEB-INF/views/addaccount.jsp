@@ -54,7 +54,7 @@
 					
 					<br>
 					<input type="text" id="name" name="phone" value=""
-						class="form-control input-lg" placeholder="전화번호" />
+						class="form-control input-lg" placeholder="전화번호(xxx-xxxx-xxxx)" />
 					
 					<div id="phonenull" hidden="hidden" style="color : red">전화번호를 입력해주세요.</div>
 					<input type="text" id="regnum" name="regNum" value=""
@@ -125,6 +125,13 @@
  				return;
  			}
  			
+ 			//비밀번호
+ 			var regex = /^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
+ 			//이메일
+ 			var regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+ 			//전화번호
+ 			var regPhone = /^\d{3}-\d{3,4}-\d{4}$/;
+ 			
  			var check = $('#canpost').data("validation");
  			console.log(check);
  			if(check == false){
@@ -132,6 +139,13 @@
  				alert("아이디 중복확인을 해주세요");
  				return;
  			}
+ 			
+ 			
+ 			if(!regExp.test($('input[name="id"]').val())){
+ 				console.log("이메일 형식다름");
+ 				return;
+ 			}
+ 			
  			var password = $('input[name="password"]').val();
  			var passcheck = $('input[name="confirm_password"]').val();
  			if(password != passcheck){
