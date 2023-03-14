@@ -83,7 +83,7 @@
 			<li>
 				<div class="input-group mb-3">
 					<div class="input-group-prepend">
-						<button type="submit" class="btn btn-primary">제출</button>
+						<button type="submit" class="btn btn-primary">검색</button>
 					</div>
 					<input type='text' name='keyword' placeholder="검색어를 입력하세요">
 				</div>
@@ -215,7 +215,7 @@
 		class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
 		<!-- <svg class="bi pe-none me-2" width="40" height="32"> -->
       <use xlink:href="metaCar/main"></use>
-    </svg> <span class="fs-4">예약된 차 확인</span>
+    </svg> <span class="fs-4" style="text-align: center;">예약된 차 확인</span>
 	</a>
 	<hr />
 		<c:choose>
