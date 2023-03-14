@@ -3,11 +3,15 @@ package kosa.metacar.controller;
 import java.security.Principal;
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.web.bind.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,6 +24,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import kosa.metacar.dto.Criteria;
 import kosa.metacar.dto.PageDTO;
 import kosa.metacar.dto.Rental_CarDTO;
+import kosa.metacar.security.domain.CustomUser;
 import kosa.metacar.service.CarService;
 import kosa.metacar.service.RentalService;
 import lombok.AllArgsConstructor;
@@ -40,7 +45,8 @@ public class MainController {
 	
 	@PreAuthorize("permitAll()")
 	@GetMapping("/main")
-	public String main(Criteria cri,Model model,Principal principal) {
+	public String main(Criteria cri,Model model) {
+		
 		model.addAttribute("list",cs.carWithPaginggetList(cri));
 		model.addAttribute("pageMaker",new PageDTO(cri,200));
 		return "main";		
@@ -58,16 +64,12 @@ public class MainController {
 	@PreAuthorize("permitAll()")
 	@PostMapping("/main")
 	@ResponseBody
-	public ResponseEntity<String> main(@RequestBody String id){
+	public ResponseEntity<Rental_CarDTO> main(@RequestBody String id, HttpServletResponse response){	
 	
 		String checkid=id.trim().substring(1).substring(0, id.length()-2);
-	
-		if(service.checkReserve(checkid)) {
-			log.warn("예약차량있음");
-			return new ResponseEntity<> ("haverentalid", HttpStatus.OK);
-		}
-		log.warn("예약차량없음");
-		return new ResponseEntity<> ("dontreantalid", HttpStatus.OK);
+		System.out.println("id2 : ============================ " + checkid);
+		response.setHeader("Content-Type", "application/json;charset=utf-8");
+		return new ResponseEntity<Rental_CarDTO> (cs.carMain(checkid), HttpStatus.OK);
 	}
 
 }

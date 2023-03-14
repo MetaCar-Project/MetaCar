@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import kosa.metacar.dto.Criteria;
 import kosa.metacar.dto.Have_CarDTO;
+import kosa.metacar.dto.Rental_CarDTO;
 import kosa.metacar.mapper.CarMapper;
 
 @Service
@@ -28,6 +29,12 @@ public class CarServiceImpl implements CarService {
 	@Override
 	public Have_CarDTO cardetail(String carNum) {
 		return mapper.cargetDetail(carNum);
+	}
+
+	@Override
+	public Rental_CarDTO carMain(String id) {
+		
+		return mapper.mainCar(id);
 	}
 
 }

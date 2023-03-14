@@ -409,12 +409,7 @@ $(function(){
 		$('#rentalForm').submit(); */
 		
 	});
-	
-	
-	
-	
-	
-	
+		
 })
 
 </script>

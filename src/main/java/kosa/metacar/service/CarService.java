@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import kosa.metacar.dto.Criteria;
 import kosa.metacar.dto.Have_CarDTO;
+import kosa.metacar.dto.Rental_CarDTO;
 
 public interface CarService {
 	
@@ -15,5 +16,6 @@ public interface CarService {
 	
 	public Have_CarDTO cardetail(String carNum);
 	
+	public Rental_CarDTO carMain(String id);
 
 }
