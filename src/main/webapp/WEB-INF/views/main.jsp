@@ -2,13 +2,14 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
+<%@ taglib uri="http://www.springframework.org/security/tags"
+	prefix="sec"%>
 <%@ include file="./includes/header.jsp"%>
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 
 <sec:authorize access="isAuthenticated()">
-          <sec:authentication property="principal.sm.id"  var="user_id"/>           	
-</sec:authorize>  
+	<sec:authentication property="principal.sm.id" var="user_id" />
+</sec:authorize>
 
 
 <!-- SIDE BAR -->
@@ -18,7 +19,7 @@
 		class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
 		<svg class="bi pe-none me-2" width="40" height="32">
       <use xlink:href="#bootstrap"></use>
-    </svg> <span class="fs-4">Sidebar3</span>
+    </svg> <span class="fs-4">METACAR</span>
 	</a>
 	<hr />
 	<form id='searchForm' action="/metaCar/main" method='get'>
@@ -100,7 +101,8 @@
 	style="float: left; padding-left: 20px;">
 	<!-- ALBUM -->
 	<div class="container">
-		<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3" style="width: 1300px">
+		<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3"
+			style="width: 1300px">
 
 			<c:forEach items="${list}" var="car">
 				<div class="col">
@@ -112,7 +114,7 @@
 							<c:out value="${car.carModel }" />
 							<p class="card-text"></p>
 							<div class="d-flex justify-content-between align-items-center">
-					<div class="btn-group">
+								<div class="btn-group">
 
 									<button
 										onclick="window.open('detailcar?carNum=${car.carNum }','차량상세정보','width=600,height=600,location=no,status=no,scrollbars=yes');">
@@ -131,54 +133,59 @@
 
 		</div>
 	</div>
-				<div class='pull-right'>
-					<ul style="text-align: center; class="pagination">
+	<div class='pull-right'>
+		<ul style="text-align: center;" class="pagination">
 
-						<c:if test="${pageMaker.prev }">
-							<li class="paginate_button previous">
-							  <a href="${pageMaker.startPage -1 }">Previous</a>
-							</li>
-						</c:if>
+			<c:if test="${pageMaker.prev }">
+				<li class="paginate_button previous"><a
+					href="${pageMaker.startPage -1 }">Previous</a></li>
+			</c:if>
 
-						<c:forEach var="num" begin="${pageMaker.startPage }" end="${pageMaker.endPage }">
-							<li style="display :inline-block;" class="paginate_button ${pageMaker.cri.pageNum == num ? "active":"" } ">
-								<a style="margin-left : 4px " class="btn btn-outline-primary" href="${num }">${num }</a>
-							</li>
-						</c:forEach>
+			<c:forEach var="num" begin="${pageMaker.startPage }"
+				end="${pageMaker.endPage }">
+				<li style="display: inline-block;"
+					class="paginate_button ${pageMaker.cri.pageNum == num ? "active":"" } ">
+					<a style="margin-left: 4px" class="btn btn-outline-primary"
+					href="${num }">${num }</a>
+				</li>
+			</c:forEach>
 
-						<c:if test="${pageMaker.next }">
-							<li class="paginate_button next">
-								<a href="${pageMaker.endPage +1 }">Next</a>
-							</li>
-						</c:if>
+			<c:if test="${pageMaker.next }">
+				<li class="paginate_button next"><a
+					href="${pageMaker.endPage +1 }">Next</a></li>
+			</c:if>
 
-					</ul>
-				</div>			
-		</div>
-			
-				<form id='actionForm' action="/metaCar/main" method='get'>
-					<input type='hidden' name='pageNum' value='${pageMaker.cri.pageNum }'>
-					<input type='hidden' name='amount' value='${pageMaker.cri.amount }'>
-				</form>
-				
-				<form id="sideForm" action="/metaCar/main" method="post">
-    				<input name="id" type="hidden"/>
-    				<input name="useTime" type="hidden"/>
-    				<input name="returnAdd" type="hidden"/>
-    				<input name="carNum" type="hidden"/>
-    				<input name="sczoneNum" type="hidden"/>
-    				<input type="hidden" name="${_csrf.parameterName}"
-   					 value="${_csrf.token}" />
-				</form>	
 		</ul>
 	</div>
-	<!--  end Pagination -->
 </div>
 
 <form id='actionForm' action="/metaCar/main" method='get'>
 	<input type='hidden' name='pageNum' value='${pageMaker.cri.pageNum }'>
 	<input type='hidden' name='amount' value='${pageMaker.cri.amount }'>
+	<input type='hidden' name='zoneType'
+		value='<c:out value="${ pageMaker.cri.zoneType }"/>'> <input
+		type='hidden' name='keyword'
+		value='<c:out value="${ pageMaker.cri.keyword }"/>'> <input
+		type='hidden' name='carBig'
+		value='<c:out value="${ pageMaker.cri.carBig }"/>'> <input
+		type='hidden' name='carMiddle'
+		value='<c:out value="${ pageMaker.cri.carMiddle }"/>'> <input
+		type='hidden' name='carSmall'
+		value='<c:out value="${ pageMaker.cri.carSmall }"/>'> <input
+		type='hidden' name='carSUV'
+		value='<c:out value="${ pageMaker.cri.carSUV }"/>'>
 </form>
+
+<form id="sideForm" action="/metaCar/main" method="post">
+	<input name="id" type="hidden" /> <input name="useTime" type="hidden" />
+	<input name="returnAdd" type="hidden" /> <input name="carNum"
+		type="hidden" /> <input name="sczoneNum" type="hidden" /> <input
+		type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+</form>
+</ul>
+</div>
+<!--  end Pagination -->
+</div>
 
 
 <div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark"
@@ -190,80 +197,108 @@
     </svg> <span class="fs-4">예약된 차 확인</span>
 	</a>
 	<hr />
-		<c:choose>
-			<c:when test="${(empty rental_car.id)  or (empty user_id)}">				
-					<img
-					src="/resources/img/unx.jpg"
-					style="width: 100%; height: 225px;"/>
-			</c:when>
-			<c:when test="${rental_car.id eq user_id}"> 
-				<img
-					src="/resources/img/${car.carModel }.jpg"
-					style="width: 100%; height: 225px;"/>
-			</c:when>
-		</c:choose>
+	<c:choose>
+		<c:when test="${(empty rental_car.id)  or (empty user_id)}">
+			<img src="/resources/img/unx.jpg" style="width: 100%; height: 225px;" />
+		</c:when>
+		<c:when test="${rental_car.id eq user_id}">
+			<img src="/resources/img/${car.carModel }.jpg"
+				style="width: 100%; height: 225px;" />
+		</c:when>
+	</c:choose>
 
 	<hr />
 	<ul class="nav nav-pills flex-column mb-auto">
 		<li><a class="nav-link text-white"> <svg
 					class="bi pe-none me-2" width="16" height="16">
           <use xlink:href=""></use>
-        </svg>
-
-        	<c:choose>
-        		<c:when test="${(empty user_id) or (user_id == 'null')}">       
+        </svg> <c:choose>
+					<c:when test="${(empty user_id) or (user_id == 'null')}">       
 						로그인 후 사용 가능
 				</c:when>
-				<c:when test="${(empty rental_car.id) or (rental_member.id == 'null')}">       
+					<c:when
+						test="${(empty rental_car.id) or (rental_member.id == 'null')}">       
 						대여한 차량이 없습니다
 				</c:when>
-				<c:when test="${rental_car.id eq user_id}">
-					<sec:authorize access="isAuthenticated()">
-					<a href="carPay" style="text-decoration-line: none; text-align: center;">이용하기</a>
-					</sec:authorize>
-				</c:when>
-			</c:choose>		
-		</a>
-		</li>
+					<c:when test="${rental_car.id eq user_id}">
+						<sec:authorize access="isAuthenticated()">
+							<a href="carPay"
+								style="text-decoration-line: none; text-align: center;">이용하기</a>
+						</sec:authorize>
+					</c:when>
+				</c:choose>
+		</a></li>
 
-        <c:choose>
+		<c:choose>
 			<c:when test="${socar_member.id eq 'null'}">
 			
 				로그인후 이용가능
 			</c:when>
-					<c:otherwise>
-						<sec:authorize access="isAnonymous()">
+			<c:otherwise>
+				<sec:authorize access="isAnonymous()">
 					로그인 해주세요
 				</sec:authorize>
-						<sec:authorize access="isAuthenticated()">
-							<sec:authentication property="principal.sm.id" /> 님 반갑습니다
+				<sec:authorize access="isAuthenticated()">
+					<sec:authentication property="principal.sm.id" /> 님 반갑습니다
 				</sec:authorize>
 
-					</c:otherwise>
-				</c:choose> 
+			</c:otherwise>
+		</c:choose>
 
-		</a></li>
+		</a>
+		</li>
 
 	</ul>
 
 </div>
 
 <script type="text/javascript">
-$(document).ready(function() {
-	
-	history.replaceState({}, null, null);
-	var actionForm = $("#actionForm");
-	$(".paginate_button a").on(
-			"click",
-			function(e) {
-				e.preventDefault();
-				console.log('click');
-				actionForm.find("input[name='pageNum']").val($(this).attr("href"));
-				actionForm.submit();
-			})
-});
+	$(document).ready(function() {
+		history.replaceState({}, null, null);
+		var actionForm = $("#actionForm");
 
-
+		$(".paginate_button a").on("click", function(e) {
+			e.preventDefault();
+			console.log('click');
+			actionForm.find("input[name='pageNum']").val($(this).attr("href"));
+			actionForm.submit();
+		})
+		function url_Initialize(){
+			var url = document.location.href;
+			if (url.indexOf("?") > -1) {
+				var splits = url.split("?"); //split("구분자"):tokenizer와 다른점은 split는 공백도 하나의 값을 가진다.
+				var gets = splits[1];
+				var para = gets.split("&");
+				var len = para.length;
+				for (var i = 0; i < len; i++) {
+					var param = para[i].split("=");
+					var name = param[0];
+					var value = param[1];
+					if (name === "carSmall") {
+						if (value === "%EA%B2%BD%EC%B0%A8") //경차
+							$("input[name='carSmall']").attr("checked", true );
+					}
+					if (name === "carMiddle") {
+						if (value === "%EC%A4%91%ED%98%95") //중형차
+							$("input[name='carMiddle']").attr("checked", true );
+					}
+					if (name === "carBig") {
+						if (value === "%EB%8C%80%ED%98%95") //중형차
+							$("input[name='carBig']").attr("checked", true );
+					}
+					if (name === "carSUV") {
+						if (value === "suv") //suv
+							$("input[name='carSUV']").attr("checked", true );
+					}
+					if (name === "zoneType"){
+						$('#zoneType option:eq(' + value + ')').attr("selected","selected");
+					}
+				}
+			}
+		}
+		
+		url_Initialize();
+	});
 </script>
 
 <%@include file="./includes/footer.jsp"%>
