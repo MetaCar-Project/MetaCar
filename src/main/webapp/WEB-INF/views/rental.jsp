@@ -345,12 +345,17 @@ $(function(){
 		console.log("id : " +id);
 		
 		var csrfHeaderName = "${_csrf.headerName}";
-			var csrfTokenValue = "${_csrf.token}";
+		var csrfTokenValue = "${_csrf.token}";
+		var numnum = "<c:out value='${car.carNum }'/>";
 		
+		var data = {
+				id : id,
+				carNum : numnum
+		}	
 		 $.ajax({
              type : 'post',
              url : '/metaCar/checkreserve',
-             data : JSON.stringify(id),
+             data : JSON.stringify(data),
              beforeSend : function(xhr){
              	xhr.setRequestHeader(csrfHeaderName,csrfTokenValue);		
              },
