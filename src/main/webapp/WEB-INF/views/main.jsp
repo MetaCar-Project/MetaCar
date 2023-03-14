@@ -17,14 +17,12 @@
 	<a href="/"
 		class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
 		<svg class="bi pe-none me-2" width="40" height="32">
-      <use xlink:href="#bootstrap"></use>
-    </svg> <span class="fs-4">Sidebar3</span>
+    </svg> <span class="fs-4">차종 선택</span>
 	</a>
 	<hr />
 	<form id='searchForm' action="/metaCar/main" method='get'>
 		<ul class="nav nav-pills flex-column mb-auto">
 			<li>
-				<div class="text-white fs-4">차종 선택</div>
 
 				<div class="input-group mb-3">
 					<div class="input-group-text">
@@ -100,7 +98,7 @@
 	style="float: left; padding-left: 20px;">
 	<!-- ALBUM -->
 	<div class="container">
-		<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3" style="width: 1300px">
+		<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3" style="width:1300px; height: 650px;">
 
 			<c:forEach items="${list}" var="car">
 				<div class="col">
@@ -122,7 +120,7 @@
 
 
 								</div>
-								<small class="text-muted">대여가능여부</small>
+								<small class="text-muted">${car.reserveNow }</small>
 							</div>
 						</div>
 					</div>
@@ -131,11 +129,12 @@
 
 		</div>
 	</div>
+		<br>
 				<div class='pull-right'>
-					<ul style="text-align: center; class="pagination">
+					<ul style="text-align: center;">
 
 						<c:if test="${pageMaker.prev }">
-							<li class="paginate_button previous">
+							<li style="display :inline-block; text-decoration-line: none;" class="paginate_button previous">
 							  <a href="${pageMaker.startPage -1 }">Previous</a>
 							</li>
 						</c:if>
@@ -147,7 +146,7 @@
 						</c:forEach>
 
 						<c:if test="${pageMaker.next }">
-							<li class="paginate_button next">
+							<li style="display :inline-block; text-decoration-line: none;" class="paginate_button next">
 								<a href="${pageMaker.endPage +1 }">Next</a>
 							</li>
 						</c:if>
@@ -162,7 +161,7 @@
 				</form>
 				
 				<form id="sideForm" action="/metaCar/main" method="post">
-    				<input name="id" type="hidden"/>
+    				<input name="id" type="hidden" name="${id }" value="${id }"/>
     				<input name="useTime" type="hidden"/>
     				<input name="returnAdd" type="hidden"/>
     				<input name="carNum" type="hidden"/>
@@ -188,15 +187,17 @@
 		<svg class="bi pe-none me-2" width="40" height="32">
       <use xlink:href="metaCar/main"></use>
     </svg> <span class="fs-4">예약된 차 확인</span>
+    ${user_id }
+    ${id }
 	</a>
 	<hr />
 		<c:choose>
-			<c:when test="${(empty rental_car.id)  or (empty user_id)}">				
+			<c:when test="${(empty id)  or (empty user_id)}">				
 					<img
 					src="/resources/img/unx.jpg"
 					style="width: 100%; height: 225px;"/>
 			</c:when>
-			<c:when test="${rental_car.id eq user_id}"> 
+			<c:when test="${id eq user_id}"> 
 				<img
 					src="/resources/img/${car.carModel }.jpg"
 					style="width: 100%; height: 225px;"/>
@@ -214,43 +215,22 @@
         		<c:when test="${(empty user_id) or (user_id == 'null')}">       
 						로그인 후 사용 가능
 				</c:when>
-				<c:when test="${(empty rental_car.id) or (rental_member.id == 'null')}">       
+				<c:when test="${(empty id) or (id == 'null')}">       
 						대여한 차량이 없습니다
 				</c:when>
-				<c:when test="${rental_car.id eq user_id}">
-					<sec:authorize access="isAuthenticated()">
+				<c:when test="${id eq user_id}">
 					<a href="carPay" style="text-decoration-line: none; text-align: center;">이용하기</a>
-					</sec:authorize>
 				</c:when>
 			</c:choose>		
 		</a>
 		</li>
-
-        <c:choose>
-			<c:when test="${socar_member.id eq 'null'}">
-			
-				로그인후 이용가능
-			</c:when>
-					<c:otherwise>
-						<sec:authorize access="isAnonymous()">
-					로그인 해주세요
-				</sec:authorize>
-						<sec:authorize access="isAuthenticated()">
-							<sec:authentication property="principal.sm.id" /> 님 반갑습니다
-				</sec:authorize>
-
-					</c:otherwise>
-				</c:choose> 
-
-		</a></li>
-
 	</ul>
 
 </div>
 
 <script type="text/javascript">
-$(document).ready(function() {
-	
+$(document).ready(function(e) {
+		
 	history.replaceState({}, null, null);
 	var actionForm = $("#actionForm");
 	$(".paginate_button a").on(
@@ -261,8 +241,32 @@ $(document).ready(function() {
 				actionForm.find("input[name='pageNum']").val($(this).attr("href"));
 				actionForm.submit();
 			})
-});
+						
+			
+		var csrfHeaderName = "${_csrf.headerName}";
+		var csrfTokenValue = "${_csrf.token}";
+		var id = "${id}";
+		console.log("rentalid :" +id)
+		 $.ajax({
+             type : 'post',
+             url : '/metaCar/main',
+             data : JSON.stringify(id),
+             beforeSend : function(xhr){
+             	xhr.setRequestHeader(csrfHeaderName,csrfTokenValue);		
+             },
+             contentType : "application/json; charset=utf-8",
+             success : function(result, status, xhr){
+            	 console.log("result  : " + result);
+                 if(result=='haverentalid'){
+             		 $("input[name='id']").val(id);
+                 }
+                 if(result=='dontreantalid'){
+             		 $("input[name='id']").val(id);            		
+                 }
+             }
+         });
 
+});
 
 </script>
 
