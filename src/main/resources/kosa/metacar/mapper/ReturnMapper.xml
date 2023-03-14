@@ -47,9 +47,14 @@
 		where reservenum = #{reserveNum}
 	</update>
 
-	<select id="getCarnum" resultMap="RentalCar">
+	<select id="getCarnum" resultType="string">
 		select carnum from rental_car
 		where reservenum = #{reserveNum}
 	</select>
 	
+	<select id="getRental" resultType="kosa.metacar.dto.Rental_CarDTO">
+		select * from rental_car
+		where id= #{id}
+		and reservenow = 'o'
+	</select>
 </mapper>
