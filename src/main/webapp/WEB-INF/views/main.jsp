@@ -17,9 +17,9 @@
 	style="width: 280px; float: left">
 	<a href="/"
 		class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-		<svg class="bi pe-none me-2" width="40" height="32">
+		<!-- <svg class="bi pe-none me-2" width="40" height="32"> 
       <use xlink:href="#bootstrap"></use>
-    </svg> <span class="fs-4">METACAR</span>
+    </svg> <span class="fs-4">METACAR</span>-->
 	</a>
 	<hr />
 	<form id='searchForm' action="/metaCar/main" method='get'>
@@ -69,9 +69,9 @@
 			<li>
 				<div class="input-group mb-3">
 					<div class="input-group-prepend">
-						<label class="input-group-text" for="inputGroupSelect01">쏘카존</label>
+						<label class="input-group-text" for="inputGroupSelect01">장소</label>
 					</div>
-					<select class="custom-select" id="zoneType" name="zoneType">
+					<select class="form-control text-black" id="zoneType" name="zoneType">
 						<option selected value="0">쏘카존을 선택하세요</option>
 						<option value="1">수서역</option>
 						<option value="2">학동역</option>
@@ -83,15 +83,15 @@
 			<li>
 				<div class="input-group mb-3">
 					<div class="input-group-prepend">
-						<label class="input-group-text" for="inputGroupSelect01">검색</label>
+						<button type="submit" class="btn btn-primary">제출</button>
 					</div>
-					<input type='text' name='keyword'>
+					<input type='text' name='keyword' placeholder="검색어를 입력하세요">
 				</div>
 			</li>
 		</ul>
 		<input type='hidden' name='amount' value='${pageMaker.cri.amount}'>
 		<input type='hidden' name='pageNum' value='${pageMaker.cri.pageNum}'>
-		<button type="submit" class="btn btn-primary">제출</button>
+		
 	</form>
 	<hr />
 </div>
@@ -116,10 +116,10 @@
 							<div class="d-flex justify-content-between align-items-center">
 								<div class="btn-group">
 
-									<button
+									<button class="btn btn-outline-primary"
 										onclick="window.open('detailcar?carNum=${car.carNum }','차량상세정보','width=600,height=600,location=no,status=no,scrollbars=yes');">
 										상세정보</button>
-									<button type="button" class="btn btn-sm btn-outline-secondary"
+									<button type="button" class="btn btn-outline-primary"
 										onclick="location.href='/metaCar/rental?carNum=${car.carNum}'">대여하기</button>
 
 
@@ -133,7 +133,8 @@
 
 		</div>
 	</div>
-	<div class='pull-right'>
+	<br>
+	<div class='pull-right' style="text-align: center;">
 		<ul style="text-align: center;" class="pagination">
 
 			<c:if test="${pageMaker.prev }">
@@ -192,7 +193,7 @@
 	style="width: 280px; float: right">
 	<a href="/"
 		class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-		<svg class="bi pe-none me-2" width="40" height="32">
+		<!-- <svg class="bi pe-none me-2" width="40" height="32"> -->
       <use xlink:href="metaCar/main"></use>
     </svg> <span class="fs-4">예약된 차 확인</span>
 	</a>
