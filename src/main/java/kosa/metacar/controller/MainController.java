@@ -45,8 +45,7 @@ public class MainController {
 	
 	@PreAuthorize("permitAll()")
 	@GetMapping("/main")
-	public String main(Criteria cri,Model model) {
-		
+	public String main(Criteria cri,Model model) {		
 		model.addAttribute("list",cs.carWithPaginggetList(cri));
 		model.addAttribute("pageMaker",new PageDTO(cri,200));
 		return "main";		

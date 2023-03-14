@@ -174,11 +174,12 @@
 					</ul>
 				</div>			
 		</div>
-			
+				<!-- 
 				<form id='actionForm' action="/metaCar/main" method='get'>
 					<input type='hidden' name='pageNum' value='${pageMaker.cri.pageNum }'>
 					<input type='hidden' name='amount' value='${pageMaker.cri.amount }'>
 				</form>
+				-->
 				
 				<form id="sideForm" action="/metaCar/main" method="post">
     				<input name="id" type="hidden" name="id" value="${user_id }"/>
@@ -301,7 +302,7 @@ $(document).ready(function(e) {
 
              		if($('input[name="rental_id"]').val()!=""){
              			$('#textbox').text("대여한 차량이 있습니다");
-             			$('#textbox').append("<a href='/metaCar/return'>반납</a>");
+             			$('#textbox').append("<a style=\"font-size:25px; text-align:center; text-decoration-line: none;\" href='/metaCar/return'>반납</a>");
              			
              		}
              	                
