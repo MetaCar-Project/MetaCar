@@ -260,6 +260,16 @@ $(function(){
 				id : id,
 				carNum : numnum
 		}	
+		if($('#country').val()==""){
+			alert("이용시간을 선택하십시오.");
+			return;
+		}
+		
+		if($('#address').val()==""){
+			alert("반납주소를 입력해주세요");
+			return;
+		}
+		
 		 $.ajax({
              type : 'post',
              url : '/metaCar/checkreserve',
@@ -297,15 +307,7 @@ $(function(){
 		
 		console.log("click");
 		
-		if($('#country').val()==""){
-			alert("이용시간을 선택하십시오.");
-			return;
-		}
 		
-		if($('#address').val()==""){
-			alert("반납주소를 입력해주세요");
-			return;
-		}
 		
 		/* $('input[name="id"]').val("<sec:authentication property="principal.sm.id"/>");
 		

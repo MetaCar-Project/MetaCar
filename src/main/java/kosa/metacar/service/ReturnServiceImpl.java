@@ -16,11 +16,15 @@ public class ReturnServiceImpl implements ReturnService {
 	
 	@Transactional
 	@Override
-	public void returnCar(Return_CarDTO returnCar) {
-		Rental_CarDTO rentalCar = mapper.getRental(returnCar.getId());
+	public void returnCar(String id) {
+		Rental_CarDTO rentalCar = mapper.getRental(id);
 		int resnum = rentalCar.getReserveNum();
 		String carNum = mapper.getCarnum(resnum);
-		mapper.carReturn(returnCar);
+		Return_CarDTO rc = new Return_CarDTO();
+		rc.setId(id);
+		rc.setReserveNum(resnum);
+		rc.setUseTime(rentalCar.getUseTime());
+		mapper.carReturn(rc);
 		mapper.returnUpdate(carNum);
 		mapper.carReturnox(resnum);
 	}
