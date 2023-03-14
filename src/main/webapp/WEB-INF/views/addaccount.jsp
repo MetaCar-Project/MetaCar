@@ -43,11 +43,14 @@
 					<br>
 					<br>
 					<input type="password" name="password" value="" 
-						class="form-control input-lg" placeholder="비밀번호" />
+						class="form-control input-lg" placeholder="비밀번호" data-pw = "cant"/>
+					<div>특수문자 / 문자 / 숫자 포함 형태의 8~15자리</div>
+					<div id="canpassword" hidden="hidden" style="color : green">사용가능한 비밀번호입니다.</div>
+					<div id="cantpassword" hidden="hidden" style="color : red">비밀번호 형식이다릅니다.</div>
 					<br>
 					<input type="password" name="confirm_password" value=""
 						class="form-control input-lg" placeholder="비밀번호 확인" onkeyup="passConfirm()"/>
-					
+					<div id="passok" hidden="hidden" style="color : red">비밀번호가 다릅니다.</div>
 					<br>
 					
 					<span id = "confirmMsg"></span>
@@ -57,6 +60,7 @@
 						class="form-control input-lg" placeholder="전화번호(xxx-xxxx-xxxx)" />
 					
 					<div id="phonenull" hidden="hidden" style="color : red">전화번호를 입력해주세요.</div>
+					<div id="phoneok" hidden="hidden" style="color : red">전화번호를 올바르게 입력해주세요</div>
 					<input type="text" id="regnum" name="regNum" value=""
 						class="form-control input-lg" placeholder="주민등록번호" />
 					
@@ -76,6 +80,17 @@
  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
  <script>
  	$(function(){
+ 		
+ 		//비밀번호
+		var regex = /^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
+		//이메일
+		var regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+		//전화번호
+		var regPhone = /^\d{3}-\d{3,4}-\d{4}$/;
+ 		
+		
+ 		
+ 		
  		$('#checkbutton').on("click", function(){
  			console.log('checkbutton click');
  			
@@ -116,56 +131,114 @@
  		})
  		
  		
+ 		
+ 		//비밀번호 공백 확인
+ 		$('input[name="password"]').on("change",function(){
+ 			if(regex.test($('input[name="password"]').val())){
+ 				$('#cantpassword').hide();
+ 				$('#canpassword').show();
+ 				
+ 			}
+ 			if(!regex.test($('input[name="password"]').val())){
+ 				$('#canpassword').hide();
+ 				$('#cantpassword').show();
+ 				
+ 			}
+ 			
+ 		})
+ 		
+ 		//비밀번호 일치 확인
+ 		$('input[name="confirm_password"]').on("change",function(){
+ 			if($(this).val()==$('input[name="password"]').val()){
+ 				$('#passok').hide();
+ 			}
+ 			else{
+ 				$('#passok').show();
+ 			}
+ 		})
+ 		
+ 		//핸드폰 확인
+ 		$('input[name="phone"]').on("change",function(){
+ 			if($(this).val()==""){
+ 				$('#phonenull').show();
+ 			}
+ 			if(!regPhone.test($(this).val())){
+ 				$('#phonenull').hide();
+ 				$('#phoneok').show();
+ 			}
+ 			else{
+ 				$('#phonenull').hide();
+ 				$('#phoneok').hide();
+ 			}
+ 		})
+ 	
+ 		
+ 		
  		$('#add').on('click',function(e){
  			e.preventDefault();
  			
  			if($('input[name="name"]').val()==""){
- 				console.log("주번입력안함");
+ 				
+ 				$('input[name="name"]').focus();
  				$('#namenull').show();
  				return;
  			}
  			
- 			//비밀번호
- 			var regex = /^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
- 			//이메일
- 			var regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
- 			//전화번호
- 			var regPhone = /^\d{3}-\d{3,4}-\d{4}$/;
+ 			
  			
  			var check = $('#canpost').data("validation");
  			console.log(check);
  			if(check == false){
  				$('#namenull').hide();
  				alert("아이디 중복확인을 해주세요");
- 				return;
- 			}
- 			
- 			
- 			if(!regExp.test($('input[name="id"]').val())){
- 				console.log("이메일 형식다름");
+ 				$('input[name="id"]').focus();
  				return;
  			}
  			
  			var password = $('input[name="password"]').val();
  			var passcheck = $('input[name="confirm_password"]').val();
- 			if(password != passcheck){
- 				alert("비밀번호가 다릅니다.");
- 				return;
- 			}
  			
- 			if(password == ""){
+ 			if(password==""){
  				alert("비밀번호를 입력해주세요");
+ 				$('input[name="password"]').focus();
  				return;
  			}
  			
+ 			if(!regex.test(password)){
+ 				alert("비밀번호 형식이 다릅니다.");
+ 				$('input[name="password"]').focus();
+ 				return;
+ 			}
+ 			
+ 			if(password != passcheck){
+ 				//alert("비밀번호가 다릅니다.");
+ 				$('#passok').show();
+ 				$('input[name="confirm_password"]').focus();
+ 				return;
+ 			}
+ 			
+ 			//핸드폰번호
  			if($('#name').val()==""){
  				console.log("폰번호입력안함");
- 				$('#namenull').hide();
+ 				$('#name').focus();
+ 				/* $('#namenull').hide(); */
  				$('#phonenull').show();
  				return;
  			}
+ 			//핸드폰번호
+ 			if(!regPhone.test($('#name').val())){
+ 				//alert("전화번호를 올바르게 입력해주세요");
+ 				/* $('#phonenull').hide();
+ 				$('#phoneok').show(); */
+ 				$('#name').focus();
+ 				return;
+ 			}
+ 			
+ 			$('#phoneok').hide();
+ 			
  			if($('#regnum').val()==""){
  				console.log("주번입력안함");
+ 				$('#regnum').focus();
  				$('#namenull').hide();
  				$('#phonenull').hide();
  				$('#regnull').show();
