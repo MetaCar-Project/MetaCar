@@ -25,5 +25,5 @@ public interface RentalMapper {
 	
 	public List<Cancel_CarDTO> getCancel(String id);
 
-	public List<Rental_CarDTO> getRental(String id);
+	public Rental_CarDTO getRental(String id);
 }

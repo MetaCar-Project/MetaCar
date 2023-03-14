@@ -125,43 +125,44 @@
 
         <tbody>
         
-          <tr>
-				</tr>
-				<c:forEach items="${rentalGet}" var="rentalGet">
-					<tr>
-						<td>${rentalGet.id}</td>
-						<td><fmt:formatDate pattern="yyyy-MM-dd" value="${rentalGet.reserveTime}"/></td>
-						<td>${rentalGet.useTime}</td>
-						<td>${rentalGet.returnAdd}</td>
-						<td>${rentalGet.carNum}</td>
-						
-					</tr>
-				</c:forEach>
+          	<tr>
+          
+			</tr>
+				
+			<tr>
+				<td><c:out value="${rentalGet.id}"/></td>
+				<td><fmt:formatDate pattern="yyyy-MM-dd" value="${rentalGet.reserveTime}"/></td>
+				<td><c:out value="${rentalGet.useTime}"/></td>
+				<td><c:out value="${rentalGet.returnAdd}"/></td>
+				<td><c:out value="${rentalGet.carNum}"/></td>
+				
+			</tr>
+			
         </tbody>
        
       </table>
 
 </div>
-  </header>
-
-  <main style="width: 100%; height: 100%;">
+ <main style="width: 100%; height: 100%;">
   <div style="width: 1000px; height: 800%; margin: 0 auto;">
     <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
-
-	
-	
-	
       <div class="col">
         <div class="card mb-4 rounded-3 shadow-sm">
-          <button type="button" class="btn btn-primary" onclick="cancelRes()">
+          
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+				  <div>
+           			 <h5 class="my-0 fw-normal">예약을 취소 하시겠습니까?</h5>
+        		  </div>
+			</button>
+          <!-- <button type="button" class="btn btn-primary" onclick="cancelRes()">
           <div>
             <h5 class="my-0 fw-normal">예약을 취소 하시겠습니까?</h5>
           </div>
-          </button>
+          </button> -->
  
         </div>
       </div>
-      
+  </header>   
     </div>
 
     <h4 class="display-6 text-center mb-4">예약 취소 목록</h4>
@@ -200,7 +201,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <label>전화번호  <input id="modiphone" type="text"/></label>
+        <label>취소사유  <input id="cancelwhy" type="text" value=""/></label>
         
       </div>
       <div class="modal-footer">
@@ -211,37 +212,45 @@
   </div>
 </div>
 
-
 </main>
   
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/js/User.js"></script> 
+	<!-- <script src="${pageContext.request.contextPath}/resources/js/User.js"></script>  -->
 	<!-- <script src="/resources/js/User.js"></script>  -->
-	<script>
+<script>
+	$(function(){
+		
+		$('#modify').on('click', function () {
+			console.log("zmfflrzmfflrzmfflr");
+			  var csrfHeaderName = "${_csrf.headerName}";
+			  var csrfTokenValue = "${_csrf.token}";
+			  var id = "<sec:authentication property="principal.sm.id"/>";
+			  var cancelWhy = $('#cancelwhy').val(); 
+			  var cc = {
+					  id : id,
+					  cancelWhy : cancelWhy
+			  }
+			  console.log(cc);
+			  $.ajax({
+			    url: "/metaCar/cancel",
+			    type: "POST",
+			    beforeSend : function(xhr){
+	             	xhr.setRequestHeader(csrfHeaderName,csrfTokenValue);		
+	             },
+			    data: JSON.stringify(cc),
+			    contentType: "application/json",
+			    success: function(response) {
+			    	if(response=='success'){
+						$('#exampleModal').modal('hide'); 
+					    $('#exampleModal').hide();
+					    window.location.replace("/metaCar/cancel/" + id);
+			    	}
+			    }
+			  })
+			})
+	})
 	
-	function cancelRes() {
-		var csrfHeaderName = "${_csrf.headerName}";
-		var csrfTokenValue = "${_csrf.token}";
-		var cc = {
-		carNum: "carNum",
-		// 필요한 다른 정보들
-		};
-		$.ajax({
-		url: "metaCar/cancel",
-		type: "POST",
-		headers: {
-		csrfHeaderName: csrfTokenValue
-		},
-		data: JSON.stringify(cc),
-		contentType: "application/json",
-		success: function(response) {
-		// 예약 삭제 성공 시 실행할 코드 작성
-		},
-		error: function(xhr) {
-		alert("예약 취소에 실패했습니다.");
-		}
-		});
-		}
+	
 	
 	
 	

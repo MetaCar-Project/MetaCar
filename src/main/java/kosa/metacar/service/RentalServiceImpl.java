@@ -32,11 +32,15 @@ public class RentalServiceImpl implements RentalService{
 	}
 
 	@Override
+	@Transactional
 	public void cancelCar(Cancel_CarDTO cc) {
-		String carNum = mapper.getCarnum(cc.getReserveNum());
+		Rental_CarDTO rc = mapper.getRental(cc.getId());
+		int resnum = rc.getReserveNum();
+		String carNum = mapper.getCarnum(resnum);
+		cc.setReserveNum(resnum);
 		mapper.carCancel(cc);
 		mapper.cancelUpdate(carNum);
-		mapper.carCancelox(cc.getReserveNum());
+		mapper.carCancelox(resnum);
 	}
 
 	@Override
@@ -53,7 +57,7 @@ public class RentalServiceImpl implements RentalService{
 	}
 
 	@Override
-	public List<Rental_CarDTO> checkRental(String id) {
+	public Rental_CarDTO checkRental(String id) {
 		
 		return mapper.getRental(id);
 		

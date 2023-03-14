@@ -38,8 +38,17 @@
 		and rc.sczonenum = zc.sczonenum(+)
 		and rc.carnum = hc.carnum(+)
 		and sm.id = #{id}
+		and rc.reservenow = 'o' 
 	</select>
 
+	<select id="userDetail2" resultMap="member">
+		select sm.id, phone, name
+		from socar_member sm, rental_car rc, zone_car zc, have_car hc
+		where sm.id=rc.id(+)
+		and rc.sczonenum = zc.sczonenum(+)
+		and rc.carnum = hc.carnum(+)
+		and sm.id = #{id}
+	</select>
 
 	<update id="userUpdate">
 		update socar_member
