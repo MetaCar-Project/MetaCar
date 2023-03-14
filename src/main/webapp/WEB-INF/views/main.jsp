@@ -175,10 +175,10 @@
 				</div>			
 		</div>
 			
-				<form id='actionForm' action="/metaCar/main" method='get'>
+				<!-- <form id='actionForm' action="/metaCar/main" method='get'>
 					<input type='hidden' name='pageNum' value='${pageMaker.cri.pageNum }'>
 					<input type='hidden' name='amount' value='${pageMaker.cri.amount }'>
-				</form>
+				</form> -->
 				
 				<form id="sideForm" action="/metaCar/main" method="post">
     				<input name="id" type="hidden" name="id" value="${user_id }"/>
