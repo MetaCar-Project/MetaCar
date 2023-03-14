@@ -108,7 +108,7 @@
 				<div class="col">
 					<div class="card shadow-sm">
 						<title>Placeholder</title> <img
-							src="/resources/img/${car.carModel }.jpg"
+							src="/resources/img/${car.carModel}.jpg"
 							style="width: 100%; height: 225px;" alt="${car.carModel }" />
 						<div class="card-body">
 							<c:out value="${car.carModel }" />
@@ -116,8 +116,9 @@
 							<div class="d-flex justify-content-between align-items-center">
 								<div class="btn-group">
 
-									<button
-										onclick="window.open('detailcar?carNum=${car.carNum }','차량상세정보','width=600,height=600,location=no,status=no,scrollbars=yes');">
+									<button 
+										class="btn btn-sm btn-outline-secondary"
+										onclick="window.open('detailcar?carNum=${car.carNum }','차량상세정보','width=620px,height=800px,location=no,status=no,scrollbars=yes');">
 										상세정보</button>
 									<button type="button" class="btn btn-sm btn-outline-secondary"
 										onclick="location.href='/metaCar/rental?carNum=${car.carNum}'">대여하기</button>
