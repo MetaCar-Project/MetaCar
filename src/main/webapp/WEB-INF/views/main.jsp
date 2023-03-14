@@ -115,18 +115,27 @@
 							<c:out value="${car.carModel }" />
 							<p class="card-text"></p>
 							<div class="d-flex justify-content-between align-items-center">
+							<c:choose>
+								<c:when test="${car.reserveNow eq 'x'}">
 								<div class="btn-group">
-
-									<button 
-										class="btn btn-sm btn-outline-secondary"
-										onclick="window.open('detailcar?carNum=${car.carNum }','차량상세정보','width=620px,height=800px,location=no,status=no,scrollbars=yes');">
-										상세정보</button>
+										<button 
+											class="btn btn-sm btn-outline-secondary"
+											onclick="window.open('detailcar?carNum=${car.carNum }','차량상세정보','width=620px,height=800px,location=no,status=no,scrollbars=yes');">
+											상세정보</button>
 									<button type="button" class="btn btn-outline-primary"
 										onclick="location.href='/metaCar/rental?carNum=${car.carNum}'">대여하기</button>
-
-
 								</div>
-								<small class="text-muted">${car.reserveNow }</small>
+								</c:when>
+								<c:otherwise>
+									<div class="btn-group">
+										<button 
+											class="btn btn-sm btn-outline-secondary"
+											onclick="window.open('detailcar?carNum=${car.carNum }','차량상세정보','width=620px,height=800px,location=no,status=no,scrollbars=yes');">
+											상세정보</button>
+									</div>
+									<small class="text-muted">대여불가능</small>
+								</c:otherwise>
+							</c:choose>
 							</div>
 						</div>
 					</div>
