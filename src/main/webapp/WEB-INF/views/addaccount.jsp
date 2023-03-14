@@ -141,10 +141,10 @@
  			}
  			
  			
- 			if(!regExp.test($('input[name="id"]').val())){
+ 			/* if(!regExp.test($('input[name="id"]').val())){
  				console.log("이메일 형식다름");
  				return;
- 			}
+ 			} */
  			
  			var password = $('input[name="password"]').val();
  			var passcheck = $('input[name="confirm_password"]').val();

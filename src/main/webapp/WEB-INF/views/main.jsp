@@ -161,7 +161,7 @@
 				</form>
 				
 				<form id="sideForm" action="/metaCar/main" method="post">
-    				<input name="id" type="hidden" name="${id }" value="${id }"/>
+    				<input name="id" type="hidden" name="id" value="${user_id }"/>
     				<input name="useTime" type="hidden"/>
     				<input name="returnAdd" type="hidden"/>
     				<input name="carNum" type="hidden"/>
@@ -169,10 +169,9 @@
     				<input type="hidden" name="${_csrf.parameterName}"
    					 value="${_csrf.token}" />
 				</form>	
-		</ul>
-	</div>
+
 	<!--  end Pagination -->
-</div>
+
 
 <form id='actionForm' action="/metaCar/main" method='get'>
 	<input type='hidden' name='pageNum' value='${pageMaker.cri.pageNum }'>
@@ -187,20 +186,18 @@
 		<svg class="bi pe-none me-2" width="40" height="32">
       <use xlink:href="metaCar/main"></use>
     </svg> <span class="fs-4">예약된 차 확인</span>
-    ${user_id }
-    ${id }
 	</a>
 	<hr />
 		<c:choose>
-			<c:when test="${(empty id)  or (empty user_id)}">				
+			<c:when test="${empty user_id}">				
 					<img
 					src="/resources/img/unx.jpg"
 					style="width: 100%; height: 225px;"/>
 			</c:when>
-			<c:when test="${id eq user_id}"> 
+			<c:when test="${!empty user_id}"> 
 				<img
-					src="/resources/img/${car.carModel }.jpg"
-					style="width: 100%; height: 225px;"/>
+					src="/resources/img/unx.jpg"
+					style="width: 100%; height: 225px;" id= "rentalImg"/>
 			</c:when>
 		</c:choose>
 
@@ -210,18 +207,16 @@
 					class="bi pe-none me-2" width="16" height="16">
           <use xlink:href=""></use>
         </svg>
+			<sec:authorize access="isAnonymous()">
+				<!-- 로그인 안 한 익명일 경우 -->
+				로그인 후 이용가능
+			</sec:authorize>
+			<sec:authorize access="isAuthenticated()">
+				<!-- 로그인(인증된) 사용자인 경우 -->	
 
-        	<c:choose>
-        		<c:when test="${(empty user_id) or (user_id == 'null')}">       
-						로그인 후 사용 가능
-				</c:when>
-				<c:when test="${(empty id) or (id == 'null')}">       
-						대여한 차량이 없습니다
-				</c:when>
-				<c:when test="${id eq user_id}">
-					<a href="carPay" style="text-decoration-line: none; text-align: center;">이용하기</a>
-				</c:when>
-			</c:choose>		
+				<span id="textbox">대여한 차량이 없습니다.</span>
+			</sec:authorize>
+			<input type="hidden" name="rental_id" value=""/>
 		</a>
 		</li>
 	</ul>
@@ -241,13 +236,14 @@ $(document).ready(function(e) {
 				actionForm.find("input[name='pageNum']").val($(this).attr("href"));
 				actionForm.submit();
 			})
-						
+			
+		
 			
 		var csrfHeaderName = "${_csrf.headerName}";
 		var csrfTokenValue = "${_csrf.token}";
-		var id = "${id}";
-		console.log("rentalid :" +id)
-		 $.ajax({
+		var id = "${user_id }";
+		console.log("user : ++++++++++" +id)
+		$.ajax({
              type : 'post',
              url : '/metaCar/main',
              data : JSON.stringify(id),
@@ -255,14 +251,19 @@ $(document).ready(function(e) {
              	xhr.setRequestHeader(csrfHeaderName,csrfTokenValue);		
              },
              contentType : "application/json; charset=utf-8",
+       		 dataType : "json",
              success : function(result, status, xhr){
-            	 console.log("result  : " + result);
-                 if(result=='haverentalid'){
-             		 $("input[name='id']").val(id);
-                 }
-                 if(result=='dontreantalid'){
-             		 $("input[name='id']").val(id);            		
-                 }
+      				console.log(result);
+      				console.log(result.carNum);
+      				$('#rentalImg').attr("src", "/resources/img/" + result.haveCar.carModel + ".jpg");
+             		$("input[name='rental_id']").val(result.carNum);   
+
+             		if($('input[name="rental_id"]').val()!=""){
+             			$('#textbox').text("대여한 차량이 있습니다");
+             		}
+             	
+             		
+                 
              }
          });
 

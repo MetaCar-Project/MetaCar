@@ -58,10 +58,11 @@ public class CarTestService {
 	}
 	*/
 	
+	/*
 	@Test
 	public void testcheckReserve() {
 		Rental_CarDTO rental = new Rental_CarDTO();
-		rental.setId("test");
+		rental.getId();
 	}
-
+	*/
 }

@@ -53,7 +53,7 @@ public class RentalServiceImpl implements RentalService{
 	}
 
 	@Override
-	public List<Rental_CarDTO> checkRental(String id) {
+	public Rental_CarDTO checkRental(String id) {
 		
 		return mapper.getRental(id);
 		
