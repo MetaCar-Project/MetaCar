@@ -83,7 +83,7 @@
 			<li>
 				<div class="input-group mb-3">
 					<div class="input-group-prepend">
-						<button type="submit" class="btn btn-primary">제출</button>
+						<button type="submit" class="btn btn-primary">검색</button>
 					</div>
 					<input type='text' name='keyword' placeholder="검색어를 입력하세요">
 				</div>
@@ -115,18 +115,27 @@
 							<c:out value="${car.carModel }" />
 							<p class="card-text"></p>
 							<div class="d-flex justify-content-between align-items-center">
+							<c:choose>
+								<c:when test="${car.reserveNow eq 'x'}">
 								<div class="btn-group">
-
-									<button 
-										class="btn btn-sm btn-outline-secondary"
-										onclick="window.open('detailcar?carNum=${car.carNum }','차량상세정보','width=620px,height=800px,location=no,status=no,scrollbars=yes');">
-										상세정보</button>
+										<button 
+											class="btn btn-sm btn-outline-secondary"
+											onclick="window.open('detailcar?carNum=${car.carNum }','차량상세정보','width=620px,height=800px,location=no,status=no,scrollbars=yes');">
+											상세정보</button>
 									<button type="button" class="btn btn-outline-primary"
 										onclick="location.href='/metaCar/rental?carNum=${car.carNum}'">대여하기</button>
-
-
 								</div>
-								<small class="text-muted">${car.reserveNow }</small>
+								</c:when>
+								<c:otherwise>
+									<div class="btn-group">
+										<button 
+											class="btn btn-sm btn-outline-secondary"
+											onclick="window.open('detailcar?carNum=${car.carNum }','차량상세정보','width=620px,height=800px,location=no,status=no,scrollbars=yes');">
+											상세정보</button>
+									</div>
+									<small class="text-muted">대여불가능</small>
+								</c:otherwise>
+							</c:choose>
 							</div>
 						</div>
 					</div>
@@ -215,7 +224,7 @@
 		class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
 		<!-- <svg class="bi pe-none me-2" width="40" height="32"> -->
       <use xlink:href="metaCar/main"></use>
-    </svg> <span class="fs-4">예약된 차 확인</span>
+    </svg> <span class="fs-4" style="text-align: center;">예약된 차 확인</span>
 	</a>
 	<hr />
 		<c:choose>

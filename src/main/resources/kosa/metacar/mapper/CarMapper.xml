@@ -14,9 +14,9 @@
 	<select id="carWithPaginggetList"
 		resultType="kosa.metacar.dto.Have_CarDTO">
    		<![CDATA[
-			SELECT carNum, carKind, sczonenum, carModel, carMaking FROM
+			SELECT carNum, carKind, sczonenum, carModel, carMaking,reserveNow FROM
             (SELECT /*+INDEX_DESC(have_car carNum) */
-                    ROWNUM rn, carNum, carModel, carMaking, carKind, sczonenum
+                    ROWNUM rn,carNum,carModel,carMaking,carKind,sczonenum,reserveNow
                     FROM have_car             
 					WHERE 
 					(
