@@ -44,12 +44,4 @@ public class RentalServiceImpl implements RentalService{
 		return mapper.getCancel(id);
 	}
 
-	@Override
-	public Rental_CarDTO rentalid(Rental_CarDTO rc) {
-		return mapper.rentalid(rc);
-	}
-
-
-
-
 }

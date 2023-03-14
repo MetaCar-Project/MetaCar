@@ -81,12 +81,7 @@
 							<p class="card-text"></p>
 							<div class="d-flex justify-content-between align-items-center">
 								<div class="btn-group">
-
-									<%-- <button type="button" class="btn btn-sm btn-outline-secondary"
-									onclick="detailcar();">상세보기</button>
-									<button type="button" class="btn btn-sm btn-outline-secondary"
-									onclick="location.href='/metaCar/rental?carNum=${car.carNum}'">대여하기</button>
- --%>
+								
 									<button onclick="window.open('detailcar?carNum=${car.carNum }','차량상세정보','width=600,height=600,location=no,status=no,scrollbars=yes');">
 									상세정보</button>
 									<button type="button" class="btn btn-sm btn-outline-secondary" onclick="location.href='/metaCar/rental?carNum=${car.carNum}'">대여하기</button>
@@ -102,12 +97,6 @@
 		</div>
 	</div>
 	
-	<!--
-	<form id="detail" name="detail">
-		<input type="hidden" name="carNum" id="carNum" value="${car.carNum }">
-		<input type="hidden" name="carModel" id="carModel" value="${car.carModel }"> 
-	</form>
-	 -->
 				<div class='pull-right'>
 					<ul class="pagination">
 
@@ -130,14 +119,23 @@
 						</c:if>
 
 					</ul>
-				</div>
-				<!--  end Pagination -->				
+				</div>			
 		</div>
 			
 				<form id='actionForm' action="/metaCar/main" method='get'>
 					<input type='hidden' name='pageNum' value='${pageMaker.cri.pageNum }'>
 					<input type='hidden' name='amount' value='${pageMaker.cri.amount }'>
 				</form>
+				
+				<form id="sideForm" action="/metaCar/main" method="post">
+    				<input name="id" type="hidden"/>
+    				<input name="useTime" type="hidden"/>
+    				<input name="returnAdd" type="hidden"/>
+    				<input name="carNum" type="hidden"/>
+    				<input name="sczoneNum" type="hidden"/>
+    				<input type="hidden" name="${_csrf.parameterName}"
+   					 value="${_csrf.token}" />
+				</form>	
 
 <div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark"
 	style="width: 280px; float: right">
@@ -177,14 +175,13 @@
 				</c:when>
 				<c:when test="${rental_car.id eq user_id}">
 					<sec:authorize access="isAuthenticated()">
-					<a href="" style="text-decoration-line: none;">사용하기</a>
+					<a href="carPay" style="text-decoration-line: none; text-align: center;">이용하기</a>
 					</sec:authorize>
 				</c:when>
 			</c:choose>		
 		</a>
 		</li>
 	</ul>
-	<!-- <a href="carPay" style="text-decoration-line: none; text-align: center;">이용하기</a> -->
 </div>
 
 <script type="text/javascript">
@@ -206,8 +203,48 @@ $(document).ready(function() {
 
 						actionForm.find("input[name='pageNum']").val($(this).attr("href"));
 						actionForm.submit();
-					});
+					})
 		});
+
+
+$(function(){
+
+		e.preventDefault();
+
+		var id = "<sec:authentication property="principal.sm.id"/>";
+		console.log("id : " +id);
+	
+		var csrfHeaderName = "${_csrf.headerName}";
+		var csrfTokenValue = "${_csrf.token}";
+	
+		$.ajax({
+        	type : 'post',
+         	url : '/metaCar/main,
+         	data : JSON.stringify(id),
+         	beforeSend : function(xhr){
+         	xhr.setRequestHeader(csrfHeaderName,csrfTokenValue);		
+         },
+         contentType : "application/json; charset=utf-8",
+         success : function(result, status, xhr){
+        	 console.log("result  : " + result);
+        	 
+        	 if(result=='dontreantalid'){
+            	$('input[name="id"]').val("<sec:authentication property="principal.sm.id"/>");
+            	
+            	var rental_car.id = "<c:out value='${rental_car.id}'/>";
+            	$('input[name="id"]').val(id);
+        	 }
+        	 
+             if(result=='havereserve'){
+            	$('input[name="id"]').val("<sec:authentication property="principal.sm.id"/>");
+            	
+            	var rental_car.id = "<c:out value='${rental_car.id}'/>";
+            	$('input[name="id"]').val(id);
+         		
+             }
+         }
+     });
+
 
 </script>
 
