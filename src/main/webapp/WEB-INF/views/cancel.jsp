@@ -218,19 +218,30 @@
 	<script src="${pageContext.request.contextPath}/resources/js/User.js"></script> 
 	<!-- <script src="/resources/js/User.js"></script>  -->
 	<script>
+	
 	function cancelRes() {
-	    $.ajax({
-	        url: "/api/reservation",
-	        type: "DELETE",
-	        success: function(response) {
-	            // 예약 삭제 성공 시 실행할 코드 작성
-	        },
-	        error: function(xhr) {
-	            
-	            alert("예약 취소에 실패했습니다.");
-	        }
-	    });
-	}
+		var csrfHeaderName = "${_csrf.headerName}";
+		var csrfTokenValue = "${_csrf.token}";
+		var cc = {
+		carNum: "carNum",
+		// 필요한 다른 정보들
+		};
+		$.ajax({
+		url: "metaCar/cancel",
+		type: "POST",
+		headers: {
+		csrfHeaderName: csrfTokenValue
+		},
+		data: JSON.stringify(cc),
+		contentType: "application/json",
+		success: function(response) {
+		// 예약 삭제 성공 시 실행할 코드 작성
+		},
+		error: function(xhr) {
+		alert("예약 취소에 실패했습니다.");
+		}
+		});
+		}
 	
 	
 	
