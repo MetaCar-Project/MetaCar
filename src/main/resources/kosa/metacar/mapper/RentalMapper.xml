@@ -70,7 +70,7 @@
 		where hc.carnum = #{carNum}
 	</update>
 	
-	<select id="getCarnum" resultMap="RentalCar">
+	<select id="getCarnum" resultType="string">
 		select carnum from rental_car
 		where reservenum = #{reserveNum}
 	</select>

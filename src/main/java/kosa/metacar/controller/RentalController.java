@@ -65,11 +65,15 @@ public class RentalController {
 	
 	@PreAuthorize("hasAnyRole('ROLE_USER')")
 	@PostMapping("/cancel")
-	public String cancel(Cancel_CarDTO cc) {
-		
-		service.cancelCar(cc);
+	@ResponseBody
+	public ResponseEntity<String> cancel(@RequestBody Cancel_CarDTO cc) {
+		log.warn(" cancelcnaelcnaelcnaelcnaelcnaelcnael" + cc);
 		String id = cc.getId();
-		return "redirect:/profile/" + id;
+		log.warn("klrghakladrfghklaerhgkjaerhgkjaehg+_+@!+@_!+_@!_@+" + cc);
+		service.cancelCar(cc);
+		
+		
+		return new ResponseEntity<>("success",HttpStatus.OK);
 	}
 
 	@PreAuthorize("hasAnyRole('ROLE_USER')")
