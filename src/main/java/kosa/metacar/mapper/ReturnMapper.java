@@ -1,6 +1,7 @@
 package kosa.metacar.mapper;
 
 
+import kosa.metacar.dto.Rental_CarDTO;
 import kosa.metacar.dto.Return_CarDTO;
 
 public interface ReturnMapper {
@@ -12,4 +13,6 @@ public interface ReturnMapper {
 	public int carReturnox(int reserveNum);
 	
 	public String getCarnum(int reserveNum);
+	
+	public Rental_CarDTO getRental(String id);
 }
