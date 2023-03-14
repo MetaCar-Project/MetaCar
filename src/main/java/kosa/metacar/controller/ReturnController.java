@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import kosa.metacar.dto.Rental_CarDTO;
 import kosa.metacar.dto.Return_CarDTO;
+import kosa.metacar.service.RentalService;
 import kosa.metacar.service.ReturnService;
 import lombok.extern.log4j.Log4j;
 
@@ -24,16 +26,22 @@ public class ReturnController {
 	@Autowired
 	private ReturnService service;
 	
+	
+	@PreAuthorize("hasAnyRole('ROLE_USER')")
+	@GetMapping("/return")
+	public String returnPage() {
+		return "return"; 
+	}
+	
 	@PreAuthorize("hasAnyRole('ROLE_USER')")
 	@PostMapping("/return")
 	@ResponseBody
-	public ResponseEntity<String> returnCar(@RequestBody Return_CarDTO rc) {
-		log.warn("aclksdasacklskslreutnawserfnfnsalfnasdflan" + rc);
-		service.returnCar(rc);
-		String id = rc.getId();
-		log.warn("asfasdfsafsafdsafdsfsdfsafasfas"+ rc);
-		service.returnCar(rc);
+	public ResponseEntity<String> returnCar(@RequestBody String id){
 		
+		String realId = id.trim().substring(1).substring(0, id.length()-2);
+		service.returnCar(realId);
 		return new ResponseEntity<>("success",HttpStatus.OK);
 	}
+	
+	
 }

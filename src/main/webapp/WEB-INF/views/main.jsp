@@ -136,8 +136,9 @@
 		</div>
 	</div>
 	<br>
+	<br>
 	<div class='pull-right' style="text-align: center;">
-		<ul style="text-align: center;" class="pagination">
+		<ul style="text-align: center;" >
 
 						<c:if test="${pageMaker.prev }">
 							<li style="display :inline-block; text-decoration-line: none;" class="paginate_button previous">
@@ -291,6 +292,8 @@ $(document).ready(function(e) {
 
              		if($('input[name="rental_id"]').val()!=""){
              			$('#textbox').text("대여한 차량이 있습니다");
+             			$('#textbox').append("<a href='/metaCar/return'>반납</a>");
+             			
              		}
              	                
              }

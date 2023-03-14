@@ -12,7 +12,7 @@ import oracle.security.crypto.fips.RNGTest;
 @Service
 public interface ReturnService {
 	
-	public void returnCar(Return_CarDTO rc);
+	public void returnCar(String id);
 	
 	
 }
