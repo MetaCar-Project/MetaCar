@@ -2,14 +2,13 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<%@ taglib uri="http://www.springframework.org/security/tags"
-	prefix="sec"%>
-
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
 <%@ include file="./includes/header.jsp"%>
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-<%@ taglib uri="http://www.springframework.org/security/tags"
-	prefix="sec"%>
 
+<sec:authorize access="isAuthenticated()">
+          <sec:authentication property="principal.sm.id"  var="user_id"/>           	
+</sec:authorize>  
 
 
 <!-- SIDE BAR -->
@@ -113,18 +112,14 @@
 							<c:out value="${car.carModel }" />
 							<p class="card-text"></p>
 							<div class="d-flex justify-content-between align-items-center">
-								<div class="btn-group">
+					<div class="btn-group">
 
-									<%-- <button type="button" class="btn btn-sm btn-outline-secondary"
-									onclick="detailcar();">상세보기</button>
-									<button type="button" class="btn btn-sm btn-outline-secondary"
-									onclick="location.href='/metaCar/rental?carNum=${car.carNum}'">대여하기</button>
- --%>
 									<button
 										onclick="window.open('detailcar?carNum=${car.carNum }','차량상세정보','width=600,height=600,location=no,status=no,scrollbars=yes');">
 										상세정보</button>
 									<button type="button" class="btn btn-sm btn-outline-secondary"
 										onclick="location.href='/metaCar/rental?carNum=${car.carNum}'">대여하기</button>
+
 
 								</div>
 								<small class="text-muted">대여가능여부</small>
@@ -136,20 +131,12 @@
 
 		</div>
 	</div>
-
-	<!--
-	<form id="detail" name="detail">
-		<input type="hidden" name="carNum" id="carNum" value="${car.carNum }">
-		<input type="hidden" name="carModel" id="carModel" value="${car.carModel }"> 
-	</form>
-	 -->
-	 <br>
 				<div class='pull-right'>
 					<ul style="text-align: center; class="pagination">
 
 						<c:if test="${pageMaker.prev }">
-							<li style="display :inline-block; class="paginate_button previous">
-							  <a  href="${pageMaker.startPage -1 }">Previous</a>
+							<li class="paginate_button previous">
+							  <a href="${pageMaker.startPage -1 }">Previous</a>
 							</li>
 						</c:if>
 
@@ -160,11 +147,29 @@
 						</c:forEach>
 
 						<c:if test="${pageMaker.next }">
-							<li style="display :inline-block; class="paginate_button next">
+							<li class="paginate_button next">
 								<a href="${pageMaker.endPage +1 }">Next</a>
 							</li>
 						</c:if>
 
+					</ul>
+				</div>			
+		</div>
+			
+				<form id='actionForm' action="/metaCar/main" method='get'>
+					<input type='hidden' name='pageNum' value='${pageMaker.cri.pageNum }'>
+					<input type='hidden' name='amount' value='${pageMaker.cri.amount }'>
+				</form>
+				
+				<form id="sideForm" action="/metaCar/main" method="post">
+    				<input name="id" type="hidden"/>
+    				<input name="useTime" type="hidden"/>
+    				<input name="returnAdd" type="hidden"/>
+    				<input name="carNum" type="hidden"/>
+    				<input name="sczoneNum" type="hidden"/>
+    				<input type="hidden" name="${_csrf.parameterName}"
+   					 value="${_csrf.token}" />
+				</form>	
 		</ul>
 	</div>
 	<!--  end Pagination -->
@@ -183,27 +188,44 @@
 		<svg class="bi pe-none me-2" width="40" height="32">
       <use xlink:href="metaCar/main"></use>
     </svg> <span class="fs-4">예약된 차 확인</span>
-    
 	</a>
 	<hr />
-	<c:choose>
-		<c:when test="${rental_car.id eq 'null' }">
-			<sec:authorize access="isAnonymous()">
-				<img src="/resources/img/unx.jpg"
-					style="width: 100%; height: 225px;" />
-			</sec:authorize>
-		</c:when>
-		<c:otherwise>
-			<img src="/resources/img/${car.carModel }.jpg"
-				style="width: 100%; height: 225px;" />
-		</c:otherwise>
-	</c:choose>
+		<c:choose>
+			<c:when test="${(empty rental_car.id)  or (empty user_id)}">				
+					<img
+					src="/resources/img/unx.jpg"
+					style="width: 100%; height: 225px;"/>
+			</c:when>
+			<c:when test="${rental_car.id eq user_id}"> 
+				<img
+					src="/resources/img/${car.carModel }.jpg"
+					style="width: 100%; height: 225px;"/>
+			</c:when>
+		</c:choose>
+
 	<hr />
 	<ul class="nav nav-pills flex-column mb-auto">
 		<li><a class="nav-link text-white"> <svg
 					class="bi pe-none me-2" width="16" height="16">
           <use xlink:href=""></use>
         </svg>
+
+        	<c:choose>
+        		<c:when test="${(empty user_id) or (user_id == 'null')}">       
+						로그인 후 사용 가능
+				</c:when>
+				<c:when test="${(empty rental_car.id) or (rental_member.id == 'null')}">       
+						대여한 차량이 없습니다
+				</c:when>
+				<c:when test="${rental_car.id eq user_id}">
+					<sec:authorize access="isAuthenticated()">
+					<a href="carPay" style="text-decoration-line: none; text-align: center;">이용하기</a>
+					</sec:authorize>
+				</c:when>
+			</c:choose>		
+		</a>
+		</li>
+
         <c:choose>
 			<c:when test="${socar_member.id eq 'null'}">
 			
@@ -218,42 +240,30 @@
 				</sec:authorize>
 
 					</c:otherwise>
-				</c:choose> <%-- =======
-         <c:choose>
-         <c:when test="${socar_member.id eq 'null'}"> 
-               로그인후 이용가능
-         </c:when>
-         <c:otherwise>
-            <sec:authorize access="isAnonymous()">
-               로그인후 이용가능
-            </sec:authorize>
-		 대여한 차량 여부에따라 달라지는값     
-         </c:otherwise>
-      	 </c:choose>
->>>>>>> main --%>
+				</c:choose> 
+
 		</a></li>
+
 	</ul>
-	<!-- <a href="carPay" style="text-decoration-line: none; text-align: center;">이용하기</a> -->
-	
+
 </div>
 
 <script type="text/javascript">
-	$(document).ready(function() {
+$(document).ready(function() {
+	
+	history.replaceState({}, null, null);
+	var actionForm = $("#actionForm");
+	$(".paginate_button a").on(
+			"click",
+			function(e) {
+				e.preventDefault();
+				console.log('click');
+				actionForm.find("input[name='pageNum']").val($(this).attr("href"));
+				actionForm.submit();
+			})
+});
 
-		history.replaceState({}, null, null);
 
-		var actionForm = $("#actionForm");
-
-		$(".paginate_button a").on("click", function(e) {
-
-			e.preventDefault();
-
-			console.log('click');
-
-			actionForm.find("input[name='pageNum']").val($(this).attr("href"));
-			actionForm.submit();
-		});
-	});
 </script>
 
 <%@include file="./includes/footer.jsp"%>

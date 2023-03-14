@@ -45,6 +45,7 @@ public class RentalServiceImpl implements RentalService{
 		return mapper.getCancel(id);
 	}
 
+
 	@Override
 	public boolean checkReserve(String id) {
 		
@@ -57,8 +58,6 @@ public class RentalServiceImpl implements RentalService{
 		return mapper.getRental(id);
 		
 	}
-
-
 
 
 }
