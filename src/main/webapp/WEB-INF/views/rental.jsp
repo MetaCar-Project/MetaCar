@@ -338,6 +338,50 @@ $(function(){
 	
 	$('#submitButton').on("click",function(e){
 		e.preventDefault();
+		
+		
+		
+		var id = "<sec:authentication property="principal.sm.id"/>";
+		console.log("id : " +id);
+		
+		var csrfHeaderName = "${_csrf.headerName}";
+			var csrfTokenValue = "${_csrf.token}";
+		
+		 $.ajax({
+             type : 'post',
+             url : '/metaCar/checkreserve',
+             data : JSON.stringify(id),
+             beforeSend : function(xhr){
+             	xhr.setRequestHeader(csrfHeaderName,csrfTokenValue);		
+             },
+             contentType : "application/json; charset=utf-8",
+             success : function(result, status, xhr){
+            	 console.log("result  : " + result);
+                 if(result=='havereserve'){
+                	 alert("이미 예약한 차량이있습니다.");
+                	 
+                 }
+                 if(result=='noreserve'){
+                	$('input[name="id"]').val("<sec:authentication property="principal.sm.id"/>");
+             		
+             		$('input[name="useTime"]').val($('#country').val());
+             		
+             		$('input[name="returnAdd"]').val($('#address').val());
+             		
+             		var sczone= "<c:out value='${car.sczoneNum }'/>";
+             		$('input[name="sczoneNum"]').val(sczone);
+             		
+             		var carnum = "<c:out value='${car.carNum }'/>"
+             		$('input[name="carNum"]').val(carnum);
+             		
+             		$('#rentalForm').submit();
+                	 alert("예약이 완료되었습니다.");
+                 }
+             }
+         });
+		
+		 
+		
 		console.log("click");
 		
 		if($('#country').val()==""){
@@ -350,7 +394,7 @@ $(function(){
 			return;
 		}
 		
-		$('input[name="id"]').val("<sec:authentication property="principal.sm.id"/>");
+		/* $('input[name="id"]').val("<sec:authentication property="principal.sm.id"/>");
 		
 		$('input[name="useTime"]').val($('#country').val());
 		
@@ -362,7 +406,7 @@ $(function(){
 		var carnum = "<c:out value='${car.carNum }'/>"
 		$('input[name="carNum"]').val(carnum);
 		
-		$('#rentalForm').submit();
+		$('#rentalForm').submit(); */
 		
 	});
 	

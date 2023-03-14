@@ -24,6 +24,6 @@ public interface RentalMapper {
 	public String getCarnum(int reserveNum);
 	
 	public List<Cancel_CarDTO> getCancel(String id);
-	
-	public Rental_CarDTO rentalid(Rental_CarDTO rc);
+
+	public List<Rental_CarDTO> getRental(String id);
 }

@@ -138,4 +138,10 @@ public class RentalTest {
 //	public void test() {
 //		log.warn(rm.getCancel("sdh1541"));
 //	}
+	@Test
+	public void test() {
+		Rental_CarDTO rc = new Rental_CarDTO();
+		rc.setId("kosa12");
+		log.warn(service.checkReserve("kosa12"));
+	}
 }

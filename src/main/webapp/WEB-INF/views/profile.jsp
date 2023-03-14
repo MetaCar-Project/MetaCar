@@ -148,17 +148,19 @@
       <table class="table text-center">
         <thead>
           <tr>
-            <th style="width: 34%;"></th>
-            <th style="width: 22%;">장소</th>
+            
+            <th style="width: 22%;">대여장소</th>
+            <th style="width: 22%;">차 번호</th>
             <th style="width: 22%;">차종</th>
             <th style="width: 22%;">시간</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <th scope="row" class="text-start">Public</th>
+            
             <!--<td><svg class="bi" width="24" height="24"><use xlink:href="#check"/></svg></td> -->
             <td><c:out value="${user.rentalCar.haveCar.zoneCar.address }"/></td>
+            <td><c:out value="${user.rentalCar.haveCar.carNum }"/></td>
             <td><c:out value="${user.rentalCar.haveCar.carModel }"/></td>
             <td><c:out value="${user.rentalCar.useTime }"/></td>
           </tr>
@@ -194,7 +196,7 @@
 	 <input type="hidden" name="${_csrf.parameterName}"
     value="${_csrf.token}" />
 </form>
-
+<input type='button' class="btn btn-primary" value='예약취소목록' style="float: right;" onclick="location.href='/metaCar/cancel/${user.id}'"/>
 </main>
   
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
