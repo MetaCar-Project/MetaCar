@@ -206,7 +206,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
-        <button type="button" class="btn btn-primary" id="modify">수정하기</button>
+        <button type="button" class="btn btn-primary" id="modify">취소하기</button>
       </div>
     </div>
   </div>
