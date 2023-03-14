@@ -77,6 +77,14 @@
 	
 	<select id="getCancel" resultType="kosa.metacar.dto.Cancel_CarDTO">
 		select * from cancel_car where id = #{id}
+		ORDER BY reservenum
 	</select>
+	
+	<select id="getRental" resultType="kosa.metacar.dto.Rental_CarDTO">
+		select * from rental_car
+		where id= #{id}
+		and reservenow = 'o'
+	</select>
+	
 	
 </mapper>

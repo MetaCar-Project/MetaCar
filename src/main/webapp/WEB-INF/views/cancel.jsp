@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <!doctype html>
 <html lang="ko">
@@ -109,20 +110,54 @@
         <span class="fs-4">예약취소</span>
       </a>
     </div>
+        <h4 class="display-6 text-center mb-4">삭제 가능한 예약 목록</h4>
+          <table class="table text-center">
+        <thead>
+          <tr>
+            <th style="width: 20%;">아이디</th>
+            <th style="width: 20%;">대여신청시간</th>
+            <th style="width: 20%;">사용시간</th>
+            <th style="width: 20%;">반납주소</th>
+            <th style="width: 20%;">차번호</th>
+          </tr>
+        </thead>
 
 
-      
-    </div>
+        <tbody>
+        
+          <tr>
+				</tr>
+				<c:forEach items="${rentalGet}" var="rentalGet">
+					<tr>
+						<td>${rentalGet.id}</td>
+						<td><fmt:formatDate pattern="yyyy-MM-dd" value="${rentalGet.reserveTime}"/></td>
+						<td>${rentalGet.useTime}</td>
+						<td>${rentalGet.returnAdd}</td>
+						<td>${rentalGet.carNum}</td>
+						
+					</tr>
+				</c:forEach>
+        </tbody>
+       
+      </table>
+
+</div>
   </header>
 
-  <main>
+  <main style="width: 100%; height: 100%;">
+  <div style="width: 1000px; height: 800%; margin: 0 auto;">
     <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
 
+	
+	
+	
       <div class="col">
         <div class="card mb-4 rounded-3 shadow-sm">
-          <div class="card-header py-3">
-            <h4 class="my-0 fw-normal">예약을 취소 하시겠습니까?</h4>
+          <button type="button" class="btn btn-primary" onclick="cancelRes()">
+          <div>
+            <h5 class="my-0 fw-normal">예약을 취소 하시겠습니까?</h5>
           </div>
+          </button>
  
         </div>
       </div>
@@ -130,33 +165,30 @@
     </div>
 
     <h4 class="display-6 text-center mb-4">예약 취소 목록</h4>
-
-	<c:forEach var="cancelCar" items="${cancel}">
-    <div class="table-responsive">
       <table class="table text-center">
         <thead>
           <tr>
-            
-            <th style="width: 34%;">번호</th>
-            <th style="width: 22%;">아이디</th>
+            <th style="width: 34%;">예약번호</th>
             <th style="width: 22%;">취소이유</th>
             <th style="width: 22%;">취소 날짜</th>
           </tr>
         </thead>
+	<c:forEach var="cancelCar" items="${cancel}">
+
         <tbody>
+        
           <tr>
-            <th scope="row" class="text-start">${cancelCar.reserveNum}</th>
-            <!--<td><svg class="bi" width="24" height="24"><use xlink:href="#check"/></svg></td> -->
-            
-		          <td>${cancelCar.id}</td>
-		          <td>${cancelCar.cancelWhy}</td>
-		          <td>${cancelCar.cancelDate}</td>
+          
+            <td style="text-align: center">${cancelCar.reserveNum}</td>
+		    <td style="text-align: center">${cancelCar.cancelWhy}</td>
+		    <td><fmt:formatDate pattern="yyyy-MM-dd" value="${cancelCar.cancelDate}"/></td>
+		    
           </tr>
-        </tbody> 
+        </tbody>
+        
+        </c:forEach> 
       </table>
     </div>
-    </c:forEach>
-    
 	<!-- Button trigger modal -->
 
 <!-- Modal -->
@@ -185,5 +217,37 @@
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/User.js"></script> 
 	<!-- <script src="/resources/js/User.js"></script>  -->
+	<script>
+	
+	function cancelRes() {
+		var csrfHeaderName = "${_csrf.headerName}";
+		var csrfTokenValue = "${_csrf.token}";
+		var cc = {
+		carNum: "carNum",
+		// 필요한 다른 정보들
+		};
+		$.ajax({
+		url: "metaCar/cancel",
+		type: "POST",
+		headers: {
+		csrfHeaderName: csrfTokenValue
+		},
+		data: JSON.stringify(cc),
+		contentType: "application/json",
+		success: function(response) {
+		// 예약 삭제 성공 시 실행할 코드 작성
+		},
+		error: function(xhr) {
+		alert("예약 취소에 실패했습니다.");
+		}
+		});
+		}
+	
+	
+	
+	
+	
+	
+	</script>
 
   <%@include file="./includes/footer.jsp"%>

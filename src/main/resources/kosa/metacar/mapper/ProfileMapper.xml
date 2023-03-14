@@ -21,6 +21,7 @@
 	<resultMap type="kosa.metacar.dto.Have_CarDTO" id="havecar">
 		<id column="carnum" property="carNum"/>
 		<result column="carmodel" property="carModel"/>
+		
 		<association property="zoneCar" resultMap="zonecar"/>
 	</resultMap>
 	
@@ -31,7 +32,7 @@
 
 
 	<select id="userDetail" resultMap="member">
-		select sm.id, phone, name, address, carmodel, usetime
+		select sm.id, phone, name, address, hc.carnum, carmodel, usetime
 		from socar_member sm, rental_car rc, zone_car zc, have_car hc
 		where sm.id=rc.id(+)
 		and rc.sczonenum = zc.sczonenum(+)

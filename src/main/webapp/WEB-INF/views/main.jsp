@@ -143,25 +143,27 @@
 		<input type="hidden" name="carModel" id="carModel" value="${car.carModel }"> 
 	</form>
 	 -->
-	<div class='pull-right'>
-		<ul class="pagination">
+	 <br>
+				<div class='pull-right'>
+					<ul style="text-align: center; class="pagination">
 
-			<c:if test="${pageMaker.prev }">
-				<li class="paginate_button previous"><a
-					href="${pageMaker.startPage -1 }">Previous</a></li>
-			</c:if>
+						<c:if test="${pageMaker.prev }">
+							<li style="display :inline-block; class="paginate_button previous">
+							  <a  href="${pageMaker.startPage -1 }">Previous</a>
+							</li>
+						</c:if>
 
-			<c:forEach var="num" begin="${pageMaker.startPage }"
-				end="${pageMaker.endPage }">
-				<li class="paginate_button ${pageMaker.cri.pageNum == num ? "active":"" } ">
-					<a href="${num }">${num }</a>
-				</li>
-			</c:forEach>
+						<c:forEach var="num" begin="${pageMaker.startPage }" end="${pageMaker.endPage }">
+							<li style="display :inline-block;" class="paginate_button ${pageMaker.cri.pageNum == num ? "active":"" } ">
+								<a style="margin-left : 4px " class="btn btn-outline-primary" href="${num }">${num }</a>
+							</li>
+						</c:forEach>
 
-			<c:if test="${pageMaker.next }">
-				<li class="paginate_button next"><a
-					href="${pageMaker.endPage +1 }">Next</a></li>
-			</c:if>
+						<c:if test="${pageMaker.next }">
+							<li style="display :inline-block; class="paginate_button next">
+								<a href="${pageMaker.endPage +1 }">Next</a>
+							</li>
+						</c:if>
 
 		</ul>
 	</div>
@@ -181,6 +183,7 @@
 		<svg class="bi pe-none me-2" width="40" height="32">
       <use xlink:href="metaCar/main"></use>
     </svg> <span class="fs-4">예약된 차 확인</span>
+    
 	</a>
 	<hr />
 	<c:choose>
@@ -200,8 +203,10 @@
 		<li><a class="nav-link text-white"> <svg
 					class="bi pe-none me-2" width="16" height="16">
           <use xlink:href=""></use>
-        </svg> <c:choose>
-					<c:when test="${socar_member.id eq 'null'}"> 
+        </svg>
+        <c:choose>
+			<c:when test="${socar_member.id eq 'null'}">
+			
 				로그인후 이용가능
 			</c:when>
 					<c:otherwise>
@@ -229,6 +234,7 @@
 		</a></li>
 	</ul>
 	<!-- <a href="carPay" style="text-decoration-line: none; text-align: center;">이용하기</a> -->
+	
 </div>
 
 <script type="text/javascript">
